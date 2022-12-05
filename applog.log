@@ -84,3 +84,831 @@
 }
 { message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
 { message: 'LOGIN SUCCESS', level: 'info' }
+{
+  error: Error: 
+      at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)
+      at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)
+      at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)
+      at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9) {
+    name: 'SequelizeDatabaseError',
+    parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `menuId` INTEGER, `categoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`menuId`) REFERENCES `Menus` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `menuId` INTEGER, `categoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`menuId`) REFERENCES `Menus` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `menuId` INTEGER, `categoryId` INTEGER, PRIMARY KEY (`id`), FOREIGN KEY (`menuId`) REFERENCES `Menus` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE) ENGINE=InnoDB;',
+    parameters: {}
+  },
+  level: 'error',
+  message: "uncaughtException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `' at line 1\n" +
+    'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  stack: 'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  exception: true,
+  date: 'Mon Dec 05 2022 19:45:03 GMT+0100 (czas środkowoeuropejski standardowy)',
+  process: {
+    pid: 9122,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/konrad/Projects/MenuWorker',
+    execPath: '/home/konrad/.nvm/versions/node/v16.15.1/bin/node',
+    version: 'v16.15.1',
+    argv: [ 'node', '/home/konrad/Projects/MenuWorker/src/index.js' ],
+    memoryUsage: {
+      rss: 143675392,
+      heapTotal: 90169344,
+      heapUsed: 48868216,
+      external: 8964381,
+      arrayBuffers: 754166
+    }
+  },
+  os: { loadavg: [ 1.41, 1.13, 1.03 ], uptime: 2635.05 },
+  trace: [
+    {
+      column: 25,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js',
+      function: 'Query.run',
+      line: 46,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: null,
+      line: 649,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'processTicksAndRejections',
+      line: 96,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js',
+      function: 'MySQLQueryInterface.createTable',
+      line: 229,
+      method: 'createTable',
+      native: false
+    },
+    {
+      column: 7,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js',
+      function: 'Function.sync',
+      line: 1353,
+      method: 'sync',
+      native: false
+    },
+    {
+      column: 9,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: 'Sequelize.sync',
+      line: 824,
+      method: 'sync',
+      native: false
+    }
+  ]
+}
+{
+  error: Error: 
+      at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)
+      at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)
+      at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)
+      at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9) {
+    name: 'SequelizeDatabaseError',
+    parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+    parameters: {}
+  },
+  level: 'error',
+  message: "uncaughtException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1\n" +
+    'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  stack: 'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  exception: true,
+  date: 'Mon Dec 05 2022 19:45:51 GMT+0100 (czas środkowoeuropejski standardowy)',
+  process: {
+    pid: 9267,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/konrad/Projects/MenuWorker',
+    execPath: '/home/konrad/.nvm/versions/node/v16.15.1/bin/node',
+    version: 'v16.15.1',
+    argv: [ 'node', '/home/konrad/Projects/MenuWorker/src/index.js' ],
+    memoryUsage: {
+      rss: 143069184,
+      heapTotal: 89907200,
+      heapUsed: 48666544,
+      external: 8963495,
+      arrayBuffers: 754166
+    }
+  },
+  os: { loadavg: [ 1.88, 1.28, 1.08 ], uptime: 2684.04 },
+  trace: [
+    {
+      column: 25,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js',
+      function: 'Query.run',
+      line: 46,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: null,
+      line: 649,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'processTicksAndRejections',
+      line: 96,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js',
+      function: 'MySQLQueryInterface.createTable',
+      line: 229,
+      method: 'createTable',
+      native: false
+    },
+    {
+      column: 7,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js',
+      function: 'Function.sync',
+      line: 1353,
+      method: 'sync',
+      native: false
+    },
+    {
+      column: 9,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: 'Sequelize.sync',
+      line: 824,
+      method: 'sync',
+      native: false
+    }
+  ]
+}
+{
+  error: Error: 
+      at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)
+      at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)
+      at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)
+      at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9) {
+    name: 'SequelizeDatabaseError',
+    parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+    parameters: {}
+  },
+  level: 'error',
+  message: "uncaughtException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1\n" +
+    'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  stack: 'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  exception: true,
+  date: 'Mon Dec 05 2022 19:45:57 GMT+0100 (czas środkowoeuropejski standardowy)',
+  process: {
+    pid: 9345,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/konrad/Projects/MenuWorker',
+    execPath: '/home/konrad/.nvm/versions/node/v16.15.1/bin/node',
+    version: 'v16.15.1',
+    argv: [ 'node', '/home/konrad/Projects/MenuWorker/src/index.js' ],
+    memoryUsage: {
+      rss: 144941056,
+      heapTotal: 89645056,
+      heapUsed: 48754896,
+      external: 8963005,
+      arrayBuffers: 754110
+    }
+  },
+  os: { loadavg: [ 1.73, 1.26, 1.08 ], uptime: 2689.85 },
+  trace: [
+    {
+      column: 25,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js',
+      function: 'Query.run',
+      line: 46,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: null,
+      line: 649,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'processTicksAndRejections',
+      line: 96,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js',
+      function: 'MySQLQueryInterface.createTable',
+      line: 229,
+      method: 'createTable',
+      native: false
+    },
+    {
+      column: 7,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js',
+      function: 'Function.sync',
+      line: 1353,
+      method: 'sync',
+      native: false
+    },
+    {
+      column: 9,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: 'Sequelize.sync',
+      line: 824,
+      method: 'sync',
+      native: false
+    }
+  ]
+}
+{
+  error: Error: 
+      at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)
+      at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)
+      at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)
+      at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9) {
+    name: 'SequelizeDatabaseError',
+    parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+    parameters: {}
+  },
+  level: 'error',
+  message: "uncaughtException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1\n" +
+    'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  stack: 'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  exception: true,
+  date: 'Mon Dec 05 2022 19:46:04 GMT+0100 (czas środkowoeuropejski standardowy)',
+  process: {
+    pid: 9416,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/konrad/Projects/MenuWorker',
+    execPath: '/home/konrad/.nvm/versions/node/v16.15.1/bin/node',
+    version: 'v16.15.1',
+    argv: [ 'node', '/home/konrad/Projects/MenuWorker/src/index.js' ],
+    memoryUsage: {
+      rss: 144297984,
+      heapTotal: 89907200,
+      heapUsed: 48380272,
+      external: 8981675,
+      arrayBuffers: 754047
+    }
+  },
+  os: { loadavg: [ 1.75, 1.27, 1.08 ], uptime: 2697.03 },
+  trace: [
+    {
+      column: 25,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js',
+      function: 'Query.run',
+      line: 46,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: null,
+      line: 649,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'processTicksAndRejections',
+      line: 96,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js',
+      function: 'MySQLQueryInterface.createTable',
+      line: 229,
+      method: 'createTable',
+      native: false
+    },
+    {
+      column: 7,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js',
+      function: 'Function.sync',
+      line: 1353,
+      method: 'sync',
+      native: false
+    },
+    {
+      column: 9,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: 'Sequelize.sync',
+      line: 824,
+      method: 'sync',
+      native: false
+    }
+  ]
+}
+{
+  error: Error: 
+      at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)
+      at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)
+      at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)
+      at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9) {
+    name: 'SequelizeDatabaseError',
+    parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+    parameters: {}
+  },
+  level: 'error',
+  message: "uncaughtException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1\n" +
+    'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  stack: 'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  exception: true,
+  date: 'Mon Dec 05 2022 19:46:18 GMT+0100 (czas środkowoeuropejski standardowy)',
+  process: {
+    pid: 9517,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/konrad/Projects/MenuWorker',
+    execPath: '/home/konrad/.nvm/versions/node/v16.15.1/bin/node',
+    version: 'v16.15.1',
+    argv: [ 'node', '/home/konrad/Projects/MenuWorker/src/index.js' ],
+    memoryUsage: {
+      rss: 143810560,
+      heapTotal: 89645056,
+      heapUsed: 48509840,
+      external: 8961942,
+      arrayBuffers: 753990
+    }
+  },
+  os: { loadavg: [ 1.66, 1.28, 1.09 ], uptime: 2710.19 },
+  trace: [
+    {
+      column: 25,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js',
+      function: 'Query.run',
+      line: 46,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: null,
+      line: 649,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'processTicksAndRejections',
+      line: 96,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js',
+      function: 'MySQLQueryInterface.createTable',
+      line: 229,
+      method: 'createTable',
+      native: false
+    },
+    {
+      column: 7,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js',
+      function: 'Function.sync',
+      line: 1353,
+      method: 'sync',
+      native: false
+    },
+    {
+      column: 9,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: 'Sequelize.sync',
+      line: 824,
+      method: 'sync',
+      native: false
+    }
+  ]
+}
+{
+  error: Error: 
+      at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)
+      at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)
+      at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)
+      at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9) {
+    name: 'SequelizeDatabaseError',
+    parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1
+        at Packet.asError (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packets/packet.js:728:17)
+        at Query.execute (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/commands/command.js:29:26)
+        at Connection.handlePacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:456:32)
+        at PacketParser.onPacket (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:85:12)
+        at PacketParser.executeStart (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/packet_parser.js:75:16)
+        at Socket.<anonymous> (/home/konrad/Projects/MenuWorker/node_modules/mysql2/lib/connection.js:92:25)
+        at Socket.emit (node:events:527:28)
+        at Socket.emit (node:domain:475:12)
+        at addChunk (node:internal/streams/readable:315:12)
+        at readableAddChunk (node:internal/streams/readable:289:9)
+        at Socket.Readable.push (node:internal/streams/readable:228:10)
+        at TCP.onStreamRead (node:internal/stream_base_commons:190:23) {
+      code: 'ER_PARSE_ERROR',
+      errno: 1064,
+      sqlState: '42000',
+      sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1",
+      sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+      parameters: undefined
+    },
+    sql: 'CREATE TABLE IF NOT EXISTS `Items` (`id` INTEGER NOT NULL auto_increment , `name` VARCHAR(255) NOT NULL, `price` NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;',
+    parameters: {}
+  },
+  level: 'error',
+  message: "uncaughtException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NUMBER NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, P' at line 1\n" +
+    'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  stack: 'Error: \n' +
+    '    at Query.run (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js:46:25)\n' +
+    '    at /home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:649:28\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n' +
+    '    at MySQLQueryInterface.createTable (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js:229:12)\n' +
+    '    at Function.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js:1353:7)\n' +
+    '    at Sequelize.sync (/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js:824:9)',
+  exception: true,
+  date: 'Mon Dec 05 2022 19:52:57 GMT+0100 (czas środkowoeuropejski standardowy)',
+  process: {
+    pid: 9896,
+    uid: 1000,
+    gid: 1000,
+    cwd: '/home/konrad/Projects/MenuWorker',
+    execPath: '/home/konrad/.nvm/versions/node/v16.15.1/bin/node',
+    version: 'v16.15.1',
+    argv: [ 'node', '/home/konrad/Projects/MenuWorker/src/index.js' ],
+    memoryUsage: {
+      rss: 144154624,
+      heapTotal: 89645056,
+      heapUsed: 48656208,
+      external: 8961942,
+      arrayBuffers: 753990
+    }
+  },
+  os: { loadavg: [ 1.36, 0.88, 0.93 ], uptime: 3109.24 },
+  trace: [
+    {
+      column: 25,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/mysql/query.js',
+      function: 'Query.run',
+      line: 46,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 28,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: null,
+      line: 649,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'processTicksAndRejections',
+      line: 96,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/dialects/abstract/query-interface.js',
+      function: 'MySQLQueryInterface.createTable',
+      line: 229,
+      method: 'createTable',
+      native: false
+    },
+    {
+      column: 7,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/model.js',
+      function: 'Function.sync',
+      line: 1353,
+      method: 'sync',
+      native: false
+    },
+    {
+      column: 9,
+      file: '/home/konrad/Projects/MenuWorker/node_modules/sequelize/src/sequelize.js',
+      function: 'Sequelize.sync',
+      line: 824,
+      method: 'sync',
+      native: false
+    }
+  ]
+}
