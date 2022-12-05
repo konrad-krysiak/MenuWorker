@@ -1,0 +1,86 @@
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
+{ message: 'LOGIN SUCCESS', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
+{ message: 'LOGIN SUCCESS', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl2 lala asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl2 lala asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl2 lala asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":""}',
+  level: 'info'
+}
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":""}',
+  level: 'info'
+}
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":""}',
+  level: 'info'
+}
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl2","password":""}',
+  level: 'info'
+}
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"asd","password":"asd"}',
+  level: 'info'
+}
+{ message: 'asd asd asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"asd","password":"asd"}',
+  level: 'info'
+}
+{ message: 'asd asd asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
+{ message: 'LOGIN SUCCESS', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lalaa"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lalaa asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
+{ message: 'LOGIN SUCCESS', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"asd","password":"asdasd"}',
+  level: 'info'
+}
+{ message: 'asd asdasd asdasdasd', level: 'info' }
+{
+  message: 'AUTHENTICATION ATTEMPT{"email":"konrad@onet.pl","password":"lala"}',
+  level: 'info'
+}
+{ message: 'konrad@onet.pl lala asdasdasd', level: 'info' }
+{ message: 'LOGIN SUCCESS', level: 'info' }
