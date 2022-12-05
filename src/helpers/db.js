@@ -1,7 +1,6 @@
 import { Sequelize, Op } from 'sequelize';
 import dbConfig from '../config/db.config';
-import User from '../models/user.model';
-
+import { applyModelsAndAssociacions } from '../models';
 const db = {};
 
 initialize();
@@ -18,9 +17,9 @@ function initialize() {
 
   db.sequelize = sequelize;
   db.Sequelize = Sequelize;
-  // load model to sequelize
-  db.User = User(sequelize);
   db.operator = Op;
+
+  applyModelsAndAssociacions(db);
 }
 
 export default db;
