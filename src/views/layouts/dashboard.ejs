@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="d-flex">
+      <div class="sidebar vh-100">
+        <div
+          class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark h-100"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+          >
+            <svg class="bi me-2" width="40" height="32">
+              <use xlink:href="#bootstrap"></use>
+            </svg>
+            <span class="fs-4">MenuWorker</span>
+          </a>
+          <hr />
+          <ul
+            id="dashboard-sidebar-ul"
+            class="nav nav-pills flex-column mb-auto"
+          >
+            <li class="nav-item">
+              <a
+                href="/dashboard/home"
+                class="nav-link text-white <%- locals.originalUrl === '/dashboard/home' ? 'active' : '' %>"
+                aria-current="page"
+              >
+                <svg class="bi me-2" width="16" height="16">
+                  <!-- <use xlink:href="#home"></use> -->
+                </svg>
+                Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="/dashboard/restaurants"
+                class="nav-link text-white <%- locals.originalUrl === '/dashboard/restaurants' ? 'active' : '' %>"
+                aria-current="page"
+              >
+                <svg class="bi me-2" width="16" height="16">
+                  <!-- <use xlink:href="#home"></use> -->
+                </svg>
+                Restaurants
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dashboard/menus"
+                class="nav-link text-white <%- locals.originalUrl === '/dashboard/menus' ? 'active' : '' %>"
+              >
+                <svg class="bi me-2" width="16" height="16">
+                  <!-- <use xlink:href="#speedometer2"></use> -->
+                </svg>
+                Menus
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dashboard/qrcode"
+                class="nav-link text-white <%- locals.originalUrl === '/dashboard/qrcode' ? 'active' : '' %>"
+              >
+                <svg class="bi me-2" width="16" height="16">
+                  <!-- <use xlink:href="#table"></use> -->
+                </svg>
+                QR code
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dashboard/sharelink"
+                class="nav-link text-white <%- locals.originalUrl === '/dashboard/sharelink' ? 'active' : '' %>"
+              >
+                <svg class="bi me-2" width="16" height="16">
+                  <!-- <use xlink:href="#grid"></use> -->
+                </svg>
+                Share restaurant link
+              </a>
+            </li>
+            <li>
+              <a
+                href="/dashboard/settings"
+                class="nav-link text-white <%- locals.originalUrl === '/dashboard/settings' ? 'active' : '' %>"
+              >
+                <svg class="bi me-2" width="16" height="16">
+                  <!-- <use xlink:href="#people-circle"></use> -->
+                </svg>
+                Settings
+              </a>
+            </li>
+          </ul>
+          <hr />
+          <div class="dropdown">
+            <a
+              href="#"
+              class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+              id="dropdownUser1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="https://github.com/mdo.png"
+                alt=""
+                class="rounded-circle me-2"
+                width="32"
+                height="32"
+              />
+              <strong>mdo</strong>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark text-small shadow"
+              aria-labelledby="dropdownUser1"
+            >
+              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-body"><%- body %></div>
+    </div>
+    <!-- bootstrap v5 -->
+    <script src="js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

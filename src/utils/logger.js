@@ -1,7 +1,6 @@
 import winston from 'winston';
 
 const winstonLogger = winston.createLogger({
-  level: 'info',
   format: winston.format.combine(
       winston.format.json(),
       winston.format.prettyPrint(),
@@ -17,11 +16,10 @@ const winstonLogger = winston.createLogger({
     }),
   ],
 });
-
-// if (process.env.NODE_ENV !== 'production') {
-winstonLogger.add(new winston.transports.Console({
-  format: winston.format.combine(winston.format.simple(), winston.format.colorize({ all: true })),
-}));
-// }
+if (process.env.NODE_ENV !== 'production') {
+  winstonLogger.add(new winston.transports.Console({
+    format: winston.format.combine(winston.format.simple(), winston.format.colorize({ all: true })),
+  }));
+}
 
 export default winstonLogger;

@@ -6,7 +6,6 @@ const Restaurant = (sequelize) => sequelize.define('restaurant', {
     type: DataTypes.STRING,
   },
   description: {
-    allowNull: false,
     type: DataTypes.STRING,
   },
   phone: {

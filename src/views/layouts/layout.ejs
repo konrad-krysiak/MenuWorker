@@ -9,10 +9,9 @@
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <%- body %>
-    <!-- jquery version 3.6.1 -->
-    <script src="/js/jquery.min.js"></script>
-    <!-- bootstrap source version 4 -->
+    <%= JSON.stringify(messages) %> <%- body %>
+
+    <!-- bootstrap v5 -->
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/script.js"></script>
   </body>

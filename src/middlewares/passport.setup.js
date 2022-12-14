@@ -11,7 +11,7 @@ import winstonLogger from '../utils/logger';
 function initialize(passport) {
   passport.use(new LocalStrategy({ usernameField: 'email' },
       async (email, password, done) => {
-        winstonLogger.info(email + ' ' + password + ' asdasdasd');
+        winstonLogger.info('CRETENTIALS PROVIDED: ' + email + ' ' + password);
         const user = await userService.getUserByEmail(email);
         if (!user) {
           return done(null, false, { message: 'No user with that email.' });

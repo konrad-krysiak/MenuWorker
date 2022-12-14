@@ -21,6 +21,11 @@ const errorFactory = {
     message: 'Exist',
     error: error || {},
   }),
+  badRequest: (error) => ({
+    status: StatusCodes.BAD_REQUEST,
+    message: 'Bad Request',
+    error: error || {},
+  }),
 };
 
 export default errorFactory;

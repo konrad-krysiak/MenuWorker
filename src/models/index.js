@@ -13,7 +13,11 @@ const applyModelsAndAssociacions = (db) => {
   db.Item = Item(sequelize);
 
   // USER - RESTAURANT
-  db.User.hasOne(db.Restaurant);
+  db.User.hasMany(db.Restaurant, {
+    foreignKey: {
+      allowNull: false,
+    },
+  });
   db.Restaurant.belongsTo(db.User);
 
   // RESTAURANT - MENU

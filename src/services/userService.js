@@ -1,17 +1,15 @@
 import { StatusCodes } from 'http-status-codes';
 import db from '../helpers/db';
-import winstonLogger from '../utils/logger';
 import bcrypt from 'bcrypt';
 
 const { User, operator } = db;
 
 const createUser = async (userData) => {
-  const { username, email, phone, password } = userData;
+  const { name, email, phone, address, password } = userData;
   const payload = {};
   const existUser = await User.findOne({
     where: {
       [operator.or]: [
-        { username },
         { email },
         { phone },
       ],
@@ -22,9 +20,10 @@ const createUser = async (userData) => {
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
     const userObject = {
-      username,
+      name,
       email,
       phone,
+      address,
       password: hashedPassword,
     };
     const user = await User.create(userObject);

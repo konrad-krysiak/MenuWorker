@@ -1,0 +1,40 @@
+.navbar {
+    border: 1px solid red;
+}
+
+.navbar-buttons {
+    height: 50px;
+}
+
+.login-button {
+    display: inline-flex;
+    align-items: center; 
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(200, 253, 120);
+    border-radius: 3px;
+    border: none;
+}
+
+.register-button {
+    display: inline-flex;
+    align-items: center; 
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: red;
+    border-radius: 3px;
+    border: none;
+}
+
+
+
+/* DASHBOARD */
+.sidebar {
+    flex:1
+}
+.dashboard-body {
+    flex:4;
+}
+
