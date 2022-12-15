@@ -128,7 +128,10 @@
           </div>
         </div>
       </div>
-      <div class="dashboard-body"><%- body %></div>
+      <div class="dashboard-body">
+        <% if(messages.info) { %> <%= JSON.stringify(messages.info) %> <% } %>
+        <% if(messages.error) { %> <%= messages.error %> <% } %> <%- body %>
+      </div>
     </div>
     <!-- bootstrap v5 -->
     <script src="js/jquery.min.js"></script>
