@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <% if(messages.info) { %> <%= JSON.stringify(messages.info) %> <% } %> <%
-    if(messages.error) { %> <%= messages.error %> <% } %> <%- body %>
+    <% if(messages.info) { %> <%= messages.info %> <% } %> <% if(messages.error)
+    { %> <%= messages.error %> <% } %> <%- body %>
 
     <!-- bootstrap v5 -->
     <script src="/js/bootstrap.min.js"></script>

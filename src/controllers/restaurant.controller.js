@@ -7,36 +7,45 @@ class RestaurantController {
   index = async (req, res) => {
     try {
       const data = await restaurantService.getRestaurants(req.user.id);
-      res.render('dashboard/restaurants', { layout: 'layouts/dashboard', title: 'restaurants', restaurants: data });
+      res.render('dashboard/restaurants', { layout: 'layouts/dashboard', title: 'restaurants', restaurants: data.result });
     } catch (error) {
       res.status(400).json(error);
     }
+  };
 
-
-    // res.render('dashboard/restaurants', { layout: 'layouts/dashboard', title: 'restaurants' });
+  new = (req, res) => {
+    console.log('lala');
+    res.render('dashboard/restaurantsnew', { layout: 'layouts/dashboard' });
   };
 
   create = async (req, res, next) => {
     winstonLogger.info('create restaurantController');
-    if (!req.user) {
-      winstonLogger.error('CANNOT CREATE RESTAURANT WHEN THERES NOT REQ.USER OBJECT');
-      return next(errorFactory.unAuthorized('You have to be logged in to create a restaurant.'));
-    }
     try {
-      const userId = req.user.id;
+      const userId = 1;
       const restaurantData = {
-        name: res.body.name || '',
-        description: res.body.description || '',
-        phone: res.body.phone || '',
+        name: req.body.name,
+        description: req.body.description,
+        phone: req.body.phone,
       };
       const data = await restaurantService.createRestaurant(restaurantData, userId);
-      if (data.status === StatusCodes.CREATED) {
-        req.flash('Restaurant created successfully.');
-        res.status(StatusCodes.CREATED).render('dashboard/restaurants');
-      } else {
-        next(errorFactory.conflict('error in restaurant controller'));
+      switch (data.status) {
+        case StatusCodes.CREATED:
+          req.flash('info', 'Restaurant created successfully.');
+          res.status(StatusCodes.CREATED).redirect('/dashboard/restaurants');
+          break;
+        case StatusCodes.BAD_REQUEST:
+          req.flash('error', JSON.stringify(data.error));
+          res.status(StatusCodes.BAD_REQUEST).redirect('/dashboard/restaurants');
+          break;
+        case StatusCodes.CONFLICT:
+          req.flash('error', JSON.stringify(data.error));
+          res.status(StatusCodes.CONFLICT).redirect('/dashboard/restaurants');
+          break;
+        default:
+          next(errorFactory.internalServerError());
       }
     } catch (error) {
+      console.log('ERROR CAUGHT', error);
       next(error);
     }
   };

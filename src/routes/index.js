@@ -14,10 +14,7 @@ const routes = (app) => {
   app.post('/logout', MainController.logout);
   app.get('/register', MainController.registerIndex);
   app.post('/register', UserController.create);
-  app.use((req, res, next) => {
-    console.log('--------------' + JSON.stringify(req.user));
-    next();
-  });
+
   // protected routes
   app.use('/dashboard', checkAuthentication, dashboardRoutes);
 

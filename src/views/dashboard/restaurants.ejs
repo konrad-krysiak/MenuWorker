@@ -1,1 +1,15 @@
-restaurants
+<div class="container mt-5">
+  <% restaurants.forEach((restaurant) => { %>
+  <div
+    class="d-flex"
+    style="border: 1px solid red; justify-content: space-between"
+  >
+    <div><%= restaurant.name %></div>
+    <div><%= restaurant.description %></div>
+    <div><%= restaurant.phone %></div>
+  </div>
+  <% }) %>
+  <a href="/dashboard/restaurants/new" class="btn btn-primary"
+    >Add new restaurant</a
+  >
+</div>

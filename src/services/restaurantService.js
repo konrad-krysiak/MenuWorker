@@ -1,20 +1,29 @@
 
 import { StatusCodes } from 'http-status-codes';
-import winstonLogger from '../utils/logger';
 import db from '../helpers/db';
+import validator from '../validation/index';
 
 
-const { User, Restaurant } = db;
+const { Restaurant } = db;
 
 const createRestaurant = async (restaurantData, userId) => {
-  const { name, description, phone } = restaurantData;
+  const { error } = validator.validateRestaurant(restaurantData);
   const payload = {};
-  const user = await User.findOne({
-    where: { id: userId },
+  if (error) {
+    payload.status = StatusCodes.BAD_REQUEST;
+    payload.error = error;
+    return payload;
+  }
+  const { name, description, phone } = restaurantData;
+
+  const existRestaurant = await Restaurant.findOne({
+    where: {
+      phone,
+    },
   });
-  if (!user) {
-    payload.status = StatusCodes.UNAUTHORIZED;
-    winstonLogger.error('RestaurantService: Trying to create restaurant for user whom doesnt exist.');
+  if (existRestaurant) {
+    payload.status = StatusCodes.CONFLICT;
+    payload.error = 'Restaurant with that phone number already exists.';
   } else {
     const restaurant = await Restaurant.create({
       name,

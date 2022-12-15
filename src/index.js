@@ -37,7 +37,8 @@ sequelize.sync({ force: true }).then(() => {
   userService.createUser({
     name: 'konrad', email: 'konrad@onet.pl', phone: '123123123', address: 'Warsaw', password: 'lala',
   });
-  // setTimeout(() => {
-  //   restaurantService.createRestaurant({ name: 'r1', description: 'lalalalal', phone: '123123123' }, 1);
-  // }, 1000);
+  setTimeout(() => {
+    console.log('----------------------------------------');
+    restaurantService.createRestaurant({ name: 'restaurant1', description: 'lalalalal', phone: '123123123' }, 1);
+  }, 1000);
 });
