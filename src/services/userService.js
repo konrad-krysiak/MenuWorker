@@ -1,12 +1,19 @@
 import { StatusCodes } from 'http-status-codes';
 import db from '../helpers/db';
 import bcrypt from 'bcrypt';
+import validator from '../validation/index';
 
 const { User, operator } = db;
 
 const createUser = async (userData) => {
-  const { name, email, phone, address, password } = userData;
+  const { error } = validator.validateSignup(userData);
   const payload = {};
+  if (error) {
+    payload.status = StatusCodes.BAD_REQUEST;
+    payload.error = error.details.map((entry) => entry.message);
+    return payload;
+  }
+  const { name, email, phone, address, password } = userData;
   const existUser = await User.findOne({
     where: {
       [operator.or]: [
@@ -17,6 +24,7 @@ const createUser = async (userData) => {
   });
   if (existUser) {
     payload.status = StatusCodes.CONFLICT;
+    payload.error = 'User already exist.';
   } else {
     const hashedPassword = await bcrypt.hash(password, 10);
     const userObject = {

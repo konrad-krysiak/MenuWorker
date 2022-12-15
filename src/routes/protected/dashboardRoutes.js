@@ -13,4 +13,6 @@ router.get('/qrcode', DashboardController.QRCodeView);
 router.get('/sharelink', DashboardController.ShareLinkView);
 router.get('/settings', DashboardController.SettingsView);
 
+// router.get('/')
+
 export default router;

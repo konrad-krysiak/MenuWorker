@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import passport from 'passport';
 import expressLayouts from 'express-ejs-layouts';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 dotenv.config();
 
 const configure = (app) => {
@@ -20,7 +21,7 @@ const configure = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cors({ origin: '*' }));
-  app.use(flash());
+  app.use(cookieParser());
   app.use(session({
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
@@ -28,6 +29,7 @@ const configure = (app) => {
     httpOnly: false,
     secure: false,
   }));
+  app.use(flash());
   app.use(passport.initialize());
   app.use(passport.session());
 };

@@ -8,8 +8,10 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
   </head>
+
   <body>
-    <%= JSON.stringify(messages) %> <%- body %>
+    <% if(messages.info) { %> <%= JSON.stringify(messages.info) %> <% } %> <%
+    if(messages.error) { %> <%= messages.error %> <% } %> <%- body %>
 
     <!-- bootstrap v5 -->
     <script src="/js/bootstrap.min.js"></script>

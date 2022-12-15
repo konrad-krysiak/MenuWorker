@@ -21,6 +21,7 @@ const User = (sequelize) => sequelize.define('user', {
   phone: {
     type: DataTypes.STRING,
     unique: true,
+    allowNull: false,
     validate: {
       is: /^(([+]{0,1}\d{2})|\d?)[\s-]?[0-9]{2}[\s-]?[0-9]{3}[\s-]?[0-9]{4}$/gm,
     },

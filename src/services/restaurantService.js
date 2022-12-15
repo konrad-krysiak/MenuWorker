@@ -28,4 +28,16 @@ const createRestaurant = async (restaurantData, userId) => {
   return payload;
 };
 
-export default { createRestaurant };
+const getRestaurants = async (userId) => {
+  const payload = {};
+  const restaurants = await Restaurant.findAll({
+    where: {
+      userId,
+    },
+  });
+  payload.status = StatusCodes.OK;
+  payload.result = restaurants;
+  return payload;
+};
+
+export default { createRestaurant, getRestaurants };

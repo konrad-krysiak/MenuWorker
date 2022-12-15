@@ -21,7 +21,6 @@ const registerRoutes = (app) => {
 
 const globalErrorMiddleware = (app) => {
   app.use((err, req, res, next) => {
-    winstonLogger.error(err.status);
     winstonLogger.error(JSON.stringify(err));
     res.status(err.status || StatusCodes.INTERNAL_SERVER_ERROR).json(err || errorFactory.internalServerError(req.traceId, err));
   });
@@ -38,7 +37,7 @@ sequelize.sync({ force: true }).then(() => {
   userService.createUser({
     name: 'konrad', email: 'konrad@onet.pl', phone: '123123123', address: 'Warsaw', password: 'lala',
   });
-  setTimeout(() => {
-    restaurantService.createRestaurant({ name: 'r1', description: 'lalalalal', phone: '123123123' }, 1);
-  }, 1000);
+  // setTimeout(() => {
+  //   restaurantService.createRestaurant({ name: 'r1', description: 'lalalalal', phone: '123123123' }, 1);
+  // }, 1000);
 });
