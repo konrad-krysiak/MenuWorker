@@ -1,40 +1,38 @@
-import User from './user.model';
-import Restaurant from './restaurant.model';
-import Menu from './menu.model';
-import Category from './category.model';
-import Item from './item.model';
+'use strict';
 
-const applyModelsAndAssociacions = (db) => {
-  const { sequelize } = db;
-  db.User = User(sequelize);
-  db.Restaurant = Restaurant(sequelize);
-  db.Menu = Menu(sequelize);
-  db.Category = Category(sequelize);
-  db.Item = Item(sequelize);
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
+const process = require('process');
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
-  // USER - RESTAURANT
-  db.User.hasMany(db.Restaurant, {
-    foreignKey: {
-      allowNull: false,
-    },
-  });
-  db.Restaurant.belongsTo(db.User);
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
-  // RESTAURANT - MENU
-  db.Restaurant.hasMany(db.Menu);
-  db.Menu.belongsTo(db.Restaurant);
+fs
+    .readdirSync(__dirname)
+    .filter((file) => {
+      return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+    })
+    .forEach((file) => {
+      const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+      db[model.name] = model;
+    });
 
-  // MENU - CATEGORY
-  db.Menu.hasMany(db.Category);
-  db.Category.belongsTo(db.Menu);
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
-  // MENU - ITEM
-  db.Menu.hasMany(db.Item);
-  db.Item.belongsTo(db.Menu);
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-  // CATEGORY - ITEM
-  db.Category.hasMany(db.Item);
-  db.Item.belongsTo(db.Category);
-};
-
-export { applyModelsAndAssociacions };
+module.exports = db;

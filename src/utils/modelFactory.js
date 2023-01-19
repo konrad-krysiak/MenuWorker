@@ -1,6 +1,9 @@
 const modelFactory = {
-  sessionUser: ({ id, username, email, phone }) => ({
-    id, username, email, phone,
+  sessionUser: ({ id, name, email, phone }) => ({
+    id,
+    name,
+    email,
+    phone,
   }),
 };
 

@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <% restaurants.forEach((restaurant) => { %>
+  <div
+    class="d-flex"
+    style="border: 1px solid red; justify-content: space-between"
+  >
+    <div><%= restaurant.name %></div>
+    <div><%= restaurant.address %></div>
+    <div><%= restaurant.description %></div>
+    <div><%= restaurant.phone %></div>
+    <div class="d-flex gap-2">
+      <div>
+        <a
+          href="/dashboard/restaurants/<%= restaurant.id %>"
+          class="btn btn-primary"
+          >show</a
+        >
+      </div>
+      <div>
+        <a
+          href="/dashboard/restaurants/<%= restaurant.id %>/edit"
+          class="btn btn-success"
+          >edit</a
+        >
+      </div>
+      <div>
+        <form
+          action="/dashboard/restaurants/<%= restaurant.id %>"
+          method="POST"
+        >
+          <input type="hidden" name="_method" value="DELETE" />
+          <input type="submit" class="btn btn-danger" value="delete" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+  <a href="/dashboard/restaurants/new" class="btn btn-primary"
+    >Add new restaurant</a
+  >
+</div>

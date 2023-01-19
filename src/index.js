@@ -1,18 +1,17 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import db from './helpers/db';
-import routes from './routes';
-import middlewares from './middlewares';
-import { StatusCodes } from 'http-status-codes';
-import errorFactory from './utils/errorFactory';
-import userService from './services/userService';
-import initializePassport from './middlewares/passport.setup';
-import passport from 'passport';
-import winstonLogger from './utils/logger';
-import restaurantService from './services/restaurantService';
+import express from "express";
+import dotenv from "dotenv";
+import routes from "./routes";
+import middlewares from "./middlewares";
+import { StatusCodes } from "http-status-codes";
+import initializePassport from "./middlewares/passport.setup";
+import passport from "passport";
+
 dotenv.config();
 
-const { sequelize } = db;
+import { sequelize, User, Restaurant } from "./models";
+import userService from "./services/userService";
+import restaurantService from "./services/restaurantService";
+
 const app = express();
 
 const registerRoutes = (app) => {
@@ -21,24 +20,79 @@ const registerRoutes = (app) => {
 
 const globalErrorMiddleware = (app) => {
   app.use((err, req, res, next) => {
-    winstonLogger.error(JSON.stringify(err));
-    res.status(err.status || StatusCodes.INTERNAL_SERVER_ERROR).json(err || errorFactory.internalServerError(req.traceId, err));
+    console.log("-------------- GLOBAL ERROR OCCURRED ", err);
+    res
+      .status(err.status || StatusCodes.INTERNAL_SERVER_ERROR)
+      .json(err.message);
   });
 };
-
+app.use((req, res, next) => {
+  req.user = {
+    id: 1,
+    name: "konrad",
+    email: "konrad@onet.pl",
+    phone: "123123123",
+  };
+  next();
+});
 initializePassport(passport);
 middlewares.configure(app);
+// app.use((req, res, next) => {
+//   console.log("REQUEST USER: ", req.user);
+//   console.log("REQUEST SESSION: ", req.session);
+//   next();
+// });
 registerRoutes(app);
 globalErrorMiddleware(app);
 
+app.listen(3000, async () => {
+  console.log("Server up on port 3000");
 
-sequelize.sync({ force: true }).then(() => {
-  app.listen(3000);
-  userService.createUser({
-    name: 'konrad', email: 'konrad@onet.pl', phone: '123123123', address: 'Warsaw', password: 'lala',
-  });
-  setTimeout(() => {
-    console.log('----------------------------------------');
-    restaurantService.createRestaurant({ name: 'restaurant1', description: 'lalalalal', phone: '123123123' }, 1);
-  }, 1000);
+  await sequelize.authenticate();
+  try {
+    // let a;
+    // const user = await userService.createUser({
+    //   name: "konrad",
+    //   email: "konrad@onet.pl",
+    //   phone: "123123123",
+    //   password: "lalalala",
+    // });
+    // // const user2 = await userService.createUser({
+    // //   name: "asd",
+    // //   email: "konrad@onet2.pl",
+    // //   phone: "123123123",
+    // //   password: "lalalala",
+    // // });
+    // const restaurant = await restaurantService.createRestaurant(
+    //   {
+    //     name: "Restaurant 1",
+    //     address: "restaurant address",
+    //     description: "restaurant desc",
+    //     phone: "444444444",
+    //   },
+    //   1
+    // );
+    // const restaurant2 = await restaurantService.createRestaurant(
+    //   {
+    //     name: "asasdas",
+    //     address: "restaurant address",
+    //     description: "restaurant desc",
+    //     phone: "444444444",
+    //   },
+    //   1
+    // );
+  } catch (e) {
+    if (e.name === "SequelizeValidationError") {
+      console.log("1 ----- ValidationError", e.errors);
+    } else if (e.name === "SequelizeUniqueConstraintError") {
+      console.log("2 --- UniqueConstraintError", e.errors);
+    } else {
+      console.log("3 --- SOMETHING ELSE");
+    }
+    console.log("wowlolololo", e.message);
+  }
+  console.log("Database connected");
 });
+
+// WYGLADA NA TO ZE PUT EDIT ZE ZLYMI DANYMI WYPIERDALA error RESTAURANTS NOT FOUND
+// CHECK IT

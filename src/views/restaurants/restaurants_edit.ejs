@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <form action="/dashboard/restaurants/<%= restaurant.id %>" method="post">
+    <input type="hidden" name="_method" value="PUT" />
+    <div>
+      <label for="name">name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="<%= restaurant.name %>"
+        required
+      />
+    </div>
+    <div>
+      <label for="address">address</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        value="<%= restaurant.address %>"
+        required
+      />
+    </div>
+    <div>
+      <label for="description">description</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        value="<%= restaurant.description %>"
+        required
+      />
+    </div>
+    <div>
+      <label for="phone">phone</label>
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        value="<%= restaurant.phone %>"
+        required
+      />
+    </div>
+    <button>submit</button>
+  </form>
+</div>

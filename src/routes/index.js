@@ -1,24 +1,21 @@
-import { checkAuthentication } from '../utils/auth';
-import { passOriginalUrlToTemplate } from '../utils/passDataToEjs';
+import { checkAuthentication } from "../utils/auth";
 
-import MainController from '../controllers/main.controller';
-import UserController from '../controllers/user.controller';
-import dashboardRoutes from './protected/dashboardRoutes';
+import ApplicationController from "../controllers/application.controller";
+import UserController from "../controllers/user.controller";
+// import dashboardRoutes from "./protected/dashboardRoutes";
+import authRoutes from "./auth.routes";
+import dashboardRoutes from "./dashboard.routes";
 
 const routes = (app) => {
-  // Pass req.originalUrl to EJS templates as locals.originalUrl
-  // for 'active' menu class purposes
-  passOriginalUrlToTemplate(app);
-  app.get('/login', MainController.loginIndex);
-  app.post('/login', MainController.login);
-  app.post('/logout', MainController.logout);
-  app.get('/register', MainController.registerIndex);
-  app.post('/register', UserController.create);
+  // // Pass req.originalUrl to EJS templates as locals.originalUrl
+  // // for 'active' menu class purposes
+  // passOriginalUrlToTemplate(app);
 
-  // protected routes
-  app.use('/dashboard', checkAuthentication, dashboardRoutes);
+  app.use("/auth", authRoutes);
+  app.use("/dashboard", dashboardRoutes);
+  // app.use("/dashboard", checkAuthentication, dashboardRoutes);
 
-  app.get('/', MainController.index);
+  app.get("/", ApplicationController.index);
 };
 
 export default routes;

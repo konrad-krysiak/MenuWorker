@@ -1,5 +1,5 @@
-(function() {
-  'use strict';
+(function () {
+  "use strict";
   // window.addEventListener('load', function(e) {
   //   for (const i of document.querySelectorAll('#dashboard-sidebar-ul a')) {
   //     i.addEventListener('click', function() {
@@ -10,5 +10,3 @@
   //   }
   // });
 })();
-
-

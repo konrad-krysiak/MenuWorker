@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  'extends': ['eslint:recommended', 'google'],
+  'extends': ['eslint:recommended'],
   'overrides': [
   ],
   'parserOptions': {
@@ -13,10 +13,6 @@ module.exports = {
   'plugins': ['babel'],
   'parser': '@babel/eslint-parser',
   'rules': {
-    'new-cap': 0,
-    'object-curly-spacing': ['error', 'always'],
-    'max-len': 0,
-    'require-jsdoc': 0,
   },
 
 };

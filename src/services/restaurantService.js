@@ -1,52 +1,53 @@
-
-import { StatusCodes } from 'http-status-codes';
-import db from '../helpers/db';
-import validator from '../validation/index';
-
-
-const { Restaurant } = db;
+import { User, Restaurant } from "../models";
 
 const createRestaurant = async (restaurantData, userId) => {
-  const { error } = validator.validateRestaurant(restaurantData);
-  const payload = {};
-  if (error) {
-    payload.status = StatusCodes.BAD_REQUEST;
-    payload.error = error;
-    return payload;
-  }
-  const { name, description, phone } = restaurantData;
+  const { name, address, description, phone } = restaurantData;
 
-  const existRestaurant = await Restaurant.findOne({
-    where: {
-      phone,
-    },
-  });
-  if (existRestaurant) {
-    payload.status = StatusCodes.CONFLICT;
-    payload.error = 'Restaurant with that phone number already exists.';
-  } else {
-    const restaurant = await Restaurant.create({
+  const owner = await User.findOne({ where: { id: userId } });
+  let restaurant;
+  if (owner) {
+    restaurant = await owner.createRestaurant({
       name,
+      address,
       description,
       phone,
-      userId,
     });
-    payload.status = StatusCodes.CREATED;
-    payload.result = restaurant;
+  } else {
+    throw new Error("Cannot create restaurant for non-existent user.");
   }
-  return payload;
+  return restaurant;
 };
 
 const getRestaurants = async (userId) => {
-  const payload = {};
   const restaurants = await Restaurant.findAll({
     where: {
       userId,
     },
   });
-  payload.status = StatusCodes.OK;
-  payload.result = restaurants;
-  return payload;
+  return restaurants;
 };
 
-export default { createRestaurant, getRestaurants };
+const getRestaurantById = async (id, userId) => {
+  if (userId) {
+    return await Restaurant.findOne({ where: { id, userId } });
+  }
+  return await Restaurant.findOne({ where: { id } });
+};
+
+const editRestaurant = async (userId, restaurantId, payload) => {
+  return await Restaurant.update(payload, {
+    where: { userId, id: restaurantId },
+  });
+};
+
+const deleteRestaurant = async (userId, restaurantId) => {
+  return await Restaurant.destroy({ where: { userId, id: restaurantId } });
+};
+
+export default {
+  createRestaurant,
+  getRestaurants,
+  editRestaurant,
+  deleteRestaurant,
+  getRestaurantById,
+};
