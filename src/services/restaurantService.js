@@ -1,4 +1,5 @@
-import { User, Restaurant } from "../models";
+import db from "../models";
+const { User, Restaurant } = db;
 
 const createRestaurant = async (restaurantData, userId) => {
   const { name, address, description, phone } = restaurantData;

@@ -5,13 +5,11 @@ import middlewares from "./middlewares";
 import { StatusCodes } from "http-status-codes";
 import initializePassport from "./middlewares/passport.setup";
 import passport from "passport";
-
 dotenv.config();
 
-import { sequelize, User, Restaurant } from "./models";
-import userService from "./services/userService";
-import restaurantService from "./services/restaurantService";
+import db from "./models";
 
+const { sequelize } = db;
 const app = express();
 
 const registerRoutes = (app) => {
@@ -47,7 +45,6 @@ globalErrorMiddleware(app);
 
 app.listen(3000, async () => {
   console.log("Server up on port 3000");
-
   await sequelize.authenticate();
   try {
     // let a;

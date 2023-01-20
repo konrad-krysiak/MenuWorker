@@ -8,7 +8,11 @@ import expressLayouts from "express-ejs-layouts";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 dotenv.config();
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const configure = (app) => {
   app.set("view engine", "ejs");

@@ -1,38 +1,44 @@
-'use strict';
+"use strict";
+import { fileURLToPath } from "url";
+import { basename, dirname } from "path";
+import { Sequelize, DataTypes } from "sequelize";
+import fs from "fs";
+import process from "process";
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const process = require('process');
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const env = process.env.NODE_ENV || "development";
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+const rawConfig = fs.readFileSync(__dirname + "/../config/config.json");
+const config = JSON.parse(rawConfig)[env];
+const sequelize = new Sequelize(config);
 
-fs
+export default await (async () => {
+  console.log("MODES/INDEX HAS BEEN EVALUATED");
+  const files = fs
     .readdirSync(__dirname)
-    .filter((file) => {
-      return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-    })
-    .forEach((file) => {
-      const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-      db[model.name] = model;
-    });
+    .filter(
+      (file) =>
+        file.indexOf(".") !== 0 &&
+        file !== basename(__filename) &&
+        file.slice(-3) === ".js"
+    );
 
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+  for await (const file of files) {
+    const model = await import(`./${file}`);
+    const namedModel = model.default(sequelize, DataTypes);
+    db[namedModel.name] = namedModel;
   }
-});
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+  Object.keys(db).forEach((modelName) => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
+  });
 
-module.exports = db;
+  db.sequelize = sequelize;
+  db.Sequelize = Sequelize;
+
+  return db;
+})();

@@ -2,9 +2,10 @@
   "name": "menuworker",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src/index.js --ext js,ejs --ignore src/views"
+    "dev": "nodemon --experimental-specifier-resolution=node ./src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -34,15 +35,9 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.19.3",
-    "@babel/core": "^7.20.5",
-    "@babel/eslint-parser": "^7.19.1",
-    "@babel/node": "^7.20.5",
-    "@babel/preset-env": "^7.20.2",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "eslint": "^8.28.0",
-    "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.26.0",
     "mocha": "^10.2.0",
     "sequelize-cli": "^6.5.2"

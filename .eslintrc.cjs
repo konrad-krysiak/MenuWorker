@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2022: true,
     node: true,
     mocha: true,
   },
@@ -9,8 +9,7 @@ module.exports = {
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: ["babel"],
-  parser: "@babel/eslint-parser",
   rules: {},
 };
