@@ -17,9 +17,6 @@ function initialize(passport) {
       async (email, password, done) => {
         const user = await User.findOne({ where: { email } });
         console.log("User passport call: " + JSON.stringify(user));
-        const lol = await bcrypt.hash("password2", 10);
-        console.log(lol);
-
         if (!user) {
           return done(null, false, { message: "No user with that email." });
         }

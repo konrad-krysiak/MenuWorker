@@ -11,7 +11,7 @@ module.exports = {
         email: "user1@gmail.com",
         phone: "111111111",
         password:
-          "$2b$10$FUlictw4LV98ysXLrKVpSuzCBNc5BqHDsBeiGfeMProYnaLmidWSm",
+          "$2b$10$FuzUrNfMGoLSkHhnNITBYuwNkERKxJlL8CGAShnVpMrid1ZJbZ5NK",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
       },
@@ -22,7 +22,7 @@ module.exports = {
         email: "user2@gmail.com",
         phone: "222222222",
         password:
-          "$2b$10$DL1DNmGNC3yHS5f3pf5yj.4nnaW9vF5cS5m4H2yXK/hjNGhEn2peK",
+          "$2b$10$Qma/yficM/KkBwCyAxsu.OO.MYLnQRj.Wy5U1pGZwGypoqP2LLUTC",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
       },

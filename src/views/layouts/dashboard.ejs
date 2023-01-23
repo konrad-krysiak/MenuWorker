@@ -111,7 +111,11 @@
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
+              <li>
+                <form action="/auth/logout" method="POST">
+                  <input type="submit" class="dropdown-item" value="SIgn out" />
+                </form>
+              </li>
             </ul>
           </div>
         </div>

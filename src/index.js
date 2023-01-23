@@ -25,12 +25,14 @@ const globalErrorMiddleware = (app) => {
   });
 };
 app.use((req, res, next) => {
-  req.user = {
-    id: 1,
-    name: "konrad",
-    email: "konrad@onet.pl",
-    phone: "123123123",
-  };
+  if (process.env.NODE_ENV === "development") {
+    req.user = {
+      id: 1,
+      name: "konrad",
+      email: "konrad@onet.pl",
+      phone: "123123123",
+    };
+  }
   next();
 });
 initializePassport(passport);
