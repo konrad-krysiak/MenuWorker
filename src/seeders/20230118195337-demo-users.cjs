@@ -10,7 +10,8 @@ module.exports = {
         name: "User 1",
         email: "user1@gmail.com",
         phone: "111111111",
-        password: "password1",
+        password:
+          "$2b$10$FUlictw4LV98ysXLrKVpSuzCBNc5BqHDsBeiGfeMProYnaLmidWSm",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
       },
@@ -20,7 +21,8 @@ module.exports = {
         name: "User 2",
         email: "user2@gmail.com",
         phone: "222222222",
-        password: "password2",
+        password:
+          "$2b$10$DL1DNmGNC3yHS5f3pf5yj.4nnaW9vF5cS5m4H2yXK/hjNGhEn2peK",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
       },

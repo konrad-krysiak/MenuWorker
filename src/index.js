@@ -24,15 +24,15 @@ const globalErrorMiddleware = (app) => {
       .json(err.message);
   });
 };
-app.use((req, res, next) => {
-  req.user = {
-    id: 1,
-    name: "konrad",
-    email: "konrad@onet.pl",
-    phone: "123123123",
-  };
-  next();
-});
+// app.use((req, res, next) => {
+//   req.user = {
+//     id: 1,
+//     name: "konrad",
+//     email: "konrad@onet.pl",
+//     phone: "123123123",
+//   };
+//   next();
+// });
 initializePassport(passport);
 middlewares.configure(app);
 // app.use((req, res, next) => {

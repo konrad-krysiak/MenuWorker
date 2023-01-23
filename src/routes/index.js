@@ -1,8 +1,6 @@
 import { checkAuthentication } from "../utils/auth";
 
 import ApplicationController from "../controllers/application.controller";
-import UserController from "../controllers/user.controller";
-// import dashboardRoutes from "./protected/dashboardRoutes";
 import authRoutes from "./auth.routes";
 import dashboardRoutes from "./dashboard.routes";
 

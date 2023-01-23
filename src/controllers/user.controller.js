@@ -1,12 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 import passport from "passport";
-import userService from "../services/userService";
+import bcrypt from "bcrypt";
+import db from "../models";
+
+const { User } = db;
 
 class UserController {
   // POST
   login = passport.authenticate("local", {
     successRedirect: "/dashboard/restaurants",
-    failureRedirect: "/dashboard/login",
+    failureRedirect: "/auth/login",
     failureFlash: true,
   });
 
@@ -23,13 +26,14 @@ class UserController {
   // POST
   create = async (req, res) => {
     try {
-      const payload = {
+      const data = {
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
         password: req.body.password,
       };
-      await userService.createUser(payload);
+      let hashedPassword = await bcrypt.hash(data.password, 10);
+      await User.create({ ...data, password: hashedPassword });
       req.flash("info", "User created successfully.");
       res.status(StatusCodes.CREATED).render("index");
     } catch (e) {

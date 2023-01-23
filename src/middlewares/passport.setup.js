@@ -2,7 +2,9 @@ import LocalStrategy from "passport-local";
 import bcrypt from "bcrypt";
 
 import modelFactory from "../utils/modelFactory";
-import userService from "../services/userService";
+import db from "../models/index";
+
+const { User } = db;
 
 // We use modelFactory.sessionUser to map user object from database to object without
 // unneccessary data(like password) which will be saved in req.user.
@@ -13,8 +15,11 @@ function initialize(passport) {
     new LocalStrategy(
       { usernameField: "email" },
       async (email, password, done) => {
-        const user = await userService.getUserByEmail(email);
-        console.log("USER here: " + JSON.stringify(user));
+        const user = await User.findOne({ where: { email } });
+        console.log("User passport call: " + JSON.stringify(user));
+        const lol = await bcrypt.hash("password2", 10);
+        console.log(lol);
+
         if (!user) {
           return done(null, false, { message: "No user with that email." });
         }
@@ -32,7 +37,7 @@ function initialize(passport) {
   );
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser(async (userId, done) => {
-    const userObject = await userService.getUserById(userId);
+    const userObject = await User.findOne({ where: { id: userId } });
     const user = modelFactory.sessionUser(userObject);
     return done(null, user);
   });
