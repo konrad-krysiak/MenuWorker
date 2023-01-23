@@ -24,71 +24,28 @@ const globalErrorMiddleware = (app) => {
       .json(err.message);
   });
 };
-// app.use((req, res, next) => {
-//   req.user = {
-//     id: 1,
-//     name: "konrad",
-//     email: "konrad@onet.pl",
-//     phone: "123123123",
-//   };
-//   next();
-// });
+app.use((req, res, next) => {
+  req.user = {
+    id: 1,
+    name: "konrad",
+    email: "konrad@onet.pl",
+    phone: "123123123",
+  };
+  next();
+});
 initializePassport(passport);
 middlewares.configure(app);
-// app.use((req, res, next) => {
-//   console.log("REQUEST USER: ", req.user);
-//   console.log("REQUEST SESSION: ", req.session);
-//   next();
-// });
 registerRoutes(app);
 globalErrorMiddleware(app);
 
 app.listen(3000, async () => {
   console.log("Server up on port 3000");
-  await sequelize.authenticate();
   try {
-    // let a;
-    // const user = await userService.createUser({
-    //   name: "konrad",
-    //   email: "konrad@onet.pl",
-    //   phone: "123123123",
-    //   password: "lalalala",
-    // });
-    // // const user2 = await userService.createUser({
-    // //   name: "asd",
-    // //   email: "konrad@onet2.pl",
-    // //   phone: "123123123",
-    // //   password: "lalalala",
-    // // });
-    // const restaurant = await restaurantService.createRestaurant(
-    //   {
-    //     name: "Restaurant 1",
-    //     address: "restaurant address",
-    //     description: "restaurant desc",
-    //     phone: "444444444",
-    //   },
-    //   1
-    // );
-    // const restaurant2 = await restaurantService.createRestaurant(
-    //   {
-    //     name: "asasdas",
-    //     address: "restaurant address",
-    //     description: "restaurant desc",
-    //     phone: "444444444",
-    //   },
-    //   1
-    // );
-  } catch (e) {
-    if (e.name === "SequelizeValidationError") {
-      console.log("1 ----- ValidationError", e.errors);
-    } else if (e.name === "SequelizeUniqueConstraintError") {
-      console.log("2 --- UniqueConstraintError", e.errors);
-    } else {
-      console.log("3 --- SOMETHING ELSE");
-    }
-    console.log("wowlolololo", e.message);
+    await sequelize.authenticate();
+    console.log("Connection has been established successfully.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
   }
-  console.log("Database connected");
 });
 
 export default app;
