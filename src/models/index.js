@@ -15,7 +15,6 @@ const config = JSON.parse(rawConfig)[env];
 const sequelize = new Sequelize(config);
 
 export default await (async () => {
-  console.log("MODES/INDEX HAS BEEN EVALUATED");
   const files = fs
     .readdirSync(__dirname)
     .filter(

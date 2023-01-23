@@ -1,11 +1,15 @@
-import restaurantService from "../services/restaurantService";
 import { StatusCodes } from "http-status-codes";
+import db from "../models/index";
+
+const { User, Restaurant } = db;
 
 class RestaurantController {
   // GET
   indexView = async (req, res) => {
     try {
-      const restaurants = await restaurantService.getRestaurants(req.user.id);
+      const restaurants = await Restaurant.findAll({
+        where: { userId: req.user.id },
+      });
       res.render("restaurants/restaurants_index", {
         layout: "layouts/dashboard",
         restaurants: restaurants,
@@ -24,9 +28,9 @@ class RestaurantController {
   editView = async (req, res) => {
     try {
       const restaurantId = req.params.id;
-      const restaurant = await restaurantService.getRestaurantById(
-        restaurantId
-      );
+      const restaurant = await Restaurant.findOne({
+        where: { id: restaurantId },
+      });
       res.render("restaurants/restaurants_edit", {
         layout: "layouts/dashboard",
         restaurant,
@@ -40,10 +44,9 @@ class RestaurantController {
   showView = async (req, res) => {
     try {
       const id = req.params.id;
-      const restaurant = await restaurantService.getRestaurantById(
-        id,
-        req.user.id
-      );
+      const restaurant = await Restaurant.findOne({
+        where: { id, userId: req.user.id },
+      });
       if (!restaurant) {
         throw new Error("Could not find restaurant");
       }
@@ -66,7 +69,8 @@ class RestaurantController {
         description: req.body.description,
         phone: req.body.phone,
       };
-      await restaurantService.createRestaurant(payload, req.user.id);
+      const owner = await User.findOne({ where: { id: req.user.id } });
+      await owner.createRestaurant(payload);
       req.flash("info", "Restaurant created successfully.");
       res.redirect("/dashboard/restaurants");
     } catch (e) {
@@ -96,11 +100,9 @@ class RestaurantController {
         description: req.body.description,
         phone: req.body.phone,
       };
-      await restaurantService.editRestaurant(
-        req.user.id,
-        req.params.id,
-        payload
-      );
+      await Restaurant.update(payload, {
+        where: { id: req.params.id, userId: req.user.id },
+      });
       req.flash("info", "Restaurant updated successfully");
       res.redirect("/dashboard/restaurants");
     } catch (e) {
@@ -125,7 +127,9 @@ class RestaurantController {
   delete = async (req, res) => {
     try {
       console.log("PARAMS", req.params);
-      await restaurantService.deleteRestaurant(req.user.id, req.params.id);
+      await Restaurant.destroy({
+        where: { id: req.params.id, userId: req.user.id },
+      });
       req.flash("info", "Restaurant deleted successfully.");
       res.redirect("/dashboard/restaurants");
     } catch (e) {

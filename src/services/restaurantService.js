@@ -19,12 +19,8 @@ const createRestaurant = async (restaurantData, userId) => {
   return restaurant;
 };
 
-const getRestaurants = async (userId) => {
-  const restaurants = await Restaurant.findAll({
-    where: {
-      userId,
-    },
-  });
+const getRestaurants = async (options) => {
+  const restaurants = await Restaurant.findAll(options);
   return restaurants;
 };
 
@@ -35,14 +31,12 @@ const getRestaurantById = async (id, userId) => {
   return await Restaurant.findOne({ where: { id } });
 };
 
-const editRestaurant = async (userId, restaurantId, payload) => {
-  return await Restaurant.update(payload, {
-    where: { userId, id: restaurantId },
-  });
+const editRestaurant = async (payload, options) => {
+  return await Restaurant.update(payload, options);
 };
 
-const deleteRestaurant = async (userId, restaurantId) => {
-  return await Restaurant.destroy({ where: { userId, id: restaurantId } });
+const deleteRestaurant = async (options) => {
+  return await Restaurant.destroy(options);
 };
 
 export default {

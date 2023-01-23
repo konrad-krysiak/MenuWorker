@@ -91,5 +91,4 @@ app.listen(3000, async () => {
   console.log("Database connected");
 });
 
-// WYGLADA NA TO ZE PUT EDIT ZE ZLYMI DANYMI WYPIERDALA error RESTAURANTS NOT FOUND
-// CHECK IT
+export default app;
