@@ -10,8 +10,11 @@ chai.use(chaiHttp);
 
 describe("Restaurant unit testing", () => {
   let requester;
-  before(() => {
-    requester = chai.request(app).keepOpen();
+  before(async () => {
+    requester = chai.request.agent(app);
+    await requester
+      .post("/auth/login")
+      .send({ email: "user1@gmail.com", password: "password1" });
   });
   after(() => {
     requester.close();
