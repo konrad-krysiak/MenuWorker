@@ -15,6 +15,13 @@ export default (sequelize, DataTypes) => {
           allowNull: false,
         },
       });
+
+      this.hasMany(models.Menu, {
+        foreignKey: {
+          name: "restaurantId",
+          allowNull: false,
+        },
+      });
     }
   }
   Restaurant.init(
