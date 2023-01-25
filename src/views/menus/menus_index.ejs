@@ -1,1 +1,34 @@
-menus index
+<div class="container mt-5">
+  <% restaurantsWithMenus.forEach((item) => { %>
+  <div class="d-flex flex-column" style="border: 1px solid blue">
+    <%= item.name %>
+    <div class="d-flex flex-column p-2">
+      <% item.Menus.forEach((menu) => { %>
+      <div
+        class="d-flex"
+        style="border: 1px solid red; justify-content: space-between"
+      >
+        <%= menu.name %>
+        <div>
+          <a href="/dashboard/menus/<%= menu.id %>" class="btn btn-primary"
+            >preview</a
+          >
+          <a href="/dashboard/menus/<%= menu.id %>/edit" class="btn btn-success"
+            >edit</a
+          >
+          <form
+            action="/dashboard/menus/<%= menu.id %>"
+            method="POST"
+            style="display: inline"
+          >
+            <input type="hidden" name="_method" value="DELETE" />
+            <input type="submit" class="btn btn-danger" value="delete" />
+          </form>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+  <% }); %>
+  <a href="/dashboard/menus/new" class="btn btn-primary">Add new menu</a>
+</div>

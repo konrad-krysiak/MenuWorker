@@ -1,1 +1,23 @@
-menus new
+<div class="container mt-5">
+  <form action="" method="post">
+    <div>
+      <label for="name">Menu name</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div>
+      <label for="restaurantselect">restaurantselect</label>
+      <select
+        class="form-select"
+        id="restaurantselect"
+        aria-label="Default select example"
+        name="restaurantUuid"
+      >
+        <option selected></option>
+        <% restaurants.forEach((restaurant) => { %>
+        <option value="<%= restaurant.uuid %>"><%= restaurant.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <button type="submit">submit</button>
+  </form>
+</div>
