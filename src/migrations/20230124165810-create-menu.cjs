@@ -24,6 +24,8 @@ module.exports = {
           model: "Restaurants",
           key: "id",
         },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       createdAt: {
         allowNull: false,
