@@ -62,6 +62,13 @@ export default (sequelize, DataTypes) => {
           },
         },
       },
+      website: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        validate: {
+          isUrl: true,
+        },
+      },
     },
     {
       sequelize,
