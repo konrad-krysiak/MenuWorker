@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import db from "../models/index";
 
-const { User, Restaurant } = db;
+const { User, Restaurant, Menu } = db;
 
 class RestaurantController {
   // GET
@@ -9,6 +9,9 @@ class RestaurantController {
     try {
       const restaurants = await Restaurant.findAll({
         where: { userId: req.user.id },
+        include: {
+          model: Menu,
+        },
       });
       res.render("restaurants/restaurants_index", {
         layout: "layouts/dashboard",
@@ -46,6 +49,9 @@ class RestaurantController {
       const id = req.params.id;
       const restaurant = await Restaurant.findOne({
         where: { id, userId: req.user.id },
+        include: {
+          model: Menu,
+        },
       });
       if (!restaurant) {
         throw new Error("Could not find restaurant");
@@ -68,6 +74,7 @@ class RestaurantController {
         address: req.body.address,
         description: req.body.description,
         phone: req.body.phone,
+        website: req.body.website,
       };
       const owner = await User.findOne({ where: { id: req.user.id } });
       await owner.createRestaurant(payload);
@@ -78,7 +85,10 @@ class RestaurantController {
         e.name === "SequelizeValidationError" ||
         e.name === "SequelizeUniqueConstraintError"
       ) {
-        req.flash("error", e.errors.map((i) => i.message).join(", "));
+        req.flash(
+          "error",
+          e.errors.map((i) => i.message)
+        );
         res
           .status(StatusCodes.BAD_REQUEST)
           .render("restaurants/restaurants_new", {

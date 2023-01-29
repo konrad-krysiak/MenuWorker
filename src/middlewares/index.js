@@ -34,6 +34,10 @@ const configure = (app) => {
     "/js",
     express.static(path.join(__dirname, "../../node_modules/jquery/dist"))
   );
+  app.use(
+    "/icons",
+    express.static(path.join(__dirname, "../../node_modules/boxicons"))
+  );
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(

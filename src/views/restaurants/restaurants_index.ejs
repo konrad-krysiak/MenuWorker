@@ -1,41 +1,80 @@
-<div class="container mt-5">
-  <% restaurants.forEach((restaurant) => { %>
-  <div
-    class="d-flex"
-    style="border: 1px solid red; justify-content: space-between"
-  >
-    <div><%= restaurant.name %></div>
-    <div><%= restaurant.address %></div>
-    <div><%= restaurant.description %></div>
-    <div><%= restaurant.phone %></div>
-    <div class="d-flex gap-2">
-      <div>
-        <a
-          href="/dashboard/restaurants/<%= restaurant.id %>"
-          class="btn btn-primary"
-          >show</a
-        >
-      </div>
-      <div>
-        <a
-          href="/dashboard/restaurants/<%= restaurant.id %>/edit"
-          class="btn btn-success"
-          >edit</a
-        >
-      </div>
-      <div>
-        <form
-          action="/dashboard/restaurants/<%= restaurant.id %>"
-          method="POST"
-        >
-          <input type="hidden" name="_method" value="DELETE" />
-          <input type="submit" class="btn btn-danger" value="delete" />
-        </form>
-      </div>
+<section class="container py-4">
+  <div class="row mb-3">
+    <div class="col text-center">
+      <a href="/dashboard/restaurants/new" class="btn btn-primary"
+        >ADD NEW RESTAURANT</a
+      >
     </div>
   </div>
-  <% }) %>
-  <a href="/dashboard/restaurants/new" class="btn btn-primary"
-    >Add new restaurant</a
-  >
-</div>
+
+  <div class="restaurant-container d-flex flex-column gap-4">
+    <% restaurants.forEach(restaurant => { %>
+
+    <div class="card restaurant-container__item">
+      <div class="row">
+        <div class="col-md-4 d-none d-md-block">
+          <img
+            src="/img/restaurant-placeholder.jpg"
+            width="100%"
+            height="300px"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body h-100 d-flex flex-column">
+            <h2 class="card-title"><%= restaurant.name %></h2>
+            <h6 class="card-subtitle text-muted mb-3">
+              created at <%= restaurant.createdAt.toLocaleDateString("en-US") %>
+            </h6>
+            <p class="card-text"><%= restaurant.description %></p>
+            <div
+              class="restaurant-container__buttons mt-3 mt-md-auto d-flex gap-2"
+            >
+              <form
+                action="/dashboard/restaurants/<%= restaurant.id %>"
+                method="GET"
+              >
+                <input
+                  type="submit"
+                  class="custom-button custom-button--blue rounded-0"
+                  value="Show"
+                />
+              </form>
+
+              <form
+                action="/dashboard/restaurants/<%= restaurant.id %>/edit"
+                method="GET"
+              >
+                <input
+                  type="submit"
+                  class="custom-button custom-button--green rounded-0"
+                  value="Edit"
+                />
+              </form>
+
+              <form
+                action="/dashboard/restaurants/<%= restaurant.id %>"
+                method="POST"
+              >
+                <input type="hidden" name="_method" value="DELETE" />
+                <input
+                  type="submit"
+                  class="custom-button rounded-0"
+                  value="Delete"
+                />
+              </form>
+              <div
+                class="ms-auto me-2 d-flex custom-button__menusnum text-center"
+              >
+                <p class="my-auto fw-bold">
+                  Number of menus: <%= restaurant.Menus.length %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% }); %>
+  </div>
+</section>
