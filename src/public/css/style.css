@@ -7,6 +7,7 @@
   --white-color: #f7f6fb;
   --blue-color: #3356f7;
   --green-color: rgb(18, 173, 57);
+  --dark-color: #152d32;
   --body-font: "Montserrat", sans-serif;
   --normal-font-size: 1rem;
   --z-fixed: 100;
@@ -171,7 +172,7 @@ a {
 
 
 .restaurant-container__item {
-  height: 300px;
+  height: 250px;
 }
 
 
@@ -245,6 +246,16 @@ a {
 .custom-button--green:hover,
 .custom-button--green:active {
   color: var(--green-color);
+}
+
+.custom-button--dark {
+  background-color: var(--dark-color);
+  border: 1px solid var(--dark-color);
+}
+
+.custom-button--dark:hover,
+.custom-button--dark:active {
+  color: var(--dark-color);
 }
 
 .custom-button__menusnum {
