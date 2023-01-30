@@ -1,34 +1,125 @@
-<div class="container mt-5">
-  <% restaurantsWithMenus.forEach((item) => { %>
-  <div class="d-flex flex-column" style="border: 1px solid blue">
-    <%= item.name %>
-    <div class="d-flex flex-column p-2">
-      <% item.Menus.forEach((menu) => { %>
-      <div
-        class="d-flex"
-        style="border: 1px solid red; justify-content: space-between"
-      >
-        <%= menu.name %>
-        <div>
-          <a href="/dashboard/menus/<%= menu.id %>" class="btn btn-primary"
-            >preview</a
-          >
-          <a href="/dashboard/menus/<%= menu.id %>/edit" class="btn btn-success"
-            >edit</a
-          >
-          <form
-            action="/dashboard/menus/<%= menu.id %>"
-            method="POST"
-            style="display: inline"
-          >
-            <input type="hidden" name="_method" value="DELETE" />
-            <input type="submit" class="btn btn-danger" value="delete" />
-          </form>
-        </div>
-      </div>
-      <% }); %>
+<section class="container py-4">
+  <div class="row pb-3">
+    <div class="col text-center">
+      <h2>Your Menus</h2>
+      <p>Click menu item to load menu.</p>
     </div>
   </div>
-  <% }); %>
-  <a href="/dashboard/menus/new" class="btn btn-primary">Add new menu</a>
-</div>
+  <div class="menu-container d-flex flex-column gap-4">
+    <% restaurantsWithMenus.forEach(restaurant => { %>
+
+    <div class="card w-75 mx-auto">
+      <div class="row">
+        <div
+          class="col-12 col-md-4 d-flex align-items-center justify-content-center"
+        >
+          <h5 class="text-center mt-3 mt-md-0"><%= restaurant.name %></h5>
+        </div>
+        <div class="col-12 col-md-8">
+          <div class="p-2 mb-2 d-flex justify-content-between">
+            <a
+              href="/dashboard/restaurants/<%= restaurant.id %>"
+              class="custom-button custom-button--green rounded-0"
+              >Go to restaurant</a
+            >
+            <a href="#" class="custom-button custom-button--blue rounded-0"
+              >Add new menu</a
+            >
+          </div>
+          <ul class="list-group m-2">
+            <% restaurant.Menus.forEach(menu => { %>
+
+            <li class="list-group-item list-group-item-action">
+              <div class="row user-select-none">
+                <div class="col-4"><%= menu.name %></div>
+                <div class="col-4 text-muted">has 0 items</div>
+                <div class="col-4 text-muted">
+                  <small>updated 0 days ago</small>
+                </div>
+              </div>
+            </li>
+
+            <% }); %> <% if(restaurant.Menus.length === 0) { %>
+            <li class="list-group-item list-group-item-action text-center">
+              Restaurant don't have any connected menus.
+            </li>
+            <% }; %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <% }); %>
+    <!-- <div class="card w-75 mx-auto">
+      <div class="row">
+        <div
+          class="col-12 col-md-4 d-flex align-items-center justify-content-center border-end"
+        >
+          <h5 class="text-center mt-3 mt-md-0">Restaurant</h5>
+        </div>
+        <div class="col-12 col-md-8">
+          <div class="p-2 mb-2 text-center text-md-end rounded-1">
+            <button class="btn btn-success mt-1">Go to restaurant</button>
+            <button class="btn btn-primary mt-1">Add new menu</button>
+          </div>
+          <ul class="list-group m-2">
+            <li class="list-group-item list-group-item list-group-item-action">
+              <div class="row">
+                <div class="col-4">Menu 1</div>
+                <div class="col-4 text-muted">has 3 items</div>
+                <div class="col-4 text-muted">
+                  <small>updated 3 days ago</small>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item list-group-item-action">
+              <div class="row">
+                <div class="col-4">Menu 2</div>
+                <div class="col-4 text-muted">has 0 items</div>
+                <div class="col-4 text-muted">
+                  <small>updated today</small>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card w-75 mx-auto">
+      <div class="row">
+        <div
+          class="col-12 col-md-4 d-flex align-items-center justify-content-center border-end"
+        >
+          <h5 class="text-center mt-3 mt-md-0">Restaurant</h5>
+        </div>
+        <div class="col-12 col-md-8">
+          <div class="p-2 mb-2 text-center text-md-end rounded-1">
+            <button class="btn btn-success mt-1">Go to restaurant</button>
+            <button class="btn btn-primary mt-1">Add new menu</button>
+          </div>
+          <ul class="list-group m-2">
+            <li class="list-group-item list-group-item list-group-item-action">
+              <div class="row">
+                <div class="col-4">Menu 1</div>
+                <div class="col-4 text-muted">has 3 items</div>
+                <div class="col-4 text-muted">
+                  <small>updated 3 days ago</small>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item list-group-item-action">
+              <div class="row">
+                <div class="col-4">Menu 2</div>
+                <div class="col-4 text-muted">has 0 items</div>
+                <div class="col-4 text-muted">
+                  <small>updated today</small>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>

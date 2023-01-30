@@ -74,7 +74,7 @@ class RestaurantController {
         address: req.body.address,
         description: req.body.description,
         phone: req.body.phone,
-        website: req.body.website,
+        ...(req.body.website && { website: req.body.website }),
       };
       const owner = await User.findOne({ where: { id: req.user.id } });
       await owner.createRestaurant(payload);

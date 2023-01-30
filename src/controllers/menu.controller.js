@@ -9,7 +9,7 @@ class MenuController {
     try {
       const restaurantsWithMenus = await Restaurant.findAll({
         where: { userId: req.user.id },
-        include: { model: Menu, required: true },
+        include: { model: Menu },
       });
       res.render("menus/menus_index", {
         layout: "layouts/dashboard",
