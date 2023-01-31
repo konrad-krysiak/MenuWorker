@@ -1,21 +1,14 @@
 "use strict";
 import { Model } from "sequelize";
 export default (sequelize, DataTypes) => {
-  class Menu extends Model {
+  class Category extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.Restaurant, {
-        foreignKey: {
-          name: "restaurantId",
-          allowNull: false,
-        },
-      });
-
-      this.hasMany(models.Category, {
+      this.belongsTo(models.Menu, {
         foreignKey: {
           name: "menuId",
           allowNull: false,
@@ -23,7 +16,7 @@ export default (sequelize, DataTypes) => {
       });
     }
   }
-  Menu.init(
+  Category.init(
     {
       uuid: {
         type: DataTypes.UUID,
@@ -40,8 +33,8 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Menu",
+      modelName: "Category",
     }
   );
-  return Menu;
+  return Category;
 };

@@ -9,7 +9,7 @@ dotenv.config();
 
 import db from "./models";
 
-const { sequelize, Menu, Restaurant } = db;
+const { sequelize, Menu, Restaurant, Category } = db;
 const app = express();
 
 const registerRoutes = (app) => {
