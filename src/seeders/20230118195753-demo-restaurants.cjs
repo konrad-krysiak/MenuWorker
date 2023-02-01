@@ -39,6 +39,17 @@ module.exports = {
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         userId: 2,
       },
+      {
+        id: 4,
+        uuid: "8837c46f-bca8-4947-8a7f-5204672370d6",
+        name: "Restaurant 4",
+        address: "Address 4",
+        description: "Description 4",
+        phone: "444444444",
+        createdAt: new Date("2019-04-07T10:20:30Z"),
+        updatedAt: new Date("2019-04-07T10:20:30Z"),
+        userId: 1,
+      },
     ]);
   },
 

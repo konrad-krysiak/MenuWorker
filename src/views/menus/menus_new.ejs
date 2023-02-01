@@ -1,23 +1,49 @@
-<div class="container mt-5">
-  <form action="" method="post">
-    <div>
-      <label for="name">Menu name</label>
-      <input type="text" id="name" name="name" required />
+<div class="container py-4">
+  <div class="row">
+    <div class="col text-center">
+      <h1>New Menu</h1>
+      <p>Menu for restaurant <%= restaurant.name %></p>
     </div>
-    <div>
-      <label for="restaurantselect">restaurantselect</label>
-      <select
-        class="form-select"
-        id="restaurantselect"
-        aria-label="Default select example"
-        name="restaurantUuid"
+  </div>
+  <div class="row my-4">
+    <form id="newMenuForm" action="/dashboard/menus/new" method="POST">
+      <div
+        class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container"
       >
-        <option selected></option>
-        <% restaurants.forEach((restaurant) => { %>
-        <option value="<%= restaurant.uuid %>"><%= restaurant.name %></option>
-        <% }); %>
-      </select>
-    </div>
-    <button type="submit">submit</button>
-  </form>
+        <div>
+          <input
+            type="hidden"
+            name="restaurantId"
+            value="<%= restaurant.id %>"
+          />
+          <label for="name" class="form-label">Name*</label>
+          <input
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Name"
+            required
+          />
+        </div>
+
+        <div class="row my-4">
+          <div class="col">
+            <button
+              type="submit"
+              name="submit"
+              form="newMenuForm"
+              class="btn btn-primary w-100 rounded-0"
+            >
+              Submit
+            </button>
+          </div>
+          <div class="col">
+            <a href="/dashboard/menus" class="btn btn-danger w-100 rounded-0"
+              >Cancel</a
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

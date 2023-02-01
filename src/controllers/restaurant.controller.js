@@ -137,11 +137,16 @@ class RestaurantController {
   delete = async (req, res) => {
     try {
       console.log("PARAMS", req.params);
-      await Restaurant.destroy({
+      const deleted = await Restaurant.destroy({
         where: { id: req.params.id, userId: req.user.id },
       });
-      req.flash("info", "Restaurant deleted successfully.");
-      res.redirect("/dashboard/restaurants");
+      if (deleted) {
+        req.flash("info", "Restaurant deleted successfully.");
+        res.redirect("/dashboard/restaurants");
+      } else {
+        req.flash("error", "Could not delete restaurant.");
+        res.redirect("/dashboard/restaurants");
+      }
     } catch (e) {
       req.flash("error", e.message);
       res.redirect("/dashboard/restaurants");

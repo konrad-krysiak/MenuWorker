@@ -21,99 +21,84 @@ class MenuController {
     }
   };
 
+  // GET
   newView = async (req, res) => {
     try {
-      const restaurants = await Restaurant.findAll({
-        where: {
-          userId: req.user.id,
-        },
+      // Menu for restaurant with following id
+      const restaurantId = req.query.restaurantId;
+
+      // Check if user is owning restaurant with id he provided as query parameter
+      const restaurant = await Restaurant.findOne({
+        where: { id: restaurantId, userId: req.user.id },
       });
-      res.render("menus/menus_new", {
-        layout: "layouts/dashboard",
-        restaurants: restaurants.map((i) => ({
-          name: i.dataValues.name,
-          uuid: i.dataValues.uuid,
-        })),
-      });
+
+      if (restaurant) {
+        res.render("menus/menus_new", {
+          layout: "layouts/dashboard",
+          restaurant,
+        });
+      } else {
+        res.status(StatusCodes.UNAUTHORIZED).render("error");
+      }
     } catch (e) {
       console.log(e);
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
     }
   };
 
-  editView = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const menu = await Menu.findOne({
-        where: { id },
-        include: {
-          model: Restaurant,
-          where: {
-            userId: req.user.id,
-          },
-        },
-      });
-      res.render("menus/menus_edit", { layout: "layouts/dashboard", menu });
-    } catch (e) {
-      console.log(e);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
-    }
-  };
-
-  // SHOW VIEW COULD BE ELEGANT PDF PREVIEW
-  showView = async (req, res) => {
-    try {
-      const id = req.params.id;
-      const menu = await Menu.findOne({
-        where: { id },
-        include: {
-          model: Restaurant,
-          where: {
-            userId: req.user.id,
-          },
-        },
-      });
-      res.render("menus/menus_show", { layout: "layouts/dashboard", menu });
-    } catch (e) {
-      console.log(e);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
-    }
-  };
-
+  // POST
   create = async (req, res) => {
     try {
       const restaurant = await Restaurant.findOne({
-        where: { uuid: req.body.restaurantUuid, userId: req.user.id },
+        where: { id: req.body.restaurantId, userId: req.user.id },
       });
-      const menu = await restaurant.createMenu({ name: req.body.name });
-      res.render("menus/menus_edit", { layout: "layouts/dashboard", menu });
+      await restaurant.createMenu({ name: req.body.name });
+      req.flash("info", "Menu created successfully.");
+      res.redirect("/dashboard/menus");
     } catch (e) {
-      console.log(e);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
+        req.flash(
+          "error",
+          e.errors.map((i) => i.message)
+        );
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .redirect(
+            "/dashboard/menus/new?restaurantId=" + req.body.restaurantId
+          );
+      } else {
+        req.flash("error", "Something went wrong...");
+        res.status(StatusCodes.BAD_REQUEST).redirect("/dashboard/menus");
+      }
     }
   };
 
+  // DELETE
   delete = async (req, res) => {
     try {
-      const id = req.params.id;
-      await Menu.destroy({
-        where: {
-          id,
-        },
+      const menuId = req.params.id;
+      const menu = await Menu.findOne({
+        where: { id: menuId },
         include: {
           model: Restaurant,
-          where: {
-            userId: req.user.id,
-          },
         },
       });
-      // const delRes = await Menu.findAll()
-      // await Menu.destroy();
-      res.redirect("back");
+
+      // We are checking if user is owner of menu
+      if (menu.Restaurant.userId === req.user.id) {
+        await menu.destroy();
+        req.flash("info", "Menu deleted successfully.");
+        res.redirect("/dashboard/menus");
+      } else {
+        req.flash("error", "Could not delete menu.");
+        res.redirect("/dashboard/menus");
+      }
     } catch (e) {
-      console.log(e);
-      res.status(500).json(e);
-      //
+      req.flash("error", e.message);
+      res.redirect("/dashboard/menus");
     }
   };
 }

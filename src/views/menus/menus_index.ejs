@@ -22,7 +22,9 @@
               class="custom-button custom-button--green rounded-0"
               >Go to restaurant</a
             >
-            <a href="#" class="custom-button custom-button--blue rounded-0"
+            <a
+              href="/dashboard/menus/new?restaurantId=<%= restaurant.id %>"
+              class="custom-button custom-button--blue rounded-0"
               >Add new menu</a
             >
           </div>
@@ -50,76 +52,5 @@
     </div>
 
     <% }); %>
-    <!-- <div class="card w-75 mx-auto">
-      <div class="row">
-        <div
-          class="col-12 col-md-4 d-flex align-items-center justify-content-center border-end"
-        >
-          <h5 class="text-center mt-3 mt-md-0">Restaurant</h5>
-        </div>
-        <div class="col-12 col-md-8">
-          <div class="p-2 mb-2 text-center text-md-end rounded-1">
-            <button class="btn btn-success mt-1">Go to restaurant</button>
-            <button class="btn btn-primary mt-1">Add new menu</button>
-          </div>
-          <ul class="list-group m-2">
-            <li class="list-group-item list-group-item list-group-item-action">
-              <div class="row">
-                <div class="col-4">Menu 1</div>
-                <div class="col-4 text-muted">has 3 items</div>
-                <div class="col-4 text-muted">
-                  <small>updated 3 days ago</small>
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item list-group-item list-group-item-action">
-              <div class="row">
-                <div class="col-4">Menu 2</div>
-                <div class="col-4 text-muted">has 0 items</div>
-                <div class="col-4 text-muted">
-                  <small>updated today</small>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="card w-75 mx-auto">
-      <div class="row">
-        <div
-          class="col-12 col-md-4 d-flex align-items-center justify-content-center border-end"
-        >
-          <h5 class="text-center mt-3 mt-md-0">Restaurant</h5>
-        </div>
-        <div class="col-12 col-md-8">
-          <div class="p-2 mb-2 text-center text-md-end rounded-1">
-            <button class="btn btn-success mt-1">Go to restaurant</button>
-            <button class="btn btn-primary mt-1">Add new menu</button>
-          </div>
-          <ul class="list-group m-2">
-            <li class="list-group-item list-group-item list-group-item-action">
-              <div class="row">
-                <div class="col-4">Menu 1</div>
-                <div class="col-4 text-muted">has 3 items</div>
-                <div class="col-4 text-muted">
-                  <small>updated 3 days ago</small>
-                </div>
-              </div>
-            </li>
-            <li class="list-group-item list-group-item list-group-item-action">
-              <div class="row">
-                <div class="col-4">Menu 2</div>
-                <div class="col-4 text-muted">has 0 items</div>
-                <div class="col-4 text-muted">
-                  <small>updated today</small>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
   </div>
 </section>
