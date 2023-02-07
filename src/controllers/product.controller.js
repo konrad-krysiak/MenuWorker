@@ -1,6 +1,6 @@
 import db from "../models";
 
-const { Restaurant, Menu, Category, Product } = db;
+const { Menu, Category, Product } = db;
 
 class ProductController {
   /**
@@ -31,7 +31,10 @@ class ProductController {
         throw new Error("User does not have access to create product.");
       }
     } catch (e) {
-      if (e.name === "SequelizeValidationError" || e.name === "SequelizeUniqueConstraintError") {
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
         req.flash(
           "modalError",
           e.errors.map((i) => i.message)
@@ -90,7 +93,10 @@ class ProductController {
         throw new Error("User does not have access to update product.");
       }
     } catch (e) {
-      if (e.name === "SequelizeValidationError" || e.name === "SequelizeUniqueConstraintError") {
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
         req.flash(
           "modalError",
           e.errors.map((i) => i.message)

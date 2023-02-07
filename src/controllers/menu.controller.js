@@ -1,5 +1,3 @@
-import { StatusCodes } from "http-status-codes";
-
 import db from "../models";
 
 const { Restaurant, Menu, Category, Product } = db;
@@ -22,12 +20,12 @@ class MenuController {
   };
 
   // GET
+  /**
+   * @param restaurantId QUERY
+   */
   newView = async (req, res, next) => {
     try {
-      // Menu for restaurant with following id
       const restaurantId = req.query.restaurantId;
-
-      // Check if user is owning restaurant with id he provided as query parameter
       const restaurant = await Restaurant.findOne({
         where: { id: restaurantId, userId: req.user.id },
       });
@@ -38,13 +36,16 @@ class MenuController {
           restaurant,
         });
       } else {
-        res.status(StatusCodes.UNAUTHORIZED).render("error");
+        console.log("User does not have access to this page.");
       }
     } catch (e) {
       next(e);
     }
   };
 
+  /**
+   * @param id QUERY
+   */
   editView = async (req, res, next) => {
     try {
       const menu = await Menu.findOne({
@@ -65,19 +66,29 @@ class MenuController {
     }
   };
 
-  // POST
   // name - menu name
   // restaurantId - id of restaurant menu belongs to
+  /**
+   * @param name
+   * @param restaurantId hidden
+   */
   create = async (req, res, next) => {
     try {
       const restaurant = await Restaurant.findOne({
         where: { id: req.body.restaurantId, userId: req.user.id },
       });
-      await restaurant.createMenu({ name: req.body.name, userId: req.user.id, itemCount: 0 });
+      await restaurant.createMenu({
+        name: req.body.name,
+        userId: req.user.id,
+        itemCount: 0,
+      });
       req.flash("info", "Menu created successfully.");
       res.redirect("/dashboard/menus");
     } catch (e) {
-      if (e.name === "SequelizeValidationError" || e.name === "SequelizeUniqueConstraintError") {
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
         req.flash(
           "error",
           e.errors.map((i) => i.message)
@@ -85,17 +96,59 @@ class MenuController {
         const restaurant = await Restaurant.findOne({
           where: { id: req.body.restaurantId, userId: req.user.id },
         });
-        res.status(StatusCodes.BAD_REQUEST).render("menus/menus_new", {
+        res.render("menus/menus_new", {
           layout: "layouts/dashboard",
           restaurant,
           form: req.body,
         });
+      } else {
+        next(e);
       }
-      next(e);
     }
   };
 
-  // update = async (req, res, next) => {};
+  /**
+   * @param name
+   */
+  update = async (req, res, next) => {
+    try {
+      const menu = await Menu.findOne({
+        where: { id: req.params.id },
+      });
+      if (menu.userId === req.user.id) {
+        await menu.update({
+          name: req.body.name,
+        });
+        req.flash("info", "Menu updated successfully.");
+        res.redirect(`/dashboard/menus/${req.params.id}/edit`);
+      } else {
+        throw new Error("User does not have permission to update this menu.");
+      }
+    } catch (e) {
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
+        req.flash(
+          "error",
+          e.errors.map((i) => i.message)
+        );
+        const menu = await Menu.findOne({
+          where: {
+            id: req.params.id,
+            userId: req.user.id,
+          },
+          include: { model: Category, include: { model: Product } },
+        });
+        res.render(`menus/menus_edit`, {
+          layout: "layouts/dashboard",
+          menu,
+        });
+      } else {
+        next(e);
+      }
+    }
+  };
 
   // DELETE
   delete = async (req, res, next) => {

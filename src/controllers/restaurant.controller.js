@@ -1,10 +1,8 @@
-import { StatusCodes } from "http-status-codes";
 import db from "../models/index";
 
 const { User, Restaurant, Menu } = db;
 
 class RestaurantController {
-  // GET
   indexView = async (req, res) => {
     try {
       const restaurants = await Restaurant.findAll({
@@ -19,11 +17,10 @@ class RestaurantController {
       });
     } catch (error) {
       console.log(error);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
+      res.render("error");
     }
   };
 
-  // GET
   newView = (req, res) => {
     res.render("restaurants/restaurants_new", { layout: "layouts/dashboard" });
   };
@@ -43,7 +40,6 @@ class RestaurantController {
     }
   };
 
-  // GET
   showView = async (req, res) => {
     try {
       const id = req.params.id;
@@ -62,11 +58,17 @@ class RestaurantController {
       });
     } catch (e) {
       req.flash("error", e.message);
-      res.status(StatusCodes.BAD_REQUEST).redirect("/dashboard/restaurants");
+      res.redirect("/dashboard/restaurants");
     }
   };
 
-  // POST
+  /**
+   * @param name
+   * @param address
+   * @param description
+   * @param phone
+   * @param website optional
+   */
   create = async (req, res) => {
     try {
       const payload = {
@@ -89,19 +91,23 @@ class RestaurantController {
           "error",
           e.errors.map((i) => i.message)
         );
-        res
-          .status(StatusCodes.BAD_REQUEST)
-          .render("restaurants/restaurants_new", {
-            layout: "layouts/dashboard",
-          });
+        res.render("restaurants/restaurants_new", {
+          layout: "layouts/dashboard",
+        });
       } else {
         req.flash("error", "Something went wrong...");
-        res.status(StatusCodes.BAD_REQUEST).redirect("/dashboard/restaurants");
+        res.redirect("/dashboard/restaurants");
       }
     }
   };
 
-  // PUT
+  /**
+   * @param name
+   * @param address
+   * @param description
+   * @param phone
+   * @param website optional
+   */
   edit = async (req, res) => {
     try {
       const payload = {
@@ -121,19 +127,14 @@ class RestaurantController {
         e.name === "SequelizeUniqueConstraintError"
       ) {
         req.flash("error", e.errors.map((i) => i.message).join(", "));
-        res
-          .status(StatusCodes.BAD_REQUEST)
-          .redirect("/dashboard/restaurants/" + req.params.id + "/edit");
+        res.redirect("/dashboard/restaurants/" + req.params.id + "/edit");
       } else {
         req.flash("error", "Something went wrong...");
-        res
-          .status(StatusCodes.INTERNAL_SERVER_ERROR)
-          .redirect("/dashboard/restaurants");
+        res.redirect("/dashboard/restaurants");
       }
     }
   };
 
-  // DELETE
   delete = async (req, res) => {
     try {
       console.log("PARAMS", req.params);

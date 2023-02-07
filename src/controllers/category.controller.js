@@ -1,13 +1,12 @@
-import { StatusCodes } from "http-status-codes";
 import db from "../models";
 
-const { Restaurant, Menu, Category, Product } = db;
+const { Menu, Category, Product } = db;
 
 class CategoryController {
   /**
    * POST
-   * @param {*} menuId
    * @param {*} name
+   * @param {*} menuId hidden
    */
   create = async (req, res, next) => {
     try {
@@ -47,7 +46,7 @@ class CategoryController {
   /**
    * PUT
    * @param name
-   * @param menuId We need it to render menu_edit again on ValidationError
+   * @param menuId
    */
   update = async (req, res, next) => {
     try {
@@ -103,9 +102,7 @@ class CategoryController {
           model: Menu,
         },
       });
-      console.log(category);
 
-      // Check if category belongs to this user
       if (category.Menu.userId === req.user.id) {
         await category.destroy();
         req.flash("info", "Category deleted successfully.");

@@ -1,7 +1,23 @@
 <section class="container py-4">
   <div class="row">
     <div class="col text-center">
-      <h1>Poco Loco Menu</h1>
+      <form action="/dashboard/menus/<%= menu.id %>" method="post">
+        <div class="input-group input-group-lg">
+          <span class="input-group-text" id="inputGroup-sizing-lg"
+            >Menu name</span
+          >
+          <input type="hidden" name="_method" value="PUT" />
+          <input
+            type="text"
+            name="name"
+            class="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-lg"
+            value="<%= menu.name %>"
+          />
+          <button type="submit" class="btn btn-primary">Change name</button>
+        </div>
+      </form>
     </div>
   </div>
   <div class="editor-options d-flex justify-content-end p-2 mt-3 gap-2">
@@ -13,16 +29,32 @@
     >
       Add category
     </button>
-    <button class="custom-button custom-button--dark rounded-0">Share link</button>
-    <button class="custom-button custom-button--dark rounded-0">Generate PDF</button>
-    <button class="custom-button custom-button--dark rounded-0">Delete menu</button>
+    <button class="custom-button custom-button--dark rounded-0">
+      Share link
+    </button>
+    <button class="custom-button custom-button--dark rounded-0">
+      Generate PDF
+    </button>
+    <button class="custom-button custom-button--dark rounded-0">
+      Edit Menu
+    </button>
+    <button class="custom-button custom-button--dark rounded-0">
+      Delete menu
+    </button>
   </div>
 
   <% menu.Categories.forEach((category) => { %>
 
-  <div data-categoryid="<%= category.id %>" class="category-item border mt-5 py-3 px-4 d-flex flex-column rounded-1">
-    <div class="category-item__header d-flex flex-column flex-md-row justify-content-between">
-      <h1 id="category-name" class="m-3 m-lg-0 mx-auto mx-lg-0"><%= category.name %></h1>
+  <div
+    data-categoryid="<%= category.id %>"
+    class="category-item border mt-5 py-3 px-4 d-flex flex-column rounded-1"
+  >
+    <div
+      class="category-item__header d-flex flex-column flex-md-row justify-content-between"
+    >
+      <h1 id="category-name" class="m-3 m-lg-0 mx-auto mx-lg-0">
+        <%= category.name %>
+      </h1>
       <div
         class="category-options d-flex flex-wrap flex-column flex-lg-row gap-3 justify-content-center mx-auto mx-lg-0"
       >
@@ -33,7 +65,10 @@
           data-bs-toggle="modal"
           data-role="add-product"
         >
-          <i class="bx bx-plus-medical" style="font-size: 16px; color: #fff"></i>
+          <i
+            class="bx bx-plus-medical"
+            style="font-size: 16px; color: #fff"
+          ></i>
           Add product
         </button>
         <button
@@ -53,7 +88,10 @@
           data-bs-toggle="modal"
           data-role="delete-category"
         >
-          <i class="bx bx-message-square-x" style="font-size: 16px; color: #fff"></i>
+          <i
+            class="bx bx-message-square-x"
+            style="font-size: 16px; color: #fff"
+          ></i>
           Delete category
         </button>
       </div>
@@ -61,8 +99,8 @@
 
     <div class="category-item__body mt-5">
       <div class="row g-2">
-        <% if(category.Products.length === 0) { %> No products yet. <% }; %> <% category.Products.forEach(product => {
-        %>
+        <% if(category.Products.length === 0) { %> No products yet. <% }; %> <%
+        category.Products.forEach(product => { %>
 
         <div class="col-12 col-md-4 col-lg-3">
           <div data-productid="<%= product.id %>" class="card product-item">
@@ -73,7 +111,9 @@
             />
             <div class="card-body">
               <h5 class="card-title text-center"><%= product.name %></h5>
-              <h6 class="card-subtitle py-1 text-center text-muted"><%= product.price %></h6>
+              <h6 class="card-subtitle py-1 text-center text-muted">
+                <%= product.price %>
+              </h6>
 
               <p class="card-text text-center"><%= product.description %></p>
 
@@ -116,12 +156,23 @@
   <!-- MODALS  -->
 
   <!-- CATEGORY MODAL -->
-  <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div
+    class="modal"
+    id="categoryModal"
+    tabindex="-1"
+    aria-labelledby="categoryModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="categoryModalLabel">New Category</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <% if(messages.modalError) { %>
@@ -134,14 +185,29 @@
           <form id="categoryForm" action="" method="POST">
             <input type="hidden" name="menuId" value="<%= menu.id %>" />
             <div class="mb-3">
-              <label for="category-name" class="col-form-label">Category name:</label>
-              <input name="name" type="text" class="form-control" id="category-name" />
+              <label for="category-name" class="col-form-label"
+                >Category name:</label
+              >
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="category-name"
+              />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" form="categoryForm">Submit</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary" form="categoryForm">
+            Submit
+          </button>
         </div>
       </div>
     </div>
@@ -149,12 +215,23 @@
   <!-- CATEGORY MODAL END -->
 
   <!-- PRODUCT MODAL -->
-  <div class="modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div
+    class="modal"
+    id="productModal"
+    tabindex="-1"
+    aria-labelledby="productModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="productModalLabel">New Product</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <% if(messages.modalError) { %>
@@ -169,22 +246,52 @@
             <!-- We set categoryId value via javascript -->
             <input type="hidden" name="categoryId" value="" />
             <div class="mb-3">
-              <label for="product-name" class="col-form-label">Product name:</label>
-              <input name="name" type="text" class="form-control" id="product-name" />
+              <label for="product-name" class="col-form-label"
+                >Product name:</label
+              >
+              <input
+                name="name"
+                type="text"
+                class="form-control"
+                id="product-name"
+              />
             </div>
             <div class="mb-3">
-              <label for="product-price" class="col-form-label">Product price:</label>
-              <input name="price" type="number" step="0.01" class="form-control" id="product-price" />
+              <label for="product-price" class="col-form-label"
+                >Product price:</label
+              >
+              <input
+                name="price"
+                type="number"
+                step="0.01"
+                class="form-control"
+                id="product-price"
+              />
             </div>
             <div class="mb-3">
-              <label for="product-description" class="col-form-label">Product description:</label>
-              <textarea name="description" class="form-control" id="product-description" rows="4"></textarea>
+              <label for="product-description" class="col-form-label"
+                >Product description:</label
+              >
+              <textarea
+                name="description"
+                class="form-control"
+                id="product-description"
+                rows="4"
+              ></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button form="productForm" type="submit" class="btn btn-primary">Submit</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button form="productForm" type="submit" class="btn btn-primary">
+            Submit
+          </button>
         </div>
       </div>
     </div>
@@ -192,16 +299,33 @@
   <!-- PRODUCT MODAL END -->
 
   <!-- DELETE PRODUCT/CATEGORY MODAL -->
-  <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div
+    class="modal"
+    id="deleteModal"
+    tabindex="-1"
+    aria-labelledby="deleteModalLabel"
+    aria-hidden="true"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">...</div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
           <form action="" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             <button type="submit" class="btn btn-danger">Delete</button>

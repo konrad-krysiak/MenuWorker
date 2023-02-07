@@ -1,4 +1,3 @@
-import { StatusCodes } from "http-status-codes";
 import passport from "passport";
 import bcrypt from "bcrypt";
 import db from "../models";
@@ -35,7 +34,7 @@ class UserController {
       let hashedPassword = await bcrypt.hash(data.password, 10);
       await User.create({ ...data, password: hashedPassword });
       req.flash("info", "User created successfully.");
-      res.status(StatusCodes.CREATED).redirect("/");
+      res.redirect("/");
     } catch (e) {
       if (
         ["SequelizeValidationError", "SequelizeUniqueConstraintError"].includes(
@@ -43,11 +42,11 @@ class UserController {
         )
       ) {
         req.flash("error", e.errors.map((i) => i.message).join(", "));
-        res.status(StatusCodes.BAD_REQUEST).render("auth/register");
+        res.render("auth/register");
       } else {
         console.log("ERROR IN USER CONTROLLER: ", e);
         req.flash("error", "Something went wrong...");
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("index");
+        res.render("index");
       }
     }
   };

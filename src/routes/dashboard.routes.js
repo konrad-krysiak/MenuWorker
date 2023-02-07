@@ -19,6 +19,7 @@ router.get("/menus", MenuController.indexView);
 router.get("/menus/new", MenuController.newView);
 router.get("/menus/:id/edit", MenuController.editView);
 router.post("/menus/new", MenuController.create);
+router.put("/menus/:id", MenuController.update);
 router.delete("/menus/:id", MenuController.delete);
 
 router.post("/categories/new", CategoryController.create);
