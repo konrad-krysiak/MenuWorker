@@ -44,6 +44,10 @@ export default (sequelize, DataTypes) => {
           len: [3, 20],
         },
       },
+      itemCount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
       sequelize,

@@ -73,7 +73,7 @@ class MenuController {
       const restaurant = await Restaurant.findOne({
         where: { id: req.body.restaurantId, userId: req.user.id },
       });
-      await restaurant.createMenu({ name: req.body.name, userId: req.user.id });
+      await restaurant.createMenu({ name: req.body.name, userId: req.user.id, itemCount: 0 });
       req.flash("info", "Menu created successfully.");
       res.redirect("/dashboard/menus");
     } catch (e) {

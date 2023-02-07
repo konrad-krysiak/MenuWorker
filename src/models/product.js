@@ -42,6 +42,32 @@ export default (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Product",
+      hooks: {
+        afterCreate: async (product) => {
+          const parentMenu = await sequelize.models.Menu.findOne({
+            include: {
+              model: sequelize.models.Category,
+              required: true,
+              where: { id: product.categoryId },
+            },
+          });
+          if (parentMenu) {
+            await parentMenu.increment("itemCount");
+          }
+        },
+        afterDestroy: async (product) => {
+          const parentMenu = await sequelize.models.Menu.findOne({
+            include: {
+              model: sequelize.models.Category,
+              required: true,
+              where: { id: product.categoryId },
+            },
+          });
+          if (parentMenu) {
+            await parentMenu.decrement("itemCount");
+          }
+        },
+      },
     }
   );
   return Product;
