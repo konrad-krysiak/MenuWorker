@@ -1,11 +1,12 @@
 import { StatusCodes } from "http-status-codes";
+
 import db from "../models";
 
-const { Restaurant, Menu } = db;
+const { Restaurant, Menu, Category, Product } = db;
 
 class MenuController {
   // GET
-  indexView = async (req, res) => {
+  indexView = async (req, res, next) => {
     try {
       const restaurantsWithMenus = await Restaurant.findAll({
         where: { userId: req.user.id },
@@ -16,13 +17,12 @@ class MenuController {
         restaurantsWithMenus,
       });
     } catch (e) {
-      console.log(e);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
+      next(e);
     }
   };
 
   // GET
-  newView = async (req, res) => {
+  newView = async (req, res, next) => {
     try {
       // Menu for restaurant with following id
       const restaurantId = req.query.restaurantId;
@@ -41,64 +41,76 @@ class MenuController {
         res.status(StatusCodes.UNAUTHORIZED).render("error");
       }
     } catch (e) {
-      console.log(e);
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error");
+      next(e);
+    }
+  };
+
+  editView = async (req, res, next) => {
+    try {
+      const menu = await Menu.findOne({
+        where: { id: req.params.id, userId: req.user.id },
+        include: {
+          model: Category,
+          include: {
+            model: Product,
+          },
+        },
+      });
+      res.render("menus/menus_edit", {
+        layout: "layouts/dashboard",
+        menu,
+      });
+    } catch (e) {
+      next(e);
     }
   };
 
   // POST
-  create = async (req, res) => {
+  // name - menu name
+  // restaurantId - id of restaurant menu belongs to
+  create = async (req, res, next) => {
     try {
       const restaurant = await Restaurant.findOne({
         where: { id: req.body.restaurantId, userId: req.user.id },
       });
-      await restaurant.createMenu({ name: req.body.name });
+      await restaurant.createMenu({ name: req.body.name, userId: req.user.id });
       req.flash("info", "Menu created successfully.");
       res.redirect("/dashboard/menus");
     } catch (e) {
-      if (
-        e.name === "SequelizeValidationError" ||
-        e.name === "SequelizeUniqueConstraintError"
-      ) {
+      if (e.name === "SequelizeValidationError" || e.name === "SequelizeUniqueConstraintError") {
         req.flash(
           "error",
           e.errors.map((i) => i.message)
         );
-        res
-          .status(StatusCodes.BAD_REQUEST)
-          .redirect(
-            "/dashboard/menus/new?restaurantId=" + req.body.restaurantId
-          );
-      } else {
-        req.flash("error", "Something went wrong...");
-        res.status(StatusCodes.BAD_REQUEST).redirect("/dashboard/menus");
+        const restaurant = await Restaurant.findOne({
+          where: { id: req.body.restaurantId, userId: req.user.id },
+        });
+        res.status(StatusCodes.BAD_REQUEST).render("menus/menus_new", {
+          layout: "layouts/dashboard",
+          restaurant,
+          form: req.body,
+        });
       }
+      next(e);
     }
   };
 
+  // update = async (req, res, next) => {};
+
   // DELETE
-  delete = async (req, res) => {
+  delete = async (req, res, next) => {
     try {
       const menuId = req.params.id;
       const menu = await Menu.findOne({
-        where: { id: menuId },
-        include: {
-          model: Restaurant,
-        },
+        where: { id: menuId, userId: req.user.id },
       });
 
-      // We are checking if user is owner of menu
-      if (menu.Restaurant.userId === req.user.id) {
-        await menu.destroy();
-        req.flash("info", "Menu deleted successfully.");
-        res.redirect("/dashboard/menus");
-      } else {
-        req.flash("error", "Could not delete menu.");
-        res.redirect("/dashboard/menus");
-      }
-    } catch (e) {
-      req.flash("error", e.message);
+      await menu.destroy();
+      req.flash("info", "Menu deleted successfully.");
       res.redirect("/dashboard/menus");
+    } catch (e) {
+      console.log(e);
+      next(e);
     }
   };
 }

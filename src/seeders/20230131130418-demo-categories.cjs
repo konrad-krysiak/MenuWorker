@@ -36,6 +36,14 @@ module.exports = {
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         menuId: 3,
       },
+      {
+        id: 5,
+        uuid: "c246a597-8819-425d-8325-0a2c1bd2fdee",
+        name: "Category 4 menu 5",
+        createdAt: new Date("2019-04-07T10:20:30Z"),
+        updatedAt: new Date("2019-04-07T10:20:30Z"),
+        menuId: 4,
+      },
     ]);
   },
 

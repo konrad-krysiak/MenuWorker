@@ -1,1 +1,255 @@
-<div class="container mt-5"><%= menu.name %></div>
+<section class="container py-4">
+  <div class="row">
+    <div class="col text-center">
+      <h1>Poco Loco Menu</h1>
+    </div>
+  </div>
+  <div class="editor-options d-flex justify-content-end p-2 mt-3 gap-2">
+    <button
+      class="custom-button custom-button--dark rounded-0"
+      data-bs-toggle="modal"
+      data-bs-target="#categoryModal"
+      data-role="add-category"
+    >
+      Add category
+    </button>
+    <button class="custom-button custom-button--dark rounded-0">Share link</button>
+    <button class="custom-button custom-button--dark rounded-0">Generate PDF</button>
+    <button class="custom-button custom-button--dark rounded-0">Delete menu</button>
+  </div>
+
+  <% menu.Categories.forEach((category) => { %>
+
+  <div data-categoryid="<%= category.id %>" class="category-item border mt-5 py-3 px-4 d-flex flex-column rounded-1">
+    <div class="category-item__header d-flex flex-column flex-md-row justify-content-between">
+      <h1 id="category-name" class="m-3 m-lg-0 mx-auto mx-lg-0"><%= category.name %></h1>
+      <div
+        class="category-options d-flex flex-wrap flex-column flex-lg-row gap-3 justify-content-center mx-auto mx-lg-0"
+      >
+        <button
+          href="#"
+          class="me-button gap-2"
+          data-bs-target="#productModal"
+          data-bs-toggle="modal"
+          data-role="add-product"
+        >
+          <i class="bx bx-plus-medical" style="font-size: 16px; color: #fff"></i>
+          Add product
+        </button>
+        <button
+          href="#"
+          class="me-button me-button--green gap-2"
+          data-bs-target="#categoryModal"
+          data-bs-toggle="modal"
+          data-role="edit-category"
+        >
+          <i class="bx bxs-edit" style="font-size: 16px; color: #fff"></i>
+          Edit category
+        </button>
+        <button
+          href="#"
+          class="me-button me-button--red gap-2"
+          data-bs-target="#deleteModal"
+          data-bs-toggle="modal"
+          data-role="delete-category"
+        >
+          <i class="bx bx-message-square-x" style="font-size: 16px; color: #fff"></i>
+          Delete category
+        </button>
+      </div>
+    </div>
+
+    <div class="category-item__body mt-5">
+      <div class="row g-2">
+        <% if(category.Products.length === 0) { %> No products yet. <% }; %> <% category.Products.forEach(product => {
+        %>
+
+        <div class="col-12 col-md-4 col-lg-3">
+          <div data-productid="<%= product.id %>" class="card product-item">
+            <img
+              class="card-img-top"
+              src="https://festiwallancut.pl/en/wp-content/uploads/sites/3/woocommerce-placeholder.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center"><%= product.name %></h5>
+              <h6 class="card-subtitle py-1 text-center text-muted"><%= product.price %></h6>
+
+              <p class="card-text text-center"><%= product.description %></p>
+
+              <div class="row product-item__options g-1">
+                <div class="col-4">
+                  <a href="#" class="dark">Preview</a>
+                </div>
+                <div class="col-4">
+                  <a
+                    href="#"
+                    class="green"
+                    data-bs-target="#productModal"
+                    data-bs-toggle="modal"
+                    data-role="edit-product"
+                    >Edit</a
+                  >
+                </div>
+                <div class="col-4">
+                  <a
+                    href="#"
+                    class="red"
+                    data-bs-target="#deleteModal"
+                    data-bs-toggle="modal"
+                    data-role="delete-product"
+                    >Delete</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% }); %>
+      </div>
+    </div>
+  </div>
+
+  <% }); %>
+
+  <!-- MODALS  -->
+
+  <!-- CATEGORY MODAL -->
+  <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="categoryModalLabel">New Category</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if(messages.modalError) { %>
+          <div id="modal-alert" class="py-2">
+            <% messages.modalError.forEach(message => { %>
+            <div class="alert alert-danger" role="alert"><%= message %></div>
+            <% }); %>
+          </div>
+          <% } %>
+          <form id="categoryForm" action="" method="POST">
+            <input type="hidden" name="menuId" value="<%= menu.id %>" />
+            <div class="mb-3">
+              <label for="category-name" class="col-form-label">Category name:</label>
+              <input name="name" type="text" class="form-control" id="category-name" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" form="categoryForm">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CATEGORY MODAL END -->
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% if(messages.modalError) { %>
+          <div id="modal-alert" class="py-2">
+            <% messages.modalError.forEach(message => { %>
+            <div class="alert alert-danger" role="alert"><%= message %></div>
+            <% }); %>
+          </div>
+          <% } %>
+          <form id="productForm" method="POST">
+            <input type="hidden" name="menuId" value="<%= menu.id %>" />
+            <!-- We set categoryId value via javascript -->
+            <input type="hidden" name="categoryId" value="" />
+            <div class="mb-3">
+              <label for="product-name" class="col-form-label">Product name:</label>
+              <input name="name" type="text" class="form-control" id="product-name" />
+            </div>
+            <div class="mb-3">
+              <label for="product-price" class="col-form-label">Product price:</label>
+              <input name="price" type="number" step="0.01" class="form-control" id="product-price" />
+            </div>
+            <div class="mb-3">
+              <label for="product-description" class="col-form-label">Product description:</label>
+              <textarea name="description" class="form-control" id="product-description" rows="4"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button form="productForm" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- PRODUCT MODAL END -->
+
+  <!-- DELETE PRODUCT/CATEGORY MODAL -->
+  <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">...</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <form action="" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- DELETE PRODUCT/CATEGORY MODAL END -->
+  <!-- MODALS END -->
+</section>
+
+<script type="module">
+  import {
+    toggleCategoryModal,
+    writeToCategoryModal,
+    addMethodOverrideToCategoryModal,
+    removeMethodOverrideFromCategoryModal,
+    toggleProductModal,
+    writeToProductModal,
+    removeMethodOverrideFromProductModal,
+    addMethodOverrideToProductModal
+  } from "/helpers/viewFunctions.js";
+  document.addEventListener("DOMContentLoaded", function (event) {
+    <% if(locals.categoryCreateValidationError) { %>
+      toggleCategoryModal();
+      const previousForm = <%- JSON.stringify(locals.form) %>;
+      writeToCategoryModal("New Category", previousForm.name, "/dashboard/categories/new")
+      removeMethodOverrideFromCategoryModal();
+    <% } else if (locals.categoryEditValidationError) { %>
+      toggleCategoryModal();
+      const categoryId = <%- JSON.stringify(locals.categoryId) %>
+      const previousForm = <%- JSON.stringify(locals.form) %>;
+      writeToCategoryModal("Edit Category", previousForm.name, "/dashboard/categories/" + categoryId);
+      addMethodOverrideToCategoryModal("PUT");
+    <% } else if (locals.productCreateValidationError) { %>
+      toggleProductModal();
+      const previousForm = <%- JSON.stringify(locals.form) %>;
+      writeToProductModal("New Product", previousForm.name, previousForm.price,
+      previousForm.description, "/dashboard/products/new", previousForm.categoryId);
+      removeMethodOverrideFromProductModal();
+    <% } else if (locals.productEditValidationError) { %>
+      toggleProductModal();
+      const productId = <%- JSON.stringify(locals.productId) %>
+      const previousForm = <%- JSON.stringify(locals.form) %>;
+      writeToProductModal("Edit Product", previousForm.name, previousForm.price,
+      previousForm.description, "/dashboard/products/" + productId, previousForm.categoryId);
+      addMethodOverrideToProductModal("PUT");
+    <% }; %>
+  });
+</script>

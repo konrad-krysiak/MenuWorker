@@ -15,6 +15,13 @@ export default (sequelize, DataTypes) => {
         },
       });
 
+      this.belongsTo(models.User, {
+        foreignKey: {
+          name: "userId",
+          allowNull: false,
+        },
+      });
+
       this.hasMany(models.Category, {
         foreignKey: {
           name: "menuId",

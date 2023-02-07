@@ -1,29 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
-import routes from "./routes";
-import middlewares from "./middlewares";
-import { StatusCodes } from "http-status-codes";
-import initializePassport from "./middlewares/passport.setup";
 import passport from "passport";
 dotenv.config();
 
 import db from "./models";
+import registerRoutes from "./routes";
+import {
+  globalErrorMiddleware,
+  configureServer,
+  initializePassport,
+} from "./middlewares";
 
 const { sequelize, Menu, Restaurant, Category, Product } = db;
 const app = express();
 
-const registerRoutes = (app) => {
-  routes(app);
-};
-
-const globalErrorMiddleware = (app) => {
-  app.use((err, req, res, next) => {
-    console.log("-------------- GLOBAL ERROR OCCURRED ", err);
-    res
-      .status(err.status || StatusCodes.INTERNAL_SERVER_ERROR)
-      .json(err.message);
-  });
-};
+// Keep user logged in in development
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === "development") {
     req.user = {
@@ -35,10 +26,16 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// Configuration
 initializePassport(passport);
-middlewares.configure(app);
+configureServer(app);
+
+// Routes
 registerRoutes(app);
-globalErrorMiddleware(app);
+
+// Error middlewares
+app.use(globalErrorMiddleware);
 
 app.listen(3000, async () => {
   console.log("Server up on port 3000");

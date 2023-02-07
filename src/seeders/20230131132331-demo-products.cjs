@@ -64,6 +64,16 @@ module.exports = {
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         categoryId: 3,
       },
+      {
+        id: 7,
+        uuid: "1995c195-efcb-4679-8524-d7bef39de6c9",
+        name: "Product 7 category 5",
+        description: "description for product 7",
+        price: 555.0,
+        createdAt: new Date("2019-04-07T10:20:30Z"),
+        updatedAt: new Date("2019-04-07T10:20:30Z"),
+        categoryId: 5,
+      },
     ]);
   },
 

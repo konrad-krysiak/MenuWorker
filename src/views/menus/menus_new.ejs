@@ -17,13 +17,8 @@
             value="<%= restaurant.id %>"
           />
           <label for="name" class="form-label">Name*</label>
-          <input
-            class="form-control"
-            id="name"
-            name="name"
-            placeholder="Name"
-            required
-          />
+          <input class="form-control" id="name" name="name" placeholder="Name"
+          value="<%= locals.form ? form.name : "" %>" required />
         </div>
 
         <div class="row my-4">

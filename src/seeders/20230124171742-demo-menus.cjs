@@ -11,6 +11,7 @@ module.exports = {
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         restaurantId: 1,
+        userId: 1,
       },
       {
         id: 2,
@@ -19,6 +20,7 @@ module.exports = {
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         restaurantId: 1,
+        userId: 1,
       },
       {
         id: 3,
@@ -27,6 +29,7 @@ module.exports = {
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         restaurantId: 2,
+        userId: 1,
       },
       {
         id: 4,
@@ -35,6 +38,7 @@ module.exports = {
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         restaurantId: 3,
+        userId: 2,
       },
     ]);
   },
