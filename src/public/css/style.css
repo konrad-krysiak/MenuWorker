@@ -344,3 +344,46 @@ a {
 .product-item__options a.dark {
   background: var(--dark-color);
 }
+
+.product-image-output {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  position: relative;
+  border-radius: 5px;
+  margin: 5px 0;
+  /* Dont show it until it does not contain image */
+  display: none;
+}
+
+.product-image-output .image{
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+.product-image-output .image img{
+  height: 100%;
+  width: 100%;
+}
+
+.product-image-output .image span {
+  position: absolute;
+  top: -4px;
+  right: 4px;
+  cursor: pointer;
+  font-size: 22px;
+  color: black;
+}
+
+.product-image-output .image span:hover {
+  opacity: 0.8;
+}
+
+.product-image-output .span--hidden{
+  visibility: hidden;
+}

@@ -11,9 +11,19 @@ import {
   initializePassport,
 } from "./middlewares";
 
+import multer from "multer";
+
+const multerMid = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+});
+
 const { sequelize, Menu, Restaurant, Category, Product } = db;
 const app = express();
 
+app.use(multerMid.single("file"));
 // Keep user logged in in development
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === "development") {

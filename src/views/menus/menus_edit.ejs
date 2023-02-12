@@ -241,7 +241,17 @@
             <% }); %>
           </div>
           <% } %>
+          <output id="productImageOutput" class="product-image-output">
+            <div class="image">
+              <img src="" alt="image" />
+              <span onclick="">&times;</span>
+            </div>
+          </output>
           <form id="productForm" method="POST">
+            <div class="">
+              <label for="formFile" class="form-label">Choose image</label>
+              <input class="form-control" type="file" id="productImageInput" />
+            </div>
             <input type="hidden" name="menuId" value="<%= menu.id %>" />
             <!-- We set categoryId value via javascript -->
             <input type="hidden" name="categoryId" value="" />
@@ -336,8 +346,11 @@
   </div>
   <!-- DELETE PRODUCT/CATEGORY MODAL END -->
   <!-- MODALS END -->
+  <script src="/js/menuEditor.js" type="module"></script>
 </section>
 
+<!-- We need script to handle modal toggling & filling data in
+case of validation error -->
 <script type="module">
   import {
     toggleCategoryModal,
@@ -349,6 +362,8 @@
     removeMethodOverrideFromProductModal,
     addMethodOverrideToProductModal
   } from "/helpers/viewFunctions.js";
+
+  console.log(window);
   document.addEventListener("DOMContentLoaded", function (event) {
     <% if(locals.categoryCreateValidationError) { %>
       toggleCategoryModal();
