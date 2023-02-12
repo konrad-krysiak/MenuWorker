@@ -12,7 +12,6 @@ const bucket = gc.bucket("bucket-quickstart-konrad"); // should be your bucket n
 
 export const uploadImage = (file) =>
   new Promise((resolve, reject) => {
-    console.log("FILE", file);
     const { originalname, buffer } = file;
 
     const blob = bucket.file(originalname.replace(/ /g, "_"));

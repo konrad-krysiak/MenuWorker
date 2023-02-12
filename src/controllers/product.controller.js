@@ -1,4 +1,5 @@
 import db from "../models";
+import { uploadImage } from "../helpers/fileUploadHelper";
 
 const { Menu, Category, Product } = db;
 
@@ -19,11 +20,16 @@ class ProductController {
       });
 
       if (parentMenu.userId === req.user.id) {
+        let imageURL = undefined;
+        if (req.file) {
+          imageURL = await uploadImage(req.file);
+        }
         await Product.create({
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,
           categoryId: req.body.categoryId,
+          ...(imageURL && { image: imageURL }),
         });
         req.flash("info", "Product created successfully.");
         res.redirect(`/dashboard/menus/${parentMenu.id}/edit`);
@@ -82,10 +88,15 @@ class ProductController {
       });
 
       if (product.Category.Menu.userId === req.user.id) {
+        let imageURL = undefined;
+        if (req.file) {
+          imageURL = await uploadImage(req.file);
+        }
         await product.update({
           name: req.body.name,
           price: req.body.price,
           description: req.body.description,
+          ...(imageURL && { image: imageURL }),
         });
         req.flash("info", "Product updated successfully.");
         res.redirect(`/dashboard/menus/${product.Category.Menu.id}/edit`);

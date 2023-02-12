@@ -354,8 +354,6 @@ a {
   position: relative;
   border-radius: 5px;
   margin: 5px 0;
-  /* Dont show it until it does not contain image */
-  display: none;
 }
 
 .product-image-output .image{

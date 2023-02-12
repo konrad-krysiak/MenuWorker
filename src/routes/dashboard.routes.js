@@ -5,8 +5,6 @@ import MenuController from "../controllers/menu.controller";
 import CategoryController from "../controllers/category.controller";
 import ProductController from "../controllers/product.controller";
 
-import { uploadImage } from "../helpers/fileUploadHelper";
-
 const router = express.Router();
 
 router.get("/restaurants", RestaurantController.indexView);
@@ -31,18 +29,5 @@ router.delete("/categories/:id", CategoryController.delete);
 router.post("/products/new", ProductController.create);
 router.put("/products/:id", ProductController.update);
 router.delete("/products/:id", ProductController.delete);
-
-router.post("/uploads", async (req, res, next) => {
-  try {
-    const myFile = req.file;
-    const imageUrl = await uploadImage(myFile);
-    res.status(200).json({
-      message: "Upload was successful",
-      data: imageUrl,
-    });
-  } catch (error) {
-    next(error);
-  }
-});
 
 export default router;

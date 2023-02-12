@@ -1,4 +1,4 @@
-import * as VF from "../../helpers/viewFunctions.js";
+import * as VF from "../../helpers/menuEditorViewFunctions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Image Upload
@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         productDescription,
         productId,
         categoryId,
+        imageURL,
       } = VF.getProductItemData(button);
       VF.writeToProductModal(
         "Edit Product",
@@ -71,8 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
         productPrice,
         productDescription,
         "/dashboard/products/" + productId,
-        categoryId
+        categoryId,
+        imageURL
       );
+      if (imageURL) {
+        VF.showProductModalImage();
+      }
       VF.removeMethodOverride(this);
       VF.addMethodOverride(this, "PUT");
     } else if (role === "add-product") {
@@ -85,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "/dashboard/products/new",
         categoryId
       );
+      VF.hideProductModalImage();
       VF.removeMethodOverride(this);
     }
   });
@@ -96,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // Remove file attached in previous attempt and clear input file value
     removeImage();
+    VF.hideProductModalImage();
   });
 
   const deleteModal = document.getElementById("deleteModal");
