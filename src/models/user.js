@@ -35,7 +35,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [5, 20],
+          len: [5, 40],
         },
       },
       email: {
@@ -63,7 +63,7 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           min: 3,
-          max: 15,
+          max: 30,
         },
       },
     },

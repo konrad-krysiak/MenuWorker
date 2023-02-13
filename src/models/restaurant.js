@@ -35,14 +35,14 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [3, 20],
+          len: [3, 50],
         },
       },
       address: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          len: [5, 20],
+          len: [5, 50],
         },
       },
       description: {

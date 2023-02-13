@@ -40,9 +40,6 @@ export default (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          len: [3, 20],
-        },
       },
       itemCount: {
         type: DataTypes.INTEGER,
