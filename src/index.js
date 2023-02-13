@@ -20,7 +20,7 @@ const multerMid = multer({
   },
 });
 
-const { sequelize, Menu, Restaurant, Category, Product } = db;
+const { sequelize, Menu, Restaurant, Category, Product, User } = db;
 const app = express();
 
 app.use(multerMid.single("file"));

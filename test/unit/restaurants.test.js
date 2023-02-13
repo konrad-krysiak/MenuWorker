@@ -31,11 +31,23 @@ describe("Restaurant unit testing", () => {
       done();
     });
   });
-  it("GET /restaurants/:id should return proper status", (done) => {
-    requester.get("/dashboard/restaurants/1").end((err, res) => {
-      res.should.have.status(200);
-      done();
-    });
+  it("GET /restaurants/:id should return proper status", async () => {
+    const restaurant = (
+      await Restaurant.findOrCreate({
+        where: {
+          name: "Menu.test restaurant",
+          address: "Menu.test address",
+          description: "Menu.test description",
+          phone: "999888777",
+          website: "http://menutestwebsite.com",
+          userId: 1,
+        },
+      })
+    )[0];
+    const response = await requester.get(
+      "/dashboard/restaurants/" + restaurant.id
+    );
+    response.should.have.status(200);
   });
   it("GET /restaurants/:id/edit should return proper status", (done) => {
     requester.get("/dashboard/restaurants/1/edit").end((err, res) => {
@@ -54,23 +66,49 @@ describe("Restaurant unit testing", () => {
     const newRecord = await Restaurant.findOne({
       where: { phone: "987654321" },
     });
-    newRecord.should.be.a("object");
     newRecord.name.should.equal("New Restaurant");
+    (newRecord instanceof Restaurant).should.be.true;
   });
 
   it("PUT /restaurants/:id should edit a record", async () => {
+    const restaurant = (
+      await Restaurant.findOrCreate({
+        where: {
+          name: "Menu.test restaurant",
+          address: "Menu.test address",
+          description: "Menu.test description",
+          phone: "999888777",
+          website: "http://menutestwebsite.com",
+          userId: 1,
+        },
+      })
+    )[0];
     const response = await requester
-      .put("/dashboard/restaurants/1")
+      .put("/dashboard/restaurants/" + restaurant.id)
       .send({ name: "Crazy new name" });
     response.should.have.status(200);
-    const restaurant_1 = await Restaurant.findByPk(1);
+    const restaurant_1 = await Restaurant.findByPk(restaurant.id);
     restaurant_1.name.should.equal("Crazy new name");
   });
 
   it("DELETE /restaurants/:id should destroy a record", async () => {
-    const response = await requester.delete("/dashboard/restaurants/1");
+    const restaurant = (
+      await Restaurant.findOrCreate({
+        where: {
+          name: "Menu.test restaurant",
+          address: "Menu.test address",
+          description: "Menu.test description",
+          phone: "999888777",
+          website: "http://menutestwebsite.com",
+          userId: 1,
+        },
+      })
+    )[0];
+    const response = await requester.delete(
+      "/dashboard/restaurants/" + restaurant.id
+    );
     response.should.have.status(200);
-    const restaurant_1 = await Restaurant.findByPk(1);
+    const restaurant_1 = await Restaurant.findByPk(restaurant.id);
     (restaurant_1 === null).should.be.true;
   });
 });

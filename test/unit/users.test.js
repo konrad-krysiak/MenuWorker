@@ -59,5 +59,9 @@ describe("Restaurant unit testing", () => {
     const response = await requester.post("/auth/logout");
     response.should.have.status(200);
     response.should.redirectTo(/w*\/$/);
+    // const dashboardAccessAttempt = await requester.get(
+    //   "/dashboard/restaurants"
+    // );
+    // dashboardAccessAttempt.should.not.have.status(200);
   });
 });
