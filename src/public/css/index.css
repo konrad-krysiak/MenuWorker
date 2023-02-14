@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Tourney:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patua+One&display=swap");
+:root {
+  --header-height: 3rem;
+  --nav-width: 68px;
+  --white-color: #f7f6fb;
+  --dark-color: #152d32;
+  --red-color: #ff4742;
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: 1rem;
+  --z-fixed: 100;
+
+  --claret-1-color: #751616;
+  --claret-2-color: #7c2e2e;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+.bor {
+  border: 1px solid red;
+}
+
+body {
+  position: relative;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  transition: 0.5s;
+}
+
+.index-navbar {
+  background-color: #ffffff;
+  z-index: 10;
+}
+
+.navbar .navbar-brand {
+  font-family: "Tourney", cursive;
+  font-size: 2rem;
+  pointer-events: none;
+  cursor: default;
+  color: var(--claret-1-color);
+}
+
+.navbar .auth-button {
+  width: 8rem;
+  color: var(--claret-1-color);
+}
+
+.navbar .auth-button:hover {
+  background-color: var(--claret-2-color);
+  border-radius: 0;
+  color: var(--white-color);
+}
+
+.navbar .navbar-buttons a {
+  transition: none;
+  border-radius: 0;
+  line-height: 2.5rem;
+}
+
+.landing-body__heading {
+  font-family: "Patua One", cursive;
+  font-weight: 300;
+  font-size: 3.5rem;
+}
+
+.landing-body__pizza img {
+  width: 400px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.rotate {
+  animation: rotation 20s infinite linear;
+}
+
+.rotate:hover {
+  animation-play-state: paused;
+}
+
+.tryit-button {
+  margin-top: 2rem;
+  background-color: var(--claret-2-color);
+  color: var(--white-color);
+  font-size: 1.8rem;
+  font-family: "Oswald", sans-serif;
+  padding: 10px 28px;
+  text-decoration: none;
+
+  -webkit-box-shadow: 0px 8px 16px -3px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 8px 16px -3px rgba(66, 68, 90, 1);
+  box-shadow: 0px 8px 16px -3px rgba(66, 68, 90, 1);
+}
+
+.tryit-button:hover {
+  background-color: var(--claret-1-color);
+}
+
+.tryit-button:hover {
+  color: var(--white-color);
+}
+
+.landing-offer {
+  background-color: var(--claret-2-color);
+}
+
+.landing-offer h1 {
+  color: var(--white-color);
+  font-family: "Oswald", sans-serif;
+}
+
+@media (max-width: 768px) {
+  .landing-body__heading {
+    font-size: 3rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .landing-body__heading {
+    font-size: 2.8rem;
+  }
+}

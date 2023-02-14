@@ -1,7 +1,9 @@
 class ApplicationController {
   // GET
   index = (req, res) => {
-    res.render("index");
+    res.render("index", {
+      layout: false,
+    });
   };
 
   // GET

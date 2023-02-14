@@ -1,40 +1,86 @@
-<section id="navbar">
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">MenuWorker</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarText"
-        aria-controls="navbarText"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-4 navbar-buttons">
-          <li class="nav-item mx-2">
-            <a class="btn login-button" href="/auth/login">Login</a>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="btn register-button" href="/auth/register">Register</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MenuWorker</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="position-relative">
+    <section
+      id="landing"
+      class="landing vh-100 d-flex flex-column justify-content-center"
+    >
+      <section id="navbar" class="index-navbar position-fixed w-100 top-0">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand ms-4 user-select-none" href="#"
+              >MenuWorker</a
+            >
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarText"
+              aria-controls="navbarText"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse text-center text-lg-start p"
+              id="navbarText"
+            >
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-4 navbar-buttons">
+                <li class="nav-item">
+                  <a class="btn auth-button fs-5" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn auth-button fs-5" href="/register">Register</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </section>
 
-<section class="section-1 container mt-5">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat non iure quis
-  cupiditate illum ad provident nostrum quam eos expedita atque totam dicta
-  eligendi facilis laudantium quas, commodi ab accusamus? Lorem ipsum dolor sit
-  amet consectetur adipisicing elit. Placeat non iure quis cupiditate illum ad
-  provident nostrum quam eos expedita atque totam dicta eligendi facilis
-  laudantium quas, commodi ab accusamus? Lorem ipsum dolor sit amet consectetur
-  adipisicing elit. Placeat non iure quis cupiditate illum ad provident nostrum
-  quam eos expedita atque totam dicta eligendi facilis laudantium quas, commodi
-  ab accusamus?
-</section>
+      <section class="landing-body container mt-4">
+        <div class="row w-100">
+          <div class="col-12 col-md-6">
+            <div
+              class="landing-body__heading h-100 d-flex flex-column justify-content-center align-items-center"
+            >
+              <div class="w-75">#1 MENU MANAGMENT PLATFORM IN THE WEB</div>
+            </div>
+          </div>
+          <div class="d-none d-md-block col-6 text-center">
+            <div class="landing-body__pizza">
+              <img src="/img/pizza.png" alt="pizza" class="rotate" />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <a href="#" class="tryit-button">TRY IT FOR FREE</a>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="landing-offer vh-100 py-5">
+      <div class="container text-center">
+        <h1 class="text-center fs-1">WHAT WE OFFER?</h1>
+        <img
+          src="https://www.indiewire.com/wp-content/uploads/2018/07/breakingbadformon_wide-22d0f0aa716956d518b391936d3bc323dd7a3848-s900-c85.jpg"
+          alt=""
+          class="mt-5"
+        />
+      </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
