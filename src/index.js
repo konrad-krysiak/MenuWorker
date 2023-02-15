@@ -25,17 +25,17 @@ const app = express();
 
 app.use(multerMid.single("file"));
 // Keep user logged in in development
-app.use((req, res, next) => {
-  if (process.env.NODE_ENV === "development") {
-    req.user = {
-      id: 1,
-      name: "konrad",
-      email: "konrad@onet.pl",
-      phone: "123123123",
-    };
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (process.env.NODE_ENV === "development") {
+//     req.user = {
+//       id: 1,
+//       name: "konrad",
+//       email: "konrad@onet.pl",
+//       phone: "123123123",
+//     };
+//   }
+//   next();
+// });
 
 // Configuration
 initializePassport(passport);

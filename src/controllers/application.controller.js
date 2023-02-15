@@ -12,12 +12,12 @@ class ApplicationController {
       res.redirect("/dashboard/restaurants");
       return;
     }
-    res.render("auth/login");
+    res.render("auth/login", { layout: false });
   };
 
   // GET
   register = (req, res) => {
-    res.render("auth/register");
+    res.render("auth/register", { layout: false });
   };
 }
 
