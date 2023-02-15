@@ -2,25 +2,25 @@ import * as VF from "../../helpers/menuEditorViewFunctions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Image Upload
-  const imageInput = document.getElementById("productImageInput");
-  const imageOutput = document.getElementById("productImageOutput");
-  const imageOutputImgElement = imageOutput.querySelector("img");
-  const imageOutputCloseSpan = imageOutput.querySelector("span");
+  // const imageInput = document.getElementById("productImageInput");
+  // const imageOutput = document.getElementById("productImageOutput");
+  // const imageOutputImgElement = imageOutput.querySelector("img");
+  // const imageOutputCloseSpan = imageOutput.querySelector("span");
 
-  function removeImage() {
-    imageOutputImgElement.src = "";
-    imageOutput.style.display = "none";
-    imageInput.value = imageInput.defaultValue;
-  }
+  // function removeImage() {
+  //   imageOutputImgElement.src = "";
+  //   imageOutput.style.display = "none";
+  //   imageInput.value = imageInput.defaultValue;
+  // }
 
-  imageInput.addEventListener("change", function () {
-    imageOutput.style.display = "block";
-    const file = this.files;
-    imageOutputImgElement.src = URL.createObjectURL(file[0]);
-  });
+  // imageInput.addEventListener("change", function () {
+  //   imageOutput.style.display = "block";
+  //   const file = this.files;
+  //   imageOutputImgElement.src = URL.createObjectURL(file[0]);
+  // });
 
-  imageOutputCloseSpan.addEventListener("click", removeImage);
-  // Image Upload End
+  // imageOutputCloseSpan.addEventListener("click", removeImage);
+  // // Image Upload End
 
   const categoryModal = document.getElementById("categoryModal");
   categoryModal.addEventListener("show.bs.modal", function (event) {
@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
         productDescription,
         productId,
         categoryId,
-        imageURL,
       } = VF.getProductItemData(button);
       VF.writeToProductModal(
         "Edit Product",
@@ -72,12 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
         productPrice,
         productDescription,
         "/dashboard/products/" + productId,
-        categoryId,
-        imageURL
+        categoryId
       );
-      if (imageURL) {
-        VF.showProductModalImage();
-      }
       VF.removeMethodOverride(this);
       VF.addMethodOverride(this, "PUT");
     } else if (role === "add-product") {
@@ -90,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "/dashboard/products/new",
         categoryId
       );
-      VF.hideProductModalImage();
       VF.removeMethodOverride(this);
     }
   });
@@ -100,9 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (modalAlert) {
       modalAlert.style.display = "none";
     }
-    // Remove file attached in previous attempt and clear input file value
-    removeImage();
-    VF.hideProductModalImage();
   });
 
   const deleteModal = document.getElementById("deleteModal");

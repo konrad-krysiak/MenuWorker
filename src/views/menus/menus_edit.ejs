@@ -104,19 +104,6 @@
 
         <div class="col-12 col-md-4 col-lg-3">
           <div data-productid="<%= product.id %>" class="card product-item">
-            <% if(product.image) { %>
-            <img
-              class="card-img-top"
-              src="<%= product.image %>"
-              alt="Card image cap"
-            />
-            <% } else { %>
-            <img
-              class="card-img-top"
-              src="https://festiwallancut.pl/en/wp-content/uploads/sites/3/woocommerce-placeholder.png"
-              alt="Card image cap"
-            />
-            <% } %>
             <div class="card-body">
               <h5 class="card-title text-center"><%= product.name %></h5>
               <h6 class="card-subtitle py-1 text-center text-muted">
@@ -249,24 +236,7 @@
             <% }); %>
           </div>
           <% } %>
-          <output id="productImageOutput" class="product-image-output">
-            <div class="image">
-              <img src="" alt="image" />
-              <span onclick="">&times;</span>
-            </div>
-          </output>
           <form id="productForm" method="POST" enctype="multipart/form-data">
-            <div>
-              <label for="productImageInput" class="form-label"
-                >Choose image</label
-              >
-              <input
-                id="productImageInput"
-                class="form-control"
-                type="file"
-                name="file"
-              />
-            </div>
             <input type="hidden" name="menuId" value="<%= menu.id %>" />
             <!-- We set categoryId value via javascript -->
             <input type="hidden" name="categoryId" value="" />
@@ -376,7 +346,6 @@ case of validation error -->
     writeToProductModal,
     removeMethodOverrideFromProductModal,
     addMethodOverrideToProductModal,
-    hideProductModalImage
   } from "/helpers/menuEditorViewFunctions.js";
 
   document.addEventListener("DOMContentLoaded", function (event) {

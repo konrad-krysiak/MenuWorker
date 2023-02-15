@@ -35,7 +35,6 @@ export function getProductItemData(innerElement) {
     productDescription: cardBody.querySelector(".card-text").textContent.trim(),
     productId: cardBody.closest(".card").dataset.productid,
     categoryId: innerElement.closest(".category-item").dataset.categoryid,
-    imageURL: innerElement.closest(".product-item").querySelector("img").src,
   };
 }
 
@@ -49,8 +48,7 @@ export function writeToProductModal(
   productPriceInput,
   productDescriptionInput,
   productFormAction,
-  categoryId,
-  imageURL
+  categoryId
 ) {
   document.querySelector("#productModal .modal-title").innerHTML = modalTitle;
   document.querySelector("#productModal #product-name").value =
@@ -63,10 +61,6 @@ export function writeToProductModal(
   if (categoryId) {
     document.querySelector("#productModal form input[name=categoryId]").value =
       categoryId;
-  }
-  if (imageURL) {
-    document.querySelector("#productModal .product-image-output img").src =
-      imageURL;
   }
 }
 
@@ -122,12 +116,12 @@ export function writeToDeleteModal(modalTitle, modalBody, deleteFormAction) {
   document.querySelector("#deleteModal form").action = deleteFormAction;
 }
 
-export function showProductModalImage() {
-  document.querySelector("#productModal .product-image-output").style.display =
-    "inline";
-}
+// export function showProductModalImage() {
+//   document.querySelector("#productModal .product-image-output").style.display =
+//     "inline";
+// }
 
-export function hideProductModalImage() {
-  document.querySelector("#productModal .product-image-output").style.display =
-    "none";
-}
+// export function hideProductModalImage() {
+//   document.querySelector("#productModal .product-image-output").style.display =
+//     "none";
+// }

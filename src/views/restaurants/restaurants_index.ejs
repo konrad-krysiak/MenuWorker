@@ -13,23 +13,14 @@
 
     <div class="card restaurant-container__item overflow-hidden">
       <div class="row">
-        <div class="col-md-4 d-none d-md-block">
-          <img
-            src="/img/restaurant-placeholder.jpg"
-            width="100%"
-            height="250px"
-          />
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="card-body h-100 d-flex flex-column">
             <h2 class="card-title"><%= restaurant.name %></h2>
-            <h6 class="card-subtitle text-muted mb-3">
+            <span class="card-subtitle text-muted mb-3">
               created at <%= restaurant.createdAt.toLocaleDateString("en-US") %>
-            </h6>
+            </span>
             <p class="card-text"><%= restaurant.description %></p>
-            <div
-              class="restaurant-container__buttons mt-3 mt-md-auto d-flex gap-2"
-            >
+            <div class="restaurant-container__buttons d-flex gap-2">
               <form
                 action="/dashboard/restaurants/<%= restaurant.id %>"
                 method="GET"
