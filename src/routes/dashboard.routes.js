@@ -21,6 +21,8 @@ router.get("/menus/:id/edit", MenuController.editView);
 router.post("/menus/new", MenuController.create);
 router.put("/menus/:id", MenuController.update);
 router.delete("/menus/:id", MenuController.delete);
+router.get("/menus/:id/pdf/preview", MenuController.pdfPreview);
+router.get("/menus/:id/pdf/generate", MenuController.generatePdf);
 
 router.post("/categories/new", CategoryController.create);
 router.put("/categories/:id", CategoryController.update);

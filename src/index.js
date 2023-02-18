@@ -1,7 +1,6 @@
+import "./bootstrap";
 import express from "express";
-import dotenv from "dotenv";
 import passport from "passport";
-dotenv.config();
 
 import db from "./models";
 import registerRoutes from "./routes";

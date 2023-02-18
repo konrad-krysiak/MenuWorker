@@ -1,5 +1,5 @@
 import db from "../models";
-import { uploadImage } from "../helpers/fileUploadHelper";
+import { uploadImage } from "../helpers/fileUpload";
 
 const { Menu, Category, Product } = db;
 

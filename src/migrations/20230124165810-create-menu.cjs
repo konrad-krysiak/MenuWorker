@@ -21,6 +21,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      pdf: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       restaurantId: {
         type: Sequelize.INTEGER,
         allowNull: false,

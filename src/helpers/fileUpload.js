@@ -1,4 +1,5 @@
 import gc from "../config/gc";
+import { Readable } from "stream";
 const bucket = gc.bucket("bucket-quickstart-konrad"); // should be your bucket name
 
 /**
@@ -28,4 +29,22 @@ export const uploadImage = (file) =>
         reject(`Unable to upload image, something went wrong`);
       })
       .end(buffer);
+  });
+
+export const uploadPdf = (pdfBuffer, pdfName) =>
+  new Promise((resolve, reject) => {
+    const blob = bucket.file(pdfName);
+    blob
+      .createWriteStream({
+        resumable: false,
+      })
+      .on("finish", () => {
+        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+        resolve(publicUrl);
+      })
+      .on("error", (e) => {
+        console.log(e);
+        reject(`Unable to upload file, something went wrong`);
+      })
+      .end(pdfBuffer);
   });

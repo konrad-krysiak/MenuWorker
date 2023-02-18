@@ -20,11 +20,25 @@ const configure = (app) => {
   app.set("layout", "layouts/layout");
   app.set("views", path.join(__dirname, "../views"));
   app.use(express.static(path.join(__dirname, "../public")));
-  app.use("/css", express.static(path.join(__dirname, "../../node_modules/bootstrap/dist/css")));
-  app.use("/js", express.static(path.join(__dirname, "../../node_modules/bootstrap/dist/js")));
-  app.use("/js", express.static(path.join(__dirname, "../../node_modules/jquery/dist")));
+  app.use(
+    "/css",
+    express.static(
+      path.join(__dirname, "../../node_modules/bootstrap/dist/css")
+    )
+  );
+  app.use(
+    "/js",
+    express.static(path.join(__dirname, "../../node_modules/bootstrap/dist/js"))
+  );
+  app.use(
+    "/js",
+    express.static(path.join(__dirname, "../../node_modules/jquery/dist"))
+  );
   app.use("/helpers", express.static(path.join(__dirname, "../helpers")));
-  app.use("/icons", express.static(path.join(__dirname, "../../node_modules/boxicons")));
+  app.use(
+    "/icons",
+    express.static(path.join(__dirname, "../../node_modules/boxicons"))
+  );
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(
