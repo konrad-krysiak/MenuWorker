@@ -5,13 +5,14 @@ import { Sequelize, DataTypes } from "sequelize";
 import fs from "fs";
 import process from "process";
 
+import databaseConfig from "../config/db";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const env = process.env.NODE_ENV || "development";
 const db = {};
 
-const rawConfig = fs.readFileSync(__dirname + "/../config/config.json");
-const config = JSON.parse(rawConfig)[env];
+const config = databaseConfig[env];
 const sequelize = new Sequelize(config);
 
 export default await (async () => {
