@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
 :root {
   --header-height: 3rem;
   --nav-width: 68px;
@@ -8,7 +8,7 @@
   --blue-color: #3356f7;
   --green-color: rgb(18, 173, 57);
   --dark-color: #152d32;
-  --red-color: #FF4742;
+  --red-color: #ff4742;
   --body-font: "Montserrat", sans-serif;
   --normal-font-size: 1rem;
   --z-fixed: 100;
@@ -161,39 +161,44 @@ a {
 
 /* SIDEBAR END */
 
-
-.bor{
-  border: 1px solid red;;
+.bor {
+  border: 1px solid red;
 }
-
 
 .form-container label {
   margin-bottom: 0;
 }
 
-
-.restaurant-container__item {
-  height: 250px;
+.restaurant-item {
+  line-height: 30px;
 }
 
-
-.restaurant-container__buttons > button {
-  border-radius: 0;
-  width: 6rem;
+.restaurant-item i {
+  font-size: 25px;
+}
+.restaurant-item i.edit {
+  color: rgb(4, 218, 4);
 }
 
+.restaurant-item i.delete {
+  color: rgb(219, 1, 1);
+}
+
+.restaurant-item i.show {
+  color: #000;
+}
 
 /* CSS */
 .custom-button {
-  background: #FF4742;
-  border: 1px solid #FF4742;
+  background: #ff4742;
+  border: 1px solid #ff4742;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
   box-sizing: border-box;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: "Montserrat","proxima nova",sans-serif;
+  font-family: "Montserrat", "proxima nova", sans-serif;
   font-size: 16px;
   font-weight: 800;
   line-height: 16px;
@@ -214,7 +219,7 @@ a {
     font-size: 14px;
     line-height: 14px;
     min-height: 30px;
-    padding: 6px 8px;
+    padding: 10px 10px;
   }
 }
 
@@ -222,11 +227,11 @@ a {
 .custom-button:active {
   background-color: initial;
   background-position: 0 0;
-  color: #FF4742;
+  color: #ff4742;
 }
 
 .custom-button:active {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .custom-button--blue {
@@ -269,16 +274,13 @@ a {
   }
 }
 
-
 /* ATOMIC CLASSES */
-
 
 @media screen and (min-width: 768px) {
   .w-md-75 {
     width: 75% !important;
   }
 }
-
 
 .me-button {
   display: flex;
@@ -288,12 +290,13 @@ a {
   border: none;
   font-weight: 500;
   background: #485cb8;
-  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #fff;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-
 }
 
 .me-button--green {
@@ -308,7 +311,7 @@ a {
   font-weight: 600;
 }
 
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .category-item__header h1 {
     font-size: 1.5rem;
   }
@@ -332,11 +335,10 @@ a {
   font-size: 0.8rem;
   padding: 6px 12px;
   border-radius: 4px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .product-item__options a.green {
   background: var(--green-color);
-  
 }
 .product-item__options a.red {
   background: var(--red-color);
@@ -356,7 +358,7 @@ a {
   margin: 5px 0;
 }
 
-.product-image-output .image{
+.product-image-output .image {
   height: 150px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
@@ -364,7 +366,7 @@ a {
   position: relative;
 }
 
-.product-image-output .image img{
+.product-image-output .image img {
   height: 100%;
   width: 100%;
 }
@@ -382,6 +384,6 @@ a {
   opacity: 0.8;
 }
 
-.product-image-output .span--hidden{
+.product-image-output .span--hidden {
   visibility: hidden;
 }
