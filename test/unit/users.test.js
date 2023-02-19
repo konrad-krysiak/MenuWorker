@@ -8,16 +8,16 @@ const { User } = db;
 chai.should();
 chai.use(chaiHttp);
 
-describe("Restaurant unit testing", () => {
+describe("Restaurant unit testing", function () {
   let requester;
-  before(() => {
+  before(function () {
     requester = chai.request.agent(app);
   });
-  after(() => {
+  after(function () {
     requester.close();
   });
 
-  it("GET /auth/login route should work", (done) => {
+  it("GET /auth/login route should work", function (done) {
     requester.get("/auth/login").end((err, res) => {
       res.should.have.status(200);
       res.should.have.cookie("connect.sid");
@@ -25,14 +25,14 @@ describe("Restaurant unit testing", () => {
     });
   });
 
-  it("GET /auth/register route should work", (done) => {
+  it("GET /auth/register route should work", function (done) {
     requester.get("/auth/register").end((err, res) => {
       res.should.have.status(200);
       done();
     });
   });
 
-  it("POST /auth/register should successfully register user and redirect to /", async () => {
+  it("POST /auth/register should successfully register user and redirect to /", async function () {
     const response = await requester.post("/auth/register").send({
       name: "Test name",
       email: "test@gmail.com",
@@ -46,7 +46,7 @@ describe("Restaurant unit testing", () => {
     (newUser instanceof User).should.be.true;
   });
 
-  it("POST /auth/login should login user and redirect to /dashboard/restaurants", async () => {
+  it("POST /auth/login should login user and redirect to /dashboard/restaurants", async function () {
     const response = await requester
       .post("/auth/login")
       .send({ email: "test@gmail.com", password: "testpassword" });
@@ -55,7 +55,7 @@ describe("Restaurant unit testing", () => {
     response.should.redirectTo(regex);
   });
 
-  it("POST /auth/logout should successfully logout user and redirect to /", async () => {
+  it("POST /auth/logout should successfully logout user and redirect to /", async function () {
     const response = await requester.post("/auth/logout");
     response.should.have.status(200);
     response.should.redirectTo(/w*\/$/);

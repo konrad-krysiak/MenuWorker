@@ -8,10 +8,10 @@ const { Restaurant, Menu, Category } = db;
 chai.should();
 chai.use(chaiHttp);
 
-describe("Category unit testing", () => {
+describe("Category unit testing", function () {
   let requester;
   let restaurantId;
-  before(async () => {
+  before(async function () {
     requester = chai.request.agent(app);
     await requester
       .post("/auth/login")
@@ -52,13 +52,13 @@ describe("Category unit testing", () => {
       },
     ]);
   });
-  after(async () => {
+  after(async function () {
     requester.close();
     await Menu.destroy({ where: { restaurantId } });
     await Restaurant.destroy({ where: { id: restaurantId } });
   });
 
-  it("POST /dashboard/categories/new should add new category", async () => {
+  it("POST /dashboard/categories/new should add new category", async function () {
     const menu = await Menu.findOne({
       where: { name: "CategoryTestMenuPOST" },
     });
@@ -74,7 +74,7 @@ describe("Category unit testing", () => {
     await createdCategory.destroy();
   });
 
-  it("PUT /dashboard/categories/:id should update category record", async () => {
+  it("PUT /dashboard/categories/:id should update category record", async function () {
     const menu = await Menu.findOne({ where: { name: "CategoryTestMenuPUT" } });
     const category = await menu.createCategory({
       name: "category test",
@@ -89,7 +89,7 @@ describe("Category unit testing", () => {
     updatedCategory.name.should.equal("new category name");
   });
 
-  it("DELETE /dashboard/categories/:id should delete record", async () => {
+  it("DELETE /dashboard/categories/:id should delete record", async function () {
     const menu = await Menu.findOne({
       where: { name: "CategoryTestMenuDELETE" },
     });

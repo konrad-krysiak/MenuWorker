@@ -17,7 +17,10 @@ class CategoryController {
       req.flash("info", "Category created successfully");
       res.redirect(`/dashboard/menus/${menu.id}/edit`);
     } catch (e) {
-      if (e.name === "SequelizeValidationError" || e.name === "SequelizeUniqueConstraintError") {
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
         req.flash(
           "modalError",
           e.errors.map((i) => i.message)
@@ -66,7 +69,10 @@ class CategoryController {
         throw new Error("User is not owning such category");
       }
     } catch (e) {
-      if (e.name === "SequelizeValidationError" || e.name === "SequelizeUniqueConstraintError") {
+      if (
+        e.name === "SequelizeValidationError" ||
+        e.name === "SequelizeUniqueConstraintError"
+      ) {
         req.flash(
           "modalError",
           e.errors.map((i) => i.message)

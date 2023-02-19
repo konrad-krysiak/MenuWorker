@@ -1,5 +1,5 @@
 import express from "express";
-import path from "path";
+import path, { dirname } from "path";
 import flash from "express-flash";
 import session from "express-session";
 import dotenv from "dotenv";
@@ -8,7 +8,6 @@ import expressLayouts from "express-ejs-layouts";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
-import { dirname } from "path";
 import { fileURLToPath } from "url";
 dotenv.config();
 
@@ -42,7 +41,7 @@ const configure = (app) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(
-    methodOverride(function (req, res) {
+    methodOverride(function (req) {
       if (req.body && typeof req.body === "object" && "_method" in req.body) {
         // look in urlencoded POST bodies and delete it
         var method = req.body._method;

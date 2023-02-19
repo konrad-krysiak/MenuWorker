@@ -8,10 +8,10 @@ const { Restaurant, Menu } = db;
 chai.should();
 chai.use(chaiHttp);
 
-describe("Menu unit testing", () => {
+describe("Menu unit testing", function () {
   let requester;
   let restaurantId;
-  before(async () => {
+  before(async function () {
     requester = chai.request.agent(app);
     await requester
       .post("/auth/login")
@@ -29,18 +29,18 @@ describe("Menu unit testing", () => {
     });
     restaurantId = restaurant[0].id;
   });
-  after(() => {
+  after(function () {
     requester.close();
   });
 
-  it("GET /dashboard/menus should return proper status", (done) => {
+  it("GET /dashboard/menus should return proper status", function (done) {
     requester.get("/dashboard/menus").end((err, res) => {
       res.should.have.status(200);
       done();
     });
   });
 
-  it("GET /dashboard/menus/new should return proper status", (done) => {
+  it("GET /dashboard/menus/new should return proper status", function (done) {
     requester
       .get("/dashboard/menus/new?restaurantId=" + restaurantId)
       .end((err, res) => {
@@ -49,7 +49,7 @@ describe("Menu unit testing", () => {
       });
   });
 
-  it("POST /dashboard/menus/new should create new menu", async () => {
+  it("POST /dashboard/menus/new should create new menu", async function () {
     const response = await requester
       .post("/dashboard/menus/new")
       .send({ name: "menu test", restaurantId });
@@ -59,7 +59,7 @@ describe("Menu unit testing", () => {
     (newMenu instanceof Menu).should.be.true;
   });
 
-  it("PUT /dashboard/menus/:id should edit menu properly", async () => {
+  it("PUT /dashboard/menus/:id should edit menu properly", async function () {
     const newMenu = (
       await Menu.findOrCreate({
         where: {
@@ -79,7 +79,7 @@ describe("Menu unit testing", () => {
     updatedMenu.name.should.equal("new menu test");
   });
 
-  it("GET /dashboard/menus/:id/edit should return proper status", async () => {
+  it("GET /dashboard/menus/:id/edit should return proper status", async function () {
     const menu = (
       await Menu.findOrCreate({
         where: {
@@ -94,7 +94,7 @@ describe("Menu unit testing", () => {
     response.should.have.status(200);
   });
 
-  it("Adding product to menu should increment its itemCount property", async () => {
+  it("Adding product to menu should increment its itemCount property", async function () {
     const menu = await Menu.create({
       name: "testIncrementMenu",
       restaurantId,
@@ -113,7 +113,7 @@ describe("Menu unit testing", () => {
     menuV2.itemCount.should.equal(1);
   });
 
-  it("DELETE /dashboard/menus/:id should delete menu", async () => {
+  it("DELETE /dashboard/menus/:id should delete menu", async function () {
     const menu = (
       await Menu.findOrCreate({
         where: {

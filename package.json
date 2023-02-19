@@ -59,7 +59,10 @@
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "mocha": "^10.2.0",
     "sequelize-cli": "^6.6.0"
   }

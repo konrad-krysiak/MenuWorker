@@ -9,7 +9,7 @@ const { Restaurant, Product } = db;
 chai.should();
 chai.use(chaiHttp);
 
-describe("Product unit testing", () => {
+describe("Product unit testing", function () {
   let requester;
   let restaurantId;
   let menuId;
@@ -17,7 +17,7 @@ describe("Product unit testing", () => {
   let restaurantOfOtherUserId;
   let menuOfOtherUserId;
   let categoryOfOtherUserId;
-  before(async () => {
+  before(async function () {
     requester = chai.request.agent(app);
     await requester
       .post("/auth/login")
@@ -68,7 +68,7 @@ describe("Product unit testing", () => {
     categoryOfOtherUserId = categoryOfOtherUser.id;
     menuOfOtherUserId = menuOfOtherUser.id;
   });
-  after(async () => {
+  after(async function () {
     requester.close();
     await Restaurant.destroy({
       where: {
@@ -79,7 +79,7 @@ describe("Product unit testing", () => {
     });
   });
 
-  it("POST /dashboard/products/new should create new product record", async () => {
+  it("POST /dashboard/products/new should create new product record", async function () {
     const response = await requester.post("/dashboard/products/new").send({
       name: "test product",
       price: 99,
@@ -95,7 +95,7 @@ describe("Product unit testing", () => {
     newProduct.destroy();
   });
 
-  it("PUT /dashboard/products/:id should edit product record", async () => {
+  it("PUT /dashboard/products/:id should edit product record", async function () {
     const product = await Product.create({
       name: "test product",
       price: 99,
@@ -115,7 +115,7 @@ describe("Product unit testing", () => {
     updatedProduct.destroy();
   });
 
-  it("DELETE /dashboard/products/:id should delete product", async () => {
+  it("DELETE /dashboard/products/:id should delete product", async function () {
     const product = await Product.create({
       name: "test product",
       price: 99,
@@ -130,7 +130,7 @@ describe("Product unit testing", () => {
     (deletedProduct === null).should.be.true;
   });
 
-  it("User should not be able to create product for other user's restaurant", async () => {
+  it("User should not be able to create product for other user's restaurant", async function () {
     const response = await requester.post("/dashboard/products/new").send({
       name: "test product",
       price: 50,

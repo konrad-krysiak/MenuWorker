@@ -8,30 +8,30 @@ const { Restaurant } = db;
 chai.should();
 chai.use(chaiHttp);
 
-describe("Restaurant unit testing", () => {
+describe("Restaurant unit testing", function () {
   let requester;
-  before(async () => {
+  before(async function () {
     requester = chai.request.agent(app);
     await requester
       .post("/auth/login")
       .send({ email: "user1@gmail.com", password: "password1" });
   });
-  after(() => {
+  after(function () {
     requester.close();
   });
-  it("GET /restaurants should return proper status", (done) => {
+  it("GET /restaurants should return proper status", function (done) {
     requester.get("/dashboard/restaurants").end((err, res) => {
       res.should.have.status(200);
       done();
     });
   });
-  it("GET /restaurants/new should return proper status", (done) => {
+  it("GET /restaurants/new should return proper status", function (done) {
     requester.get("/dashboard/restaurants").end((err, res) => {
       res.should.have.status(200);
       done();
     });
   });
-  it("GET /restaurants/:id should return proper status", async () => {
+  it("GET /restaurants/:id should return proper status", async function () {
     const restaurant = (
       await Restaurant.findOrCreate({
         where: {
@@ -49,13 +49,13 @@ describe("Restaurant unit testing", () => {
     );
     response.should.have.status(200);
   });
-  it("GET /restaurants/:id/edit should return proper status", (done) => {
+  it("GET /restaurants/:id/edit should return proper status", function (done) {
     requester.get("/dashboard/restaurants/1/edit").end((err, res) => {
       res.should.have.status(200);
       done();
     });
   });
-  it("POST /restaurants/new adds new record to database", async () => {
+  it("POST /restaurants/new adds new record to database", async function () {
     const response = await requester.post("/dashboard/restaurants/new").send({
       name: "New Restaurant",
       address: "New address",
@@ -70,7 +70,7 @@ describe("Restaurant unit testing", () => {
     (newRecord instanceof Restaurant).should.be.true;
   });
 
-  it("PUT /restaurants/:id should edit a record", async () => {
+  it("PUT /restaurants/:id should edit a record", async function () {
     const restaurant = (
       await Restaurant.findOrCreate({
         where: {
@@ -91,7 +91,7 @@ describe("Restaurant unit testing", () => {
     restaurant_1.name.should.equal("Crazy new name");
   });
 
-  it("DELETE /restaurants/:id should destroy a record", async () => {
+  it("DELETE /restaurants/:id should destroy a record", async function () {
     const restaurant = (
       await Restaurant.findOrCreate({
         where: {

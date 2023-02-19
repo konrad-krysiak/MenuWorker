@@ -1,5 +1,3 @@
-import { checkAuthentication } from "../utils/auth";
-
 import ApplicationController from "../controllers/application.controller";
 import authRoutes from "./auth.routes";
 import dashboardRoutes from "./dashboard.routes";

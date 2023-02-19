@@ -9,7 +9,6 @@ import {
   configureServer,
   initializePassport,
 } from "./middlewares";
-
 import multer from "multer";
 
 const multerMid = multer({
