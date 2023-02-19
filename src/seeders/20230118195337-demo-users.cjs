@@ -4,7 +4,6 @@ module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert("Users", [
       {
-        id: 1,
         uuid: "44ec6726-9771-4d00-b183-fb8f71a4e767",
         name: "User 1",
         email: "user1@gmail.com",
@@ -15,7 +14,6 @@ module.exports = {
         updatedAt: new Date("2019-04-07T10:20:30Z"),
       },
       {
-        id: 2,
         uuid: "4cf34962-93d3-495a-aab2-64d6ec8ac3e8",
         name: "User 2",
         email: "user2@gmail.com",

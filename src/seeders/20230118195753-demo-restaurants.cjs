@@ -4,7 +4,6 @@ module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert("Restaurants", [
       {
-        id: 1,
         uuid: "e532d2c2-2dd7-40f4-9f3e-454be5eb00e1",
         name: "Restaurant 1",
         address: "Address 1",
@@ -16,7 +15,6 @@ module.exports = {
         userId: 1,
       },
       {
-        id: 2,
         uuid: "07c03233-7ad2-4034-8095-a7eefbe44615",
         name: "Restaurant 2",
         address: "Address 2",
@@ -28,7 +26,6 @@ module.exports = {
         userId: 1,
       },
       {
-        id: 3,
         uuid: "75529dfe-18f3-4d0c-bc38-2f3878404c71",
         name: "Restaurant 3",
         address: "Address 3",
@@ -39,7 +36,6 @@ module.exports = {
         userId: 2,
       },
       {
-        id: 4,
         uuid: "8837c46f-bca8-4947-8a7f-5204672370d6",
         name: "Restaurant 4",
         address: "Address 4",

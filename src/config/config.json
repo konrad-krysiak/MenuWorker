@@ -1,24 +1,24 @@
 {
   "development": {
-    "username": "menuapp_client",
-    "password": "menuapp",
-    "database": "MenuDB",
+    "username": "menuworker",
+    "password": "menuworker",
+    "database": "MenuWorker",
     "host": "localhost",
-    "dialect": "mysql",
+    "dialect": "postgres",
     "logging": true
   },
   "test": {
-    "username": "test",
-    "password": "PASSWORD",
-    "database": "testMenuDB",
+    "username": "menuworker",
+    "password": "menuworker",
+    "database": "MenuWorkerTest",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "prodMenuDB",
+    "username": "menuworker",
+    "password": "menuworker",
+    "database": "MenuWorker",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres"
   }
 }
