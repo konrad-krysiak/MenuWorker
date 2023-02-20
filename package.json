@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "16.6.1"
+    "node": "16.x"
   },
   "name": "menuworker",
   "version": "1.0.0",
@@ -8,6 +8,7 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
+    "start": "npm run prod",
     "prod": "NODE_ENV=production nodemon --experimental-specifier-resolution=node ./src/index.js",
     "dev": "npm-run-all -p dev:*",
     "dev:server": "nodemon --experimental-specifier-resolution=node ./src/index.js",
