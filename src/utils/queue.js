@@ -1,3 +1,4 @@
+import "../bootstrap";
 import Queue from "bull";
 
 import * as jobs from "../jobs";

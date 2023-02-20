@@ -33,12 +33,12 @@ const winstonLogger = winston.createLogger({
 // If we're not in production then log to the `console` with the format:
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
-if (process.env.NODE_ENV !== "production") {
-  winstonLogger.add(
-    new winston.transports.Console({
-      format: winston.format.combine(winston.format.colorize(), logFormat),
-    })
-  );
-}
+// if (process.env.NODE_ENV !== "production") {
+winstonLogger.add(
+  new winston.transports.Console({
+    format: winston.format.combine(winston.format.colorize(), logFormat),
+  })
+);
+// }
 
 export default winstonLogger;
