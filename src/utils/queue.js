@@ -33,6 +33,9 @@ export default {
       queue.bull.on("failed", (job, err) => {
         console.error("Job failed ", job.name, job.data, err);
       });
+      queue.bull.on("error", (error) => {
+        winstonLogger.error(error);
+      });
     });
   },
 };
