@@ -6,7 +6,7 @@ import redisConfig from "../config/redis";
 import winstonLogger from "./logger";
 
 const env = process.env.NODE_ENV || "development";
-console.log("QUEUE ENVIRONMENT", env);
+console.log("QUEUE ENVIRONMENT VER1", redisConfig[env]);
 // Map through jobs and start start queue for each of them
 const queues = Object.values(jobs).map((job) => ({
   bull: new Queue(job.key, { redis: redisConfig[env] }),

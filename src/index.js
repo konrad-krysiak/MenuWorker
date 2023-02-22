@@ -11,6 +11,8 @@ import {
 } from "./middlewares";
 import multer from "multer";
 
+console.log("VER 1");
+
 const multerMid = multer({
   storage: multer.memoryStorage(),
   limits: {
