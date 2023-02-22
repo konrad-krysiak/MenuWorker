@@ -22,7 +22,8 @@ const winstonLogger = winston.createLogger({
       filename: "./logs/server.log",
       format: winston.format.combine(
         winston.format.timestamp(),
-        winston.format.json()
+        winston.format.json(),
+        winston.format.prettyPrint()
       ),
       handleExceptions: true,
     }),

@@ -5,10 +5,6 @@ import html_to_pdf from "html-pdf-node";
 import { resolve } from "path";
 
 import winstonLogger from "../utils/logger";
-import { uploadPdf } from "../helpers/fileUpload";
-import db from "../models";
-
-const { Menu } = db;
 
 class PdfService {
   #menuTemplateURL = resolve(process.env.MENU_TEMPLATE_URL);
@@ -31,22 +27,7 @@ class PdfService {
               HtmlToPdfOptions
             );
             winstonLogger.info("Menu PDF has been generated. ");
-
-            // Upload PDF to google storage
-            const uploadURL = await uploadPdf(
-              pdfBuffer,
-              `pdf-${menuEjsData.id}.pdf`
-            );
-            winstonLogger.info("Menu PDF has been UPLOADED. " + uploadURL);
-
-            // Update Menu's pdf property
-            await Menu.update(
-              { pdf: uploadURL },
-              { where: { id: menuEjsData.id } }
-            );
-            winstonLogger.info("Menu has been updated in database.");
-
-            resolve({ uploadURL });
+            resolve({ pdfBuffer });
           }
         }
       );

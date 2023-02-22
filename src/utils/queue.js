@@ -10,7 +10,7 @@ console.log("QUEUE ENV", env);
 console.log(redisConfig[env]);
 // Map through jobs and start start queue for each of them
 const queues = Object.values(jobs).map((job) => ({
-  bull: new Queue(job.key, redisConfig[env]),
+  bull: new Queue(job.key, { redis: redisConfig[env] }),
   name: job.key,
   options: job.options,
   handle: job.handle,

@@ -11,13 +11,14 @@ class MailService {
     },
   });
 
-  async sendEmail(recipient, subject, html) {
+  async sendEmail(recipient, subject, html, attachments) {
     try {
       const response = await this.#transporter.sendMail({
         from: process.env.MWEMAIL,
         to: recipient,
         subject,
         html,
+        attachments: attachments ?? {},
       });
       return response.messageId;
     } catch (e) {

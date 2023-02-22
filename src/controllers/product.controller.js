@@ -1,5 +1,4 @@
 import db from "../models";
-import { uploadImage } from "../helpers/fileUpload";
 
 const { Menu, Category, Product } = db;
 
@@ -20,16 +19,11 @@ class ProductController {
       });
 
       if (parentMenu.userId === req.user.id) {
-        let imageURL = undefined;
-        if (req.file) {
-          imageURL = await uploadImage(req.file);
-        }
         await Product.create({
           name: req.body.name,
           description: req.body.description,
           price: req.body.price,
           categoryId: req.body.categoryId,
-          ...(imageURL && { image: imageURL }),
         });
         req.flash("info", "Product created successfully.");
         res.redirect(`/dashboard/menus/${parentMenu.id}/edit`);

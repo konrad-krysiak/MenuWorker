@@ -5,7 +5,7 @@ export default {
   key: "GenerateMenuPDF",
   options: {},
   async handle({ data }) {
-    const { uploadURL } = await PdfService.generateMenuPDF(
+    const { pdfBuffer } = await PdfService.generateMenuPDF(
       data.menuEjsData,
       data.HtmlToPdfOptions
     );
@@ -15,7 +15,7 @@ export default {
     if (emailNotification) {
       Queue.add("SendEmailWithPdfUrl", {
         recipent: emailNotification.recipent,
-        uploadURL,
+        pdfBuffer,
       });
     }
   },
