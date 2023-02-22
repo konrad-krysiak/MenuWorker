@@ -20,6 +20,7 @@ const multerMid = multer({
 
 const { sequelize, Menu, Restaurant, Category, Product, User } = db;
 const app = express();
+console.log("SERVICE NAME", process.env.REDIS_SERVICE_NAME);
 
 app.use(multerMid.single("file"));
 // Keep user logged in in development

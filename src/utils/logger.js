@@ -38,6 +38,7 @@ const winstonLogger = winston.createLogger({
 winstonLogger.add(
   new winston.transports.Console({
     format: winston.format.combine(winston.format.colorize(), logFormat),
+    handleExceptions: true,
   })
 );
 // }

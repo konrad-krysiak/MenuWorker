@@ -1,7 +1,6 @@
 import express from "express";
 import path, { dirname } from "path";
 import flash from "express-flash";
-import session from "express-session";
 import dotenv from "dotenv";
 import passport from "passport";
 import expressLayouts from "express-ejs-layouts";
@@ -9,6 +8,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
 import { fileURLToPath } from "url";
+import session from "express-session";
+
+import sessionMiddleware from "./session";
 dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -53,15 +55,7 @@ const configure = (app) => {
   );
   app.use(cors({ origin: "*" }));
   app.use(cookieParser());
-  app.use(
-    session({
-      secret: process.env.SESSION_SECRET,
-      saveUninitialized: false,
-      resave: false,
-      httpOnly: false,
-      secure: false,
-    })
-  );
+  app.use(sessionMiddleware);
   app.use(flash());
   app.use(passport.initialize());
   app.use(passport.session());
