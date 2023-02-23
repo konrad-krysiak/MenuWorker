@@ -5,15 +5,15 @@ import redisConfig from "../config/redis";
 
 const env = process.env.NODE_ENV || "development";
 
-console.log("CREATING REDIS CLIENT WITH: ", redisConfig[env]);
-const client = redis.createClient({
+const clientConfig = {
   socket: {
     host: redisConfig[env].host,
     port: redisConfig[env].port,
   },
   password: redisConfig[env].password,
-  legacyMode: true,
-});
+  legacyMode: redisConfig[env].legacyMode,
+};
+const client = redis.createClient(clientConfig);
 await client.connect();
 
 export default client;

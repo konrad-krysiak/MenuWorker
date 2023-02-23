@@ -9,33 +9,22 @@ import {
   configureServer,
   initializePassport,
 } from "./middlewares";
-import multer from "multer";
-
-console.log("VER 1");
-
-const multerMid = multer({
-  storage: multer.memoryStorage(),
-  limits: {
-    fileSize: 5 * 1024 * 1024,
-  },
-});
 
 const { sequelize, Menu, Restaurant, Category, Product, User } = db;
 const app = express();
 
-app.use(multerMid.single("file"));
 // Keep user logged in in development
-// app.use((req, res, next) => {
-//   if (process.env.NODE_ENV === "development") {
-//     req.user = {
-//       id: 1,
-//       name: "konrad",
-//       email: "konrad@onet.pl",
-//       phone: "123123123",
-//     };
-//   }
-//   next();
-// });
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === "development") {
+    req.user = {
+      id: 1,
+      name: "konrad",
+      email: "konrad@onet.pl",
+      phone: "123123123",
+    };
+  }
+  next();
+});
 
 // Configuration
 initializePassport(passport);

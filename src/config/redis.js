@@ -1,18 +1,16 @@
-import dotenv from "dotenv";
-
-dotenv.config();
+import "../bootstrap";
 
 export default {
   development: {
     host: process.env.REDIS_HOST_DEV,
     port: process.env.REDIS_PORT_DEV,
-    legacyMode: true,
+    legacyMode: process.env.REDIS_LEGACY_MODE,
   },
   production: {
     username: process.env.REDIS_USERNAME,
     password: process.env.REDIS_PASSWORD,
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
-    // legacyMode: true,
+    legacyMode: process.env.REDIS_LEGACY_MODE,
   },
 };
