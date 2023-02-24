@@ -1,17 +1,14 @@
 import express from "express";
 import path, { dirname } from "path";
 import flash from "express-flash";
-import dotenv from "dotenv";
 import passport from "passport";
 import expressLayouts from "express-ejs-layouts";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
 import { fileURLToPath } from "url";
-import session from "express-session";
 
 import sessionMiddleware from "./session";
-dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

@@ -1,5 +1,3 @@
-import "../bootstrap.js";
-
 export default {
   development: {
     username: "menuworker",

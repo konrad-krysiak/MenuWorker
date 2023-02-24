@@ -1,4 +1,3 @@
-import "../bootstrap";
 import redis from "redis";
 
 import redisConfig from "../config/redis";

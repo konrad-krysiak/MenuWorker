@@ -25,10 +25,6 @@ module.exports = {
         type: Sequelize.DOUBLE,
         allowNull: false,
       },
-      image: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       categoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,

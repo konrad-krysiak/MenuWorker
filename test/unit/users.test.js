@@ -20,7 +20,7 @@ describe("Restaurant unit testing", function () {
   it("GET /auth/login route should work", function (done) {
     requester.get("/auth/login").end((err, res) => {
       res.should.have.status(200);
-      res.should.have.cookie("connect.sid");
+      res.should.have.cookie("sessionId");
       done();
     });
   });

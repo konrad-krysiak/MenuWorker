@@ -366,14 +366,12 @@ case of validation error -->
       addMethodOverrideToCategoryModal("PUT");
     <% } else if (locals.productCreateValidationError) { %>
       toggleProductModal();
-      hideProductModalImage();
       const previousForm = <%- JSON.stringify(locals.form) %>;
       writeToProductModal("New Product", previousForm.name, previousForm.price,
       previousForm.description, "/dashboard/products/new", previousForm.categoryId);
       removeMethodOverrideFromProductModal();
       <% } else if (locals.productEditValidationError) { %>
       toggleProductModal();
-      hideProductModalImage();
       const productId = <%- JSON.stringify(locals.productId) %>
       const previousForm = <%- JSON.stringify(locals.form) %>;
       writeToProductModal("Edit Product", previousForm.name, previousForm.price,

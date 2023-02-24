@@ -9,8 +9,6 @@ module.exports = {
         name: "Product 1 category 1",
         description: "description for product 1",
         price: 15.99,
-        image:
-          "https://storage.googleapis.com/bucket-quickstart-konrad/A-Cat.jpg",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         categoryId: 1,
@@ -20,8 +18,6 @@ module.exports = {
         name: "Product 2 category 1",
         description: "description for product 2",
         price: 20.99,
-        image:
-          "https://storage.googleapis.com/bucket-quickstart-konrad/Young_cats.jpg",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         categoryId: 1,
@@ -31,8 +27,6 @@ module.exports = {
         name: "Product 3 category 1",
         description: "description for product 3",
         price: 9.99,
-        image:
-          "https://storage.googleapis.com/bucket-quickstart-konrad/cat_feline_cats_eye_215231.jpg",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         categoryId: 1,
@@ -42,8 +36,6 @@ module.exports = {
         name: "Product 4 category 2",
         description: "description for product 4",
         price: 9.99,
-        image:
-          "https://storage.googleapis.com/bucket-quickstart-konrad/p07ryyyj.jpg",
         createdAt: new Date("2019-04-07T10:20:30Z"),
         updatedAt: new Date("2019-04-07T10:20:30Z"),
         categoryId: 2,

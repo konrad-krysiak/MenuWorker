@@ -82,15 +82,10 @@ class ProductController {
       });
 
       if (product.Category.Menu.userId === req.user.id) {
-        let imageURL = undefined;
-        if (req.file) {
-          imageURL = await uploadImage(req.file);
-        }
         await product.update({
           name: req.body.name,
           price: req.body.price,
           description: req.body.description,
-          ...(imageURL && { image: imageURL }),
         });
         req.flash("info", "Product updated successfully.");
         res.redirect(`/dashboard/menus/${product.Category.Menu.id}/edit`);

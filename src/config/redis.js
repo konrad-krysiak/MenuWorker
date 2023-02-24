@@ -1,7 +1,10 @@
-import "../bootstrap";
-
 export default {
   development: {
+    host: process.env.REDIS_HOST_DEV,
+    port: process.env.REDIS_PORT_DEV,
+    legacyMode: process.env.REDIS_LEGACY_MODE,
+  },
+  test: {
     host: process.env.REDIS_HOST_DEV,
     port: process.env.REDIS_PORT_DEV,
     legacyMode: process.env.REDIS_LEGACY_MODE,

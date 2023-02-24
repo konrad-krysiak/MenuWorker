@@ -9,6 +9,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:import/recommended",
     "plugin:mocha/recommended",
+    "plugin:promise/recommended",
     "prettier",
   ],
   overrides: [],
@@ -16,7 +17,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["prettier"],
+  plugins: ["prettier", "promise"],
   rules: {
     "prettier/prettier": ["error"],
     "import/first": 1,

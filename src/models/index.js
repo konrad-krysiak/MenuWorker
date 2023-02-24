@@ -1,9 +1,9 @@
 "use strict";
+import "../bootstrap";
 import { fileURLToPath } from "url";
 import { basename, dirname } from "path";
 import { Sequelize, DataTypes } from "sequelize";
 import fs from "fs";
-import process from "process";
 
 import databaseConfig from "../config/db";
 
