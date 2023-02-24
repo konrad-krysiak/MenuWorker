@@ -1,5 +1,6 @@
 # MenuWorker
 
+https://menuworker.onrender.com  
 MenuWorker is platform providing easy, intuitive tools to create and manage restaurant's menus.
 
 ## Features
@@ -13,7 +14,7 @@ MenuWorker is platform providing easy, intuitive tools to create and manage rest
 ## Tech Stack
 
 - Express.js
-- MySQL DB
+- PostgreSQL
 - Sequelize ORM
 - Redis
 - Passport.js
