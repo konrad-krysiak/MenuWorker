@@ -35,7 +35,11 @@ class ApplicationController {
         ],
       });
 
-      res.render("pdf/menuPDF", { menu });
+      if (menu.public) {
+        res.render("pdf/menuPDF", { menu });
+      } else {
+        throw new Error("User can not access non-public menu.");
+      }
     } catch (e) {
       console.log(e);
       next(e);
@@ -54,7 +58,7 @@ class ApplicationController {
           restaurant,
         });
       } else {
-        res.render("error");
+        throw new Error("User can not access non-public restaurant.");
       }
     } catch (e) {
       console.log(e);
