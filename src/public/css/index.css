@@ -63,10 +63,29 @@ body {
   line-height: 2.5rem;
 }
 
-.landing-body__heading {
+.landing-body__heading span {
   font-family: "Patua One", cursive;
   font-weight: 300;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.landing-body__heading ul {
+  margin: 2rem 0;
+}
+
+.landing-body__heading ul li {
+  list-style: none;
+}
+.landing-body__heading ul li::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url("../img/tic.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 0 10px;
 }
 
 .landing-body__pizza img {
@@ -122,14 +141,15 @@ body {
 }
 
 @media (max-width: 768px) {
-  .landing-body__heading {
+  .landing-body__heading span {
     font-size: 3rem;
     text-align: center;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 1200px) {
-  .landing-body__heading {
+  .landing-body__heading span {
     font-size: 2.8rem;
   }
 }
