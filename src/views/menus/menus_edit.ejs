@@ -29,16 +29,35 @@
     >
       Add category
     </button>
-    <button class="custom-button custom-button--dark rounded-0">
+    <button
+      class="custom-button custom-button--dark rounded-0"
+      data-bs-target="#infoModal"
+      data-bs-toggle="modal"
+      data-role="share-menu"
+      data-menuid="<%= menu.id %>"
+    >
       Share link
     </button>
-    <button class="custom-button custom-button--dark rounded-0">
-      Generate PDF
-    </button>
-    <button class="custom-button custom-button--dark rounded-0">
-      Edit Menu
-    </button>
-    <button class="custom-button custom-button--dark rounded-0">
+    <a
+      href="/dashboard/menus/<%= menu.id %>/pdf/preview"
+      class="custom-button custom-button--dark rounded-0"
+      target="_blank"
+    >
+      Preview PDF</a
+    >
+    <a
+      href="/dashboard/menus/<%= menu.id %>/pdf/generate"
+      class="custom-button custom-button--dark rounded-0"
+    >
+      Generate PDF</a
+    >
+    <button
+      class="custom-button custom-button--dark rounded-0"
+      data-bs-target="#deleteModal"
+      data-bs-toggle="modal"
+      data-role="delete-menu"
+      data-menuid="<%= menu.id %>"
+    >
       Delete menu
     </button>
   </div>
@@ -113,10 +132,7 @@
               <p class="card-text text-center"><%= product.description %></p>
 
               <div class="row product-item__options g-1">
-                <div class="col-4">
-                  <a href="#" class="dark">Preview</a>
-                </div>
-                <div class="col-4">
+                <div class="col-6">
                   <a
                     href="#"
                     class="green"
@@ -126,7 +142,7 @@
                     >Edit</a
                   >
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                   <a
                     href="#"
                     class="red"
@@ -237,7 +253,7 @@
             <% }); %>
           </div>
           <% } %>
-          <form id="productForm" method="POST" enctype="multipart/form-data">
+          <form id="productForm" method="POST">
             <input type="hidden" name="menuId" value="<%= menu.id %>" />
             <!-- We set categoryId value via javascript -->
             <input type="hidden" name="categoryId" value="" />
@@ -334,6 +350,40 @@
     </div>
   </div>
   <!-- DELETE PRODUCT/CATEGORY MODAL END -->
+
+  <!-- GENERAL INFO MODAL -->
+
+  <div
+    class="modal"
+    id="infoModal"
+    tabindex="-1"
+    aria-labelledby="infoModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal Info Title</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal Info Body</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GENERAL INFO MODAL END -->
   <!-- MODALS END -->
   <script src="/js/menuEditor.js" type="module"></script>
 </section>
@@ -351,7 +401,6 @@ case of validation error -->
     removeMethodOverrideFromProductModal,
     addMethodOverrideToProductModal,
   } from "/helpers/menuEditorViewFunctions.js";
-
   document.addEventListener("DOMContentLoaded", function (event) {
     <% if(locals.categoryCreateValidationError) { %>
       toggleCategoryModal();

@@ -1,3 +1,7 @@
+import db from "../models";
+
+const { Menu, Restaurant, Category, Product } = db;
+
 class ApplicationController {
   // GET
   index = (req, res) => {
@@ -18,6 +22,23 @@ class ApplicationController {
   // GET
   register = (req, res) => {
     res.render("auth/register", { layout: false });
+  };
+
+  showMenuPublic = async (req, res, next) => {
+    try {
+      const menuId = req.params.id;
+      const menu = await Menu.findOne({
+        where: { id: menuId },
+        include: [
+          { model: Restaurant },
+          { model: Category, include: { model: Product } },
+        ],
+      });
+      res.render("pdf/menuPDF", { menu });
+    } catch (e) {
+      console.log(e);
+      next(e);
+    }
   };
 }
 

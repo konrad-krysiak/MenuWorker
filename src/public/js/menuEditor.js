@@ -119,6 +119,23 @@ document.addEventListener("DOMContentLoaded", function () {
           "?<br />All products will be lost.",
         "/dashboard/categories/" + categoryId
       );
+    } else if (role === "delete-menu") {
+      VF.writeToDeleteModal(
+        "Delete Menu",
+        "Are you sure you want to delete this menu?",
+        "/dashboard/menus/" + button.dataset.menuid
+      );
+    }
+  });
+
+  const infoModal = document.getElementById("infoModal");
+  infoModal.addEventListener("show.bs.modal", function (event) {
+    const { button, role } = VF.getTriggerData(event);
+    if (role === "share-menu") {
+      infoModal.querySelector(".modal-title").innerHTML = "Share menu";
+      infoModal.querySelector(
+        ".modal-body p"
+      ).innerHTML = `http://localhost:3000/public/menu/${button.dataset.menuid}`;
     }
   });
 });
