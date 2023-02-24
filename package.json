@@ -9,6 +9,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "npm run prod",
+    "start:reset": "npm run db:reset & npm run prod",
     "prod": "npm-run-all -p prod:*",
     "prod:server": "NODE_ENV=production node --experimental-specifier-resolution=node ./src/index.js",
     "prod:queue": "NODE_ENV=production node --experimental-specifier-resolution=node ./src/queue.js",
