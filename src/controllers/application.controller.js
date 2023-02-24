@@ -34,7 +34,28 @@ class ApplicationController {
           { model: Category, include: { model: Product } },
         ],
       });
+
       res.render("pdf/menuPDF", { menu });
+    } catch (e) {
+      console.log(e);
+      next(e);
+    }
+  };
+
+  showRestaurantPublic = async (req, res, next) => {
+    try {
+      const restaurantId = req.params.id;
+      const restaurant = await Restaurant.findOne({
+        where: { id: restaurantId },
+      });
+
+      if (restaurant.public) {
+        res.render("restaurants/restaurants_show_public", {
+          restaurant,
+        });
+      } else {
+        res.render("error");
+      }
     } catch (e) {
       console.log(e);
       next(e);

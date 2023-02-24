@@ -69,6 +69,10 @@ export default (sequelize, DataTypes) => {
           isUrl: true,
         },
       },
+      public: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       sequelize,
