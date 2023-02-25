@@ -4,6 +4,7 @@ import RestaurantController from "../controllers/restaurant.controller";
 import MenuController from "../controllers/menu.controller";
 import CategoryController from "../controllers/category.controller";
 import ProductController from "../controllers/product.controller";
+import ApplicationController from "../controllers/application.controller";
 
 const router = express.Router();
 
@@ -31,5 +32,7 @@ router.delete("/categories/:id", CategoryController.delete);
 router.post("/products/new", ProductController.create);
 router.put("/products/:id", ProductController.update);
 router.delete("/products/:id", ProductController.delete);
+
+router.get("/qr", ApplicationController.indexQR);
 
 export default router;

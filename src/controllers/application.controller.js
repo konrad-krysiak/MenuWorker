@@ -65,6 +65,21 @@ class ApplicationController {
       next(e);
     }
   };
+
+  indexQR = async (req, res, next) => {
+    try {
+      const restaurants = await Restaurant.findAll({
+        where: { userId: req.user.id },
+      });
+      res.render("qr/index", {
+        layout: "layouts/dashboard",
+        restaurants,
+      });
+    } catch (e) {
+      console.log(e);
+      next(e);
+    }
+  };
 }
 
 export default new ApplicationController();
