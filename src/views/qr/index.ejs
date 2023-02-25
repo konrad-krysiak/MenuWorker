@@ -1,8 +1,21 @@
-<div class="container">
-  <h1>Choose restaurant</h1>
-  <ul>
-    <% restaurants.forEach((item) => { %>
-    <li><%= item.name %></li>
-    <% }) %>
-  </ul>
+<div class="container py-4">
+  <h2 class="text-center">QR Code Generator</h2>
+  <p class="text-center">Choose restaurant for QR code generation.</p>
+
+  <div class="row mt-4">
+    <div class="col-8 offset-2">
+      <div class="list-group">
+        <% restaurantsWithURI.forEach((restaurant) => { %>
+
+        <a
+          href="/dashboard/qr/<%= restaurant.id %>"
+          class="list-group-item list-group-item-action text-break"
+        >
+          <div class="fw-bold"><%= restaurant.name %></div>
+          <div class="w-100"><%= restaurant.publicUrl %></div>
+        </a>
+        <% }); %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -71,10 +71,15 @@ class ApplicationController {
     try {
       const restaurants = await Restaurant.findAll({
         where: { userId: req.user.id },
+        raw: true,
       });
+      const restaurantsWithURI = restaurants.map((i) => ({
+        ...i,
+        publicUrl: `${process.env.DOMAIN}/public/restaurant/${i.id}`,
+      }));
       res.render("qr/index", {
         layout: "layouts/dashboard",
-        restaurants,
+        restaurantsWithURI,
       });
     } catch (e) {
       console.log(e);
