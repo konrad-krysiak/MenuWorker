@@ -7,6 +7,7 @@ class ApplicationController {
   index = (req, res) => {
     res.render("index", {
       layout: false,
+      authenticated: req.user instanceof Object,
     });
   };
 

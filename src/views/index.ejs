@@ -35,6 +35,13 @@
               id="navbarText"
             >
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-4 navbar-buttons">
+                <% if(authenticated) { %>
+                <li class="nav-item">
+                  <a class="btn auth-button fs-5" href="/auth/login"
+                    >Dashboard</a
+                  >
+                </li>
+                <% } else { %>
                 <li class="nav-item">
                   <a class="btn auth-button fs-5" href="/auth/login">Login</a>
                 </li>
@@ -43,6 +50,7 @@
                     >Register</a
                   >
                 </li>
+                <% }; %>
               </ul>
             </div>
           </div>

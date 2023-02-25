@@ -47,7 +47,6 @@ body {
 }
 
 .navbar .auth-button {
-  width: 8rem;
   color: var(--claret-1-color);
 }
 
