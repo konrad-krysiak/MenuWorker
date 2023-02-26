@@ -1,3 +1,5 @@
+import QRCode from "qrcode";
+
 import db from "../models";
 
 const { Menu, Restaurant, Category, Product } = db;
@@ -81,6 +83,27 @@ class ApplicationController {
         layout: "layouts/dashboard",
         restaurantsWithURI,
       });
+    } catch (e) {
+      console.log(e);
+      next(e);
+    }
+  };
+
+  showQR = async (req, res, next) => {
+    try {
+      const restaurantId = req.params.id;
+      const restaurant = await Restaurant.findOne({
+        where: { id: restaurantId },
+      });
+      if (restaurant) {
+        const qrcode = await QRCode.toDataURL(
+          `https://${process.env.DOMAIN}/public/restaurant/${restaurantId}`
+        );
+        res.render("qr/show", {
+          layout: "layouts/dashboard",
+          qrcode,
+        });
+      }
     } catch (e) {
       console.log(e);
       next(e);

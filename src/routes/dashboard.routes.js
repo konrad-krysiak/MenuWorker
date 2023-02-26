@@ -34,5 +34,6 @@ router.put("/products/:id", ProductController.update);
 router.delete("/products/:id", ProductController.delete);
 
 router.get("/qr", ApplicationController.indexQR);
+router.get("/qr/:id", ApplicationController.showQR);
 
 export default router;
