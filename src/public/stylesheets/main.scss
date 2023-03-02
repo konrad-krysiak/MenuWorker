@@ -1,0 +1,30 @@
+// MIXINS
+
+@import "mixins/media";
+
+// BASE STYLES
+
+@import "base/colors";
+@import "base/typography";
+@import "base/variables";
+@import "base/base";
+@import "base/fonts";
+
+// COMPONENTS
+
+@import "components/buttons";
+@import "components/navbar";
+@import "components/navigation";
+@import "components/utils";
+
+// PAGES
+
+@import "pages/auth";
+@import "pages/landing";
+@import "pages/menus";
+@import "pages/restaurants";
+
+// LAYOUTS
+
+@import "layouts/dashboard";
+@import "layouts/landing";

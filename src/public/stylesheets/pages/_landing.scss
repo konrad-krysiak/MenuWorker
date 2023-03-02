@@ -1,0 +1,103 @@
+.landing-page {
+  .landing-navbar {
+    background-color: #ffffff;
+    z-index: 10;
+  }
+
+  .navbar {
+    a {
+      transition: none;
+      border-radius: 0;
+      line-height: 2.5rem;
+    }
+    .navbar-brand {
+      font-family: "Tourney", cursive;
+      font-size: 2rem;
+      pointer-events: none;
+      cursor: default;
+      color: $claret-primary;
+    }
+
+    .auth-button {
+      color: $claret-primary;
+
+      &:hover {
+        background-color: $claret-secondary;
+        border-radius: 0;
+        color: $light;
+      }
+    }
+  }
+
+  .landing-body {
+    &__heading {
+      span {
+        font-family: "Patua One", cursive;
+        font-weight: 300;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+      }
+
+      @include max-width($breakpoint-md) {
+        span {
+          font-size: 3rem;
+          text-align: center;
+          margin: 0 auto;
+        }
+      }
+
+      @include max-width($breakpoint-xl) {
+        span {
+          font-size: 2.8rem;
+        }
+      }
+
+      ul {
+        margin: 2rem 0;
+      }
+
+      ul li {
+        list-style: none;
+      }
+
+      ul li::before {
+        content: "";
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url("../images/tic.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding: 0 10px;
+      }
+    }
+
+    &__pizza img {
+      width: 400px;
+      &.rotate {
+        animation: rotation 20s infinite linear;
+        &:hover {
+          animation-play-state: paused;
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.landing-offer {
+  background-color: $claret-secondary;
+
+  h1 {
+    color: $light-primary;
+    font-family: "Oswald", sans-serif;
+  }
+}

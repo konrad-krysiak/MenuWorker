@@ -1,0 +1,19 @@
+.login-page {
+  .logo-container {
+    margin: 3rem 0;
+  }
+
+  .login-button {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 1rem;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  .login-head-text {
+    letter-spacing: 1px;
+  }
+}

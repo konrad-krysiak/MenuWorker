@@ -1,0 +1,17 @@
+.restaurants_index {
+  .restaurant-item {
+    line-height: 30px;
+    i {
+      font-size: 25px;
+      &.edit {
+        color: rgb(4, 218, 4);
+      }
+      &.delete {
+        color: rgb(219, 1, 1);
+      }
+      &.show {
+        color: #000;
+      }
+    }
+  }
+}

@@ -7,36 +7,23 @@
   </div>
   <div class="row my-4">
     <form id="newMenuForm" action="/dashboard/menus/new" method="POST">
-      <div
-        class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container"
-      >
+      <div class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container">
         <div>
-          <input
-            type="hidden"
-            name="restaurantId"
-            value="<%= restaurant.id %>"
-          />
+          <input type="hidden" name="restaurantId" value="<%= restaurant.id %>" />
           <label for="name" class="form-label">Name*</label>
-          <input class="form-control" id="name" name="name" placeholder="Name"
-          value="<%= locals.form ? form.name : "" %>" required />
+          <input class="form-control" id="name" name="name" placeholder="Name" value="<%= locals.form ? form.name : "" %>" required />
         </div>
 
         <div class="row my-4">
           <div class="col">
-            <button
-              type="submit"
-              name="submit"
-              form="newMenuForm"
-              class="btn btn-primary w-100 rounded-0"
-            >
+            <a href="/dashboard/menus" class="btn btn-danger w-100 rounded-0">Cancel</a>
+          </div>
+          <div class="col">
+            <button type="submit" name="submit" form="newMenuForm" class="btn btn-primary w-100 rounded-0">
               Submit
             </button>
           </div>
-          <div class="col">
-            <a href="/dashboard/menus" class="btn btn-danger w-100 rounded-0"
-              >Cancel</a
-            >
-          </div>
+
         </div>
       </div>
     </form>

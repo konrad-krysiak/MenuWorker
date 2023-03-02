@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
         // change icon
         toggle.classList.toggle("bx-x");
         // add padding to body
-        bodypd.classList.toggle("body-pd");
+        bodypd.classList.toggle("sidebar-body-padding");
         // add padding to header
-        headerpd.classList.toggle("body-pd");
+        headerpd.classList.toggle("sidebar-body-padding");
       });
     }
   };
 
-  showNavbar("header-toggle", "nav-bar", "body-pd", "header");
+  showNavbar("header-toggle", "nav-bar", "dashboard-layout", "header");
 
   /*===== LINK ACTIVE =====*/
   // const linkColor = document.querySelectorAll(".nav_link");

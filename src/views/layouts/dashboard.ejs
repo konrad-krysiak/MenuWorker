@@ -1,87 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/icons/css/boxicons.min.css" />
+    <link href="/icons/css/boxicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+
+    <%- style %>
   </head>
-  <body id="body-pd">
-    <header class="header" id="header">
-      <div class="header_toggle">
-        <i class="bx bx-menu" id="header-toggle"></i>
-      </div>
-      <div class="header_img">
-        <img src="/img/user-placeholder.png" alt="" />
-      </div>
-    </header>
 
-    <div class="d-flex">
-      <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-          <div>
-            <a href="/" class="nav_logo">
-              <i class="bx bxs-cat nav_logo-icon"></i>
-              <span class="nav_logo-name">MenuWorker</span>
-            </a>
-            <div class="nav_list">
-              <a href="/dashboard/restaurants" class="nav_link">
-                <i class="bx bx-restaurant nav_icon"></i>
-                <span class="nav_name">Restaurant</span>
+  <body>
+    <div id="dashboard-layout" class="dashboard-layout">
+      <header class="header" id="header">
+        <div class="header_toggle">
+          <i class="bx bx-menu" id="header-toggle"></i>
+        </div>
+        <div class="header_img">
+          <img src="/images/user-placeholder.png" alt="" />
+        </div>
+      </header>
+
+      <div class="d-flex">
+        <div class="sidebar" id="nav-bar">
+          <nav class="nav">
+            <div>
+              <a href="/" class="nav_logo">
+                <i class="bx bxs-cat nav_logo-icon"></i>
+                <span class="nav_logo-name">MenuWorker</span>
               </a>
-              <a href="/dashboard/menus" class="nav_link">
-                <i class="bx bxs-food-menu nav_icon"></i>
-                <span class="nav_name">Menu</span>
-              </a>
-              <a href="/dashboard/qr" class="nav_link">
-                <i class="bx bx-qr-scan nav_icon"></i>
-                <span class="nav_name">QR Code</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-share-alt nav_icon"></i>
-                <span class="nav_name">Share</span>
-              </a>
-              <a href="#" class="nav_link">
-                <i class="bx bx-cog nav_icon"></i>
-                <span class="nav_name">Settings</span>
-              </a>
+              <div class="nav_list">
+                <a href="/dashboard/restaurants" class="nav_link">
+                  <i class="bx bx-restaurant nav_icon"></i>
+                  <span class="nav_name">Restaurant</span>
+                </a>
+                <a href="/dashboard/menus" class="nav_link">
+                  <i class="bx bxs-food-menu nav_icon"></i>
+                  <span class="nav_name">Menu</span>
+                </a>
+                <a href="/dashboard/qr" class="nav_link">
+                  <i class="bx bx-qr-scan nav_icon"></i>
+                  <span class="nav_name">QR Code</span>
+                </a>
+                <a href="#" class="nav_link">
+                  <i class="bx bx-share-alt nav_icon"></i>
+                  <span class="nav_name">Share</span>
+                </a>
+                <a href="#" class="nav_link">
+                  <i class="bx bx-cog nav_icon"></i>
+                  <span class="nav_name">Settings</span>
+                </a>
+              </div>
             </div>
-          </div>
-          <form action="/auth/logout" method="POST">
-            <button
-              type="submit"
-              class="nav_link bg-transparent border-0 w-100"
-            >
-              <i class="bx bx-log-out nav_icon"></i>
-              <span class="nav_name">SignOut</span>
-            </button>
-          </form>
-        </nav>
+            <form action="/auth/logout" method="POST">
+              <button type="submit" class="nav_link bg-transparent border-0 w-100">
+                <i class="bx bx-log-out nav_icon"></i>
+                <span class="nav_name">SignOut</span>
+              </button>
+            </form>
+          </nav>
+        </div>
+      </div>
+
+      <div class="dashboard-body">
+        <% if(messages.info) { %>
+        <div class="py-2">
+          <% messages.info.forEach(message => { %>
+          <div class="alert alert-primary" role="alert"><%= message %></div>
+          <% }); %>
+        </div>
+        <% } %>
+        <% if(messages.error) { %>
+        <div class="py-2">
+          <% messages.error.forEach(message => { %>
+          <div class="alert alert-danger" role="alert"><%= message %></div>
+          <% }); %>
+        </div>
+        <% } %>
+        <%- body %>
       </div>
     </div>
-
-    <div class="dashboard-body">
-      <% if(messages.info) { %>
-      <div class="py-2">
-        <% messages.info.forEach(message => { %>
-        <div class="alert alert-primary" role="alert"><%= message %></div>
-        <% }); %>
-      </div>
-      <% } %> <% if(messages.error) { %>
-      <div class="py-2">
-        <% messages.error.forEach(message => { %>
-        <div class="alert alert-danger" role="alert"><%= message %></div>
-        <% }); %>
-      </div>
-      <% } %> <%- body %>
-    </div>
-
     <!-- bootstrap v5 -->
+    <%- script %>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/script.js" type="module"></script>
+    <script src="/javascript/script.js" type="module"></script>
   </body>
+
 </html>

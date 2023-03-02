@@ -7,6 +7,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import methodOverride from "method-override";
 import { fileURLToPath } from "url";
+import nodeSassMiddleware from "node-sass-middleware";
 
 import sessionMiddleware from "./session";
 
@@ -15,7 +16,18 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const configure = (app) => {
   app.set("view engine", "ejs");
   app.use(expressLayouts);
+  app.use(
+    nodeSassMiddleware({
+      src: __dirname + "/../public/stylesheets",
+      dest: __dirname + "/../public/css",
+      debug: false,
+      outputStyle: "compressed",
+      prefix: "/css",
+    })
+  );
   app.set("layout", "layouts/layout");
+  app.set("layout extractScripts", true);
+  app.set("layout extractStyles", true);
   app.set("views", path.join(__dirname, "../views"));
   app.use(express.static(path.join(__dirname, "../public")));
   app.use(

@@ -1,0 +1,60 @@
+.dashboard-layout {
+  position: relative;
+  margin: $header-height 0 0 0;
+  padding: 0 1rem;
+  font-family: $body-font;
+  font-size: $normal-font-size;
+  transition: 0.5s;
+
+  @include min-width($breakpoint-md) {
+    margin: calc(#{$header-height} + 1rem) 0 0 0;
+    padding-left: calc(#{$nav-width} + 2rem);
+  }
+
+  .header {
+    width: 100%;
+    height: $header-height;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: $light;
+    z-index: $z-fixed;
+    transition: 0.5s;
+
+    @include min-width($breakpoint-md) {
+      height: calc(#{$header-height} + 1rem);
+      padding: 0 2rem 0 calc(#{$nav-width} + 2rem);
+    }
+
+    .header_toggle {
+      color: $sidebar-primary;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .header_img {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      border-radius: 50%;
+      overflow: hidden;
+
+      @include min-width($breakpoint-md) {
+        width: 40px;
+        height: 40px;
+      }
+
+      img {
+        width: 40px;
+        @include min-width($breakpoint-md) {
+          width: 45px;
+        }
+      }
+    }
+  }
+}

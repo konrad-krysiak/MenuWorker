@@ -1,116 +1,50 @@
-<section class="container py-4">
+<section class="container py-4 menus-edit-page">
   <div class="row">
     <div class="col text-center">
       <form action="/dashboard/menus/<%= menu.id %>" method="post">
-        <div class="input-group input-group-lg">
-          <span class="input-group-text" id="inputGroup-sizing-lg"
-            >Menu name</span
-          >
+        <div class="input-group input-group-md">
+          <span class="input-group-text" id="inputGroup-sizing-lg">Menu name</span>
           <input type="hidden" name="_method" value="PUT" />
-          <input
-            type="text"
-            name="name"
-            class="form-control"
-            aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-lg"
-            value="<%= menu.name %>"
-          />
-          <button type="submit" class="btn btn-primary">Change name</button>
+          <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="<%= menu.name %>" />
+          <button type="submit" class="btn btn-primary">Change</button>
         </div>
       </form>
     </div>
   </div>
   <div class="editor-options d-flex justify-content-end p-2 mt-3 gap-2">
-    <button
-      class="custom-button custom-button--dark rounded-0"
-      data-bs-toggle="modal"
-      data-bs-target="#categoryModal"
-      data-role="add-category"
-    >
+    <button class="custom-button-primary --dark rounded-0" data-bs-toggle="modal" data-bs-target="#categoryModal" data-role="add-category">
       Add category
     </button>
-    <button
-      class="custom-button custom-button--dark rounded-0"
-      data-bs-target="#infoModal"
-      data-bs-toggle="modal"
-      data-role="share-menu"
-      data-menuid="<%= menu.id %>"
-    >
+    <button class="custom-button-primary --dark rounded-0" data-bs-target="#infoModal" data-bs-toggle="modal" data-role="share-menu" data-menuid="<%= menu.id %>">
       Share link
     </button>
-    <a
-      href="/dashboard/menus/<%= menu.id %>/pdf/preview"
-      class="custom-button custom-button--dark rounded-0"
-      target="_blank"
-    >
-      Preview PDF</a
-    >
-    <a
-      href="/dashboard/menus/<%= menu.id %>/pdf/generate"
-      class="custom-button custom-button--dark rounded-0"
-    >
-      Generate PDF</a
-    >
-    <button
-      class="custom-button custom-button--dark rounded-0"
-      data-bs-target="#deleteModal"
-      data-bs-toggle="modal"
-      data-role="delete-menu"
-      data-menuid="<%= menu.id %>"
-    >
+    <a href="/dashboard/menus/<%= menu.id %>/pdf/preview" class="custom-button-primary --dark rounded-0" target="_blank">
+      Preview PDF</a>
+    <a href="/dashboard/menus/<%= menu.id %>/pdf/generate" class="custom-button-primary --dark rounded-0">
+      Generate PDF</a>
+    <button class="custom-button-primary --dark rounded-0" data-bs-target="#deleteModal" data-bs-toggle="modal" data-role="delete-menu" data-menuid="<%= menu.id %>">
       Delete menu
     </button>
   </div>
 
   <% menu.Categories.forEach((category) => { %>
 
-  <div
-    data-categoryid="<%= category.id %>"
-    class="category-item border mt-5 py-3 px-4 d-flex flex-column rounded-1"
-  >
-    <div
-      class="category-item__header d-flex flex-column flex-md-row justify-content-between"
-    >
+  <div data-categoryid="<%= category.id %>" class="category-item border mt-5 py-3 px-4 d-flex flex-column rounded-1">
+    <div class="category-item__header d-flex flex-column flex-md-row justify-content-between">
       <h1 id="category-name" class="m-3 m-lg-0 mx-auto mx-lg-0">
         <%= category.name %>
       </h1>
-      <div
-        class="category-options d-flex flex-wrap flex-column flex-lg-row gap-3 justify-content-center mx-auto mx-lg-0"
-      >
-        <button
-          href="#"
-          class="me-button gap-2"
-          data-bs-target="#productModal"
-          data-bs-toggle="modal"
-          data-role="add-product"
-        >
-          <i
-            class="bx bx-plus-medical"
-            style="font-size: 16px; color: #fff"
-          ></i>
+      <div class="category-options d-flex flex-wrap flex-column flex-lg-row gap-2 justify-content-center mx-auto mx-lg-0">
+        <button href="#" class="me-button gap-2" data-bs-target="#productModal" data-bs-toggle="modal" data-role="add-product">
+          <i class="bx bx-plus-medical"></i>
           Add product
         </button>
-        <button
-          href="#"
-          class="me-button me-button--green gap-2"
-          data-bs-target="#categoryModal"
-          data-bs-toggle="modal"
-          data-role="edit-category"
-        >
-          <i class="bx bxs-edit" style="font-size: 16px; color: #fff"></i>
+        <button href="#" class="me-button --green gap-2" data-bs-target="#categoryModal" data-bs-toggle="modal" data-role="edit-category">
+          <i class="bx bxs-edit"></i>
           Edit category
         </button>
-        <button
-          href="#"
-          class="me-button me-button--red gap-2"
-          data-bs-target="#deleteModal"
-          data-bs-toggle="modal"
-          data-role="delete-category"
-        >
-          <i
-            class="bx bx-message-square-x"
-            style="font-size: 16px; color: #fff"
-          ></i>
+        <button href="#" class="me-button --red gap-2" data-bs-target="#deleteModal" data-bs-toggle="modal" data-role="delete-category">
+          <i class="bx bx-message-square-x"></i>
           Delete category
         </button>
       </div>
@@ -133,24 +67,10 @@
 
               <div class="row product-item__options g-1">
                 <div class="col-6">
-                  <a
-                    href="#"
-                    class="green"
-                    data-bs-target="#productModal"
-                    data-bs-toggle="modal"
-                    data-role="edit-product"
-                    >Edit</a
-                  >
+                  <a href="#" class="green" data-bs-target="#productModal" data-bs-toggle="modal" data-role="edit-product">Edit</a>
                 </div>
                 <div class="col-6">
-                  <a
-                    href="#"
-                    class="red"
-                    data-bs-target="#deleteModal"
-                    data-bs-toggle="modal"
-                    data-role="delete-product"
-                    >Delete</a
-                  >
+                  <a href="#" class="red" data-bs-target="#deleteModal" data-bs-toggle="modal" data-role="delete-product">Delete</a>
                 </div>
               </div>
             </div>
@@ -167,23 +87,12 @@
   <!-- MODALS  -->
 
   <!-- CATEGORY MODAL -->
-  <div
-    class="modal"
-    id="categoryModal"
-    tabindex="-1"
-    aria-labelledby="categoryModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="categoryModalLabel">New Category</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <% if(messages.modalError) { %>
@@ -196,25 +105,13 @@
           <form id="categoryForm" action="" method="POST">
             <input type="hidden" name="menuId" value="<%= menu.id %>" />
             <div class="mb-3">
-              <label for="category-name" class="col-form-label"
-                >Category name:</label
-              >
-              <input
-                name="name"
-                type="text"
-                class="form-control"
-                id="category-name"
-                required
-              />
+              <label for="category-name" class="col-form-label">Category name:</label>
+              <input name="name" type="text" class="form-control" id="category-name" required />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
           <button type="submit" class="btn btn-primary" form="categoryForm">
@@ -227,23 +124,12 @@
   <!-- CATEGORY MODAL END -->
 
   <!-- PRODUCT MODAL -->
-  <div
-    class="modal"
-    id="productModal"
-    tabindex="-1"
-    aria-labelledby="productModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="productModalLabel">New Product</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <% if(messages.modalError) { %>
@@ -258,50 +144,21 @@
             <!-- We set categoryId value via javascript -->
             <input type="hidden" name="categoryId" value="" />
             <div class="mb-3">
-              <label for="product-name" class="col-form-label"
-                >Product name:</label
-              >
-              <input
-                name="name"
-                type="text"
-                class="form-control"
-                id="product-name"
-                required
-              />
+              <label for="product-name" class="col-form-label">Product name:</label>
+              <input name="name" type="text" class="form-control" id="product-name" required />
             </div>
             <div class="mb-3">
-              <label for="product-price" class="col-form-label"
-                >Product price:</label
-              >
-              <input
-                name="price"
-                type="number"
-                step="0.01"
-                class="form-control"
-                id="product-price"
-                required
-              />
+              <label for="product-price" class="col-form-label">Product price:</label>
+              <input name="price" type="number" step="0.01" class="form-control" id="product-price" required />
             </div>
             <div class="mb-3">
-              <label for="product-description" class="col-form-label"
-                >Product description:</label
-              >
-              <textarea
-                name="description"
-                class="form-control"
-                id="product-description"
-                rows="4"
-                required
-              ></textarea>
+              <label for="product-description" class="col-form-label">Product description:</label>
+              <textarea name="description" class="form-control" id="product-description" rows="4" required></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Close
           </button>
           <button form="productForm" type="submit" class="btn btn-primary">
@@ -314,31 +171,16 @@
   <!-- PRODUCT MODAL END -->
 
   <!-- DELETE PRODUCT/CATEGORY MODAL -->
-  <div
-    class="modal"
-    id="deleteModal"
-    tabindex="-1"
-    aria-labelledby="deleteModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">...</div>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Cancel
           </button>
           <form action="" method="post">
@@ -353,23 +195,12 @@
 
   <!-- GENERAL INFO MODAL -->
 
-  <div
-    class="modal"
-    id="infoModal"
-    tabindex="-1"
-    aria-labelledby="infoModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Modal Info Title</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <p>Modal Info Body</p>
@@ -385,7 +216,7 @@
 
   <!-- GENERAL INFO MODAL END -->
   <!-- MODALS END -->
-  <script src="/js/menuEditor.js" type="module"></script>
+  <script src="/javascript/menuEditor.js" type="module"></script>
 </section>
 
 <!-- We need script to handle modal toggling & filling data in
@@ -401,31 +232,32 @@ case of validation error -->
     removeMethodOverrideFromProductModal,
     addMethodOverrideToProductModal,
   } from "/helpers/menuEditorViewFunctions.js";
-  document.addEventListener("DOMContentLoaded", function (event) {
+  document.addEventListener("DOMContentLoaded", function(event) {
     <% if(locals.categoryCreateValidationError) { %>
-      toggleCategoryModal();
-      const previousForm = <%- JSON.stringify(locals.form) %>;
-      writeToCategoryModal("New Category", previousForm.name, "/dashboard/categories/new")
-      removeMethodOverrideFromCategoryModal();
+    toggleCategoryModal();
+    const previousForm = <%- JSON.stringify(locals.form) %>;
+    writeToCategoryModal("New Category", previousForm.name, "/dashboard/categories/new")
+    removeMethodOverrideFromCategoryModal();
     <% } else if (locals.categoryEditValidationError) { %>
-      toggleCategoryModal();
-      const categoryId = <%- JSON.stringify(locals.categoryId) %>
-      const previousForm = <%- JSON.stringify(locals.form) %>;
-      writeToCategoryModal("Edit Category", previousForm.name, "/dashboard/categories/" + categoryId);
-      addMethodOverrideToCategoryModal("PUT");
+    toggleCategoryModal();
+    const categoryId = <%- JSON.stringify(locals.categoryId) %>
+    const previousForm = <%- JSON.stringify(locals.form) %>;
+    writeToCategoryModal("Edit Category", previousForm.name, "/dashboard/categories/" + categoryId);
+    addMethodOverrideToCategoryModal("PUT");
     <% } else if (locals.productCreateValidationError) { %>
-      toggleProductModal();
-      const previousForm = <%- JSON.stringify(locals.form) %>;
-      writeToProductModal("New Product", previousForm.name, previousForm.price,
+    toggleProductModal();
+    const previousForm = <%- JSON.stringify(locals.form) %>;
+    writeToProductModal("New Product", previousForm.name, previousForm.price,
       previousForm.description, "/dashboard/products/new", previousForm.categoryId);
-      removeMethodOverrideFromProductModal();
-      <% } else if (locals.productEditValidationError) { %>
-      toggleProductModal();
-      const productId = <%- JSON.stringify(locals.productId) %>
-      const previousForm = <%- JSON.stringify(locals.form) %>;
-      writeToProductModal("Edit Product", previousForm.name, previousForm.price,
+    removeMethodOverrideFromProductModal();
+    <% } else if (locals.productEditValidationError) { %>
+    toggleProductModal();
+    const productId = <%- JSON.stringify(locals.productId) %>
+    const previousForm = <%- JSON.stringify(locals.form) %>;
+    writeToProductModal("Edit Product", previousForm.name, previousForm.price,
       previousForm.description, "/dashboard/products/" + productId, previousForm.categoryId);
-      addMethodOverrideToProductModal("PUT");
+    addMethodOverrideToProductModal("PUT");
     <% }; %>
   });
+
 </script>

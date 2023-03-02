@@ -4,33 +4,19 @@
     <div class="card w-75 mx-auto p-2">
       <div class="container">
         <div class="row">
-          <div
-            class="col-12 justify-content-center col-sm-4 justify-content-sm-start d-flex align-items-center"
-          >
+          <div class="col-12 justify-content-center col-sm-4 justify-content-sm-start d-flex align-items-center">
             <span class="h4 m-0 mb-1 mb-sm-0"> <%= restaurant.name %> </span>
           </div>
           <div class="col-12 col-sm-8 text-center text-sm-end">
-            <a
-              href="/dashboard/restaurants/<%= restaurant.id %>"
-              class="custom-button custom-button--dark mb-1"
-              >Go to restaurant</a
-            >
-            <a
-              href="/dashboard/menus/new?restaurantId=<%= restaurant.id %>"
-              class="custom-button mb-1"
-              >Add new menu</a
-            >
+            <a href="/dashboard/restaurants/<%= restaurant.id %>" class="custom-button-primary --dark mb-1">Go to restaurant</a>
+            <a href="/dashboard/menus/new?restaurantId=<%= restaurant.id %>" class="custom-button-primary mb-1">Add new menu</a>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
             <ul class="list-group m-2">
               <% restaurant.Menus.forEach(menu => { %>
-              <li
-                class="list-group-item list-group-item list-group-item-action cursor-pointer"
-                onclick="window.location.href='/dashboard/menus/<%= menu.id%>/edit'"
-                role="button"
-              >
+              <li class="list-group-item list-group-item list-group-item-action cursor-pointer" onclick="window.location.href='/dashboard/menus/<%= menu.id%>/edit'" role="button">
                 <div class="row">
                   <div class="col-12 col-sm-4 text-center text-sm-start">
                     <%= menu.name %>

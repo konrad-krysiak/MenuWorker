@@ -1,0 +1,35 @@
+.menus-edit-page {
+  .category-item {
+    &__header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+
+  .product-item {
+    .card-text {
+      font-size: 0.8rem;
+    }
+
+    &__options a {
+      display: flex;
+      justify-content: center;
+      font-size: 0.8rem;
+      padding: 3px 0px;
+      border-radius: 2px;
+      color: #ffffff;
+
+      &.green {
+        background-color: $green-primary;
+      }
+
+      &.red {
+        background-color: $red-primary;
+      }
+
+      &.dark {
+        background-color: $dark-primary;
+      }
+    }
+  }
+}

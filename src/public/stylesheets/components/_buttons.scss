@@ -1,0 +1,114 @@
+.custom-button-primary {
+  background: $red-primary;
+  border: 1px solid $red-primary;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Montserrat", "proxima nova", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+
+  &:hover,
+  &:active {
+    background-color: initial !important;
+    background-position: 0 0 !important;
+    color: $red-primary;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  @include min-width($breakpoint-md) {
+    font-size: 14px;
+    line-height: 14px;
+    min-height: 30px;
+    padding: 10px 10px;
+  }
+
+  &.--blue {
+    background: $blue-primary;
+    border: 1px solid $blue-primary;
+    &:active,
+    &:hover {
+      color: $blue-primary;
+    }
+  }
+
+  &.--green {
+    background: $green-primary;
+    border: 1px solid $green-primary;
+    &:active,
+    &:hover {
+      color: $green-primary;
+    }
+  }
+
+  &.--dark {
+    background: $dark-primary;
+    border: 1px solid $dark-primary;
+    &:active,
+    &:hover {
+      color: $dark-primary;
+    }
+  }
+}
+
+.me-button {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 0;
+  border: none;
+  font-weight: 500;
+  background: $blue-primary;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5),
+    0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+  color: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+  &.--green {
+    background: $green-primary;
+  }
+
+  &.--red {
+    background: $red-primary;
+  }
+}
+
+.tryit-landing-button {
+  margin-top: 2rem;
+  background-color: $claret-secondary;
+  color: $light;
+  font-size: 1.8rem;
+  font-family: "Oswald", sans-serif;
+  padding: 10px 28px;
+  text-decoration: none;
+
+  -webkit-box-shadow: 0px 8px 16px -3px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 8px 16px -3px rgba(66, 68, 90, 1);
+  box-shadow: 0px 8px 16px -3px rgba(66, 68, 90, 1);
+
+  &:hover {
+    background-color: $claret-primary;
+    color: $light-primary;
+  }
+}
