@@ -40,7 +40,7 @@
     padding: 10px 10px;
   }
 
-  &.--blue {
+  &--blue {
     background: $blue-primary;
     border: 1px solid $blue-primary;
     &:active,
@@ -49,7 +49,7 @@
     }
   }
 
-  &.--green {
+  &--green {
     background: $green-primary;
     border: 1px solid $green-primary;
     &:active,
@@ -58,13 +58,19 @@
     }
   }
 
-  &.--dark {
+  &--dark {
     background: $dark-primary;
     border: 1px solid $dark-primary;
     &:active,
     &:hover {
       color: $dark-primary;
     }
+  }
+
+  &--lg {
+    line-height: 1.5rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 1.2rem;
   }
 }
 

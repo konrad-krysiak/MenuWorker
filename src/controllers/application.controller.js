@@ -79,7 +79,7 @@ class ApplicationController {
         ...i,
         publicUrl: `${process.env.DOMAIN}/public/restaurant/${i.id}`,
       }));
-      res.render("qr/index", {
+      res.render("qr/qr_index", {
         layout: "layouts/dashboard",
         restaurantsWithURI,
       });
@@ -99,7 +99,7 @@ class ApplicationController {
         const qrcode = await QRCode.toDataURL(
           `https://${process.env.DOMAIN}/public/restaurant/${restaurantId}`
         );
-        res.render("qr/show", {
+        res.render("qr/qr_show", {
           layout: "layouts/dashboard",
           qrcode,
         });
