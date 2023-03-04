@@ -5,6 +5,7 @@ import MenuController from "../controllers/menu.controller";
 import CategoryController from "../controllers/category.controller";
 import ProductController from "../controllers/product.controller";
 import ApplicationController from "../controllers/application.controller";
+import UserController from "../controllers/user.controller";
 
 const router = express.Router();
 
@@ -35,5 +36,8 @@ router.delete("/products/:id", ProductController.delete);
 
 router.get("/qr", ApplicationController.indexQR);
 router.get("/qr/:id", ApplicationController.showQR);
+
+router.get("/settings", ApplicationController.settings);
+router.post("/settings/changepassword", UserController.changePassword);
 
 export default router;

@@ -50,5 +50,29 @@ class UserController {
       }
     }
   };
+
+  changePassword = async (req, res, next) => {
+    try {
+      const payloard = {
+        password: req.body.password,
+        repeatpassword: req.body.repeatpassword,
+      };
+      if (payloard.password !== payloard.repeatpassword) {
+        req.flash("error", "Passwords does not match.");
+        res.redirect("back");
+        return;
+      }
+      const hashedPassword = await bcrypt.hash(payloard.password, 10);
+      await User.update(
+        { password: hashedPassword },
+        { where: { id: req.user.id } }
+      );
+      req.flash("info", "Password changed successfully.");
+      res.redirect("back");
+    } catch (e) {
+      console.log(e);
+      next(e);
+    }
+  };
 }
 export default new UserController();
