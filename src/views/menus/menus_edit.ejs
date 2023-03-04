@@ -15,7 +15,7 @@
     <button class="custom-button-primary custom-button-primary--dark rounded-0" data-bs-toggle="modal" data-bs-target="#categoryModal" data-role="add-category">
       Add category
     </button>
-    <button class="custom-button-primary custom-button-primary--dark rounded-0" data-bs-target="#infoModal" data-bs-toggle="modal" data-role="share-menu" data-menuid="<%= menu.id %>">
+    <button class="custom-button-primary custom-button-primary--dark rounded-0" data-bs-target="#infoModal" data-bs-toggle="modal" data-role="share-menu" data-menuid="<%= menu.id %>" data-domain="<%= locals.domain %>">
       Share link
     </button>
     <a href="/dashboard/menus/<%= menu.id %>/pdf/preview" class="custom-button-primary custom-button-primary--dark rounded-0" target="_blank">

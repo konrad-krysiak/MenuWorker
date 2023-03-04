@@ -58,9 +58,18 @@ class MenuController {
           },
         },
       });
+
+      let domain;
+      if (process.env.NODE_ENV === "production") {
+        domain = process.env.DOMAIN;
+      } else {
+        domain = process.env.DEV_DOMAIN;
+      }
+
       res.render("menus/menus_edit", {
         layout: "layouts/dashboard",
         menu,
+        domain,
       });
     } catch (e) {
       next(e);

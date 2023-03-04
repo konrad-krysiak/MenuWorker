@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
       infoModal.querySelector(".modal-title").innerHTML = "Share menu";
       infoModal.querySelector(
         ".modal-body p"
-      ).innerHTML = `http://localhost:3000/public/menu/${button.dataset.menuid}`;
+      ).innerHTML = `${button.dataset.domain}/public/menu/${button.dataset.menuid}`;
     }
   });
 });
