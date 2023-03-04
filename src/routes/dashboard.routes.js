@@ -37,6 +37,8 @@ router.delete("/products/:id", ProductController.delete);
 router.get("/qr", ApplicationController.indexQR);
 router.get("/qr/:id", ApplicationController.showQR);
 
+router.get("/share", ApplicationController.share);
+
 router.get("/settings", ApplicationController.settings);
 router.post("/settings/changepassword", UserController.changePassword);
 

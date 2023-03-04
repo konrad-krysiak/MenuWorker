@@ -118,6 +118,15 @@ class ApplicationController {
       next(e);
     }
   };
+
+  share = async (req, res, next) => {
+    try {
+      res.render("share/share_index", { layout: "layouts/dashboard" });
+    } catch (e) {
+      console.log(e);
+      next(e);
+    }
+  };
 }
 
 export default new ApplicationController();
