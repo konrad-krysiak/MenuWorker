@@ -1,130 +1,48 @@
 <div class="container py-4">
   <div class="row">
     <div class="col text-center">
-      <h1>Restaurant Edit</h1>
-      <p>Edit your restaurant right away!</p>
+      <h2>Restaurant Edit</h2>
     </div>
   </div>
   <div class="row my-4">
-    <form
-      action="/dashboard/restaurants/<%= restaurant.id %>"
-      method="POST"
-      id="editRestaurantForm"
-    >
+    <form action="/dashboard/restaurants/<%= restaurant.id %>" method="POST" id="editRestaurantForm">
       <input type="hidden" name="_method" value="PUT" />
-      <div
-        class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container"
-      >
+      <div class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container">
         <div>
           <label for="name" class="form-label">Name</label>
-          <input
-            name="name"
-            class="form-control"
-            id="name"
-            value="<%= restaurant.name %>"
-          />
+          <input name="name" class="form-control" id="name" value="<%= restaurant.name %>" />
         </div>
         <div>
           <label for="address" class="form-label">Address</label>
-          <input
-            name="address"
-            class="form-control"
-            id="address"
-            value="<%= restaurant.address %>"
-          />
+          <input name="address" class="form-control" id="address" value="<%= restaurant.address %>" />
         </div>
         <div>
           <label for="phone" class="form-label">Phone</label>
-          <input
-            name="phone"
-            class="form-control"
-            id="phone"
-            value="<%= restaurant.phone %>"
-          />
+          <input name="phone" class="form-control" id="phone" value="<%= restaurant.phone %>" />
         </div>
         <div>
           <label for="description" class="form-label">Description</label>
-          <textarea name="description" class="form-control" id="description">
-<%= restaurant.description.trim() %></textarea
-          >
+          <textarea name="description" class="form-control" id="description"><%= restaurant.description.trim() %></textarea>
         </div>
         <div>
           <label for="website" class="form-label">Website</label>
-          <input
-            name="website"
-            class="form-control"
-            id="website"
-            value="<%= restaurant.website %>"
-          />
+          <input name="website" class="form-control" id="website" value="<%= restaurant.website %>" />
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckVisibility" name="public" value="true" <% if(restaurant.public) { %> checked <% } %> />
+          <label class="form-check-label" for="flexSwitchCheckVisibility">Mark as public(by default false)</label>
         </div>
         <div class="row my-4">
           <div class="col">
-            <button
-              type="submit"
-              form="editRestaurantForm"
-              class="btn btn-md btn-primary w-100 rounded-0"
-            >
-              Save changes
-            </button>
+            <a href="/dashboard/restaurants" class="btn btn-danger w-100 rounded-0">Cancel</a>
           </div>
           <div class="col">
-            <a
-              href="/dashboard/restaurants"
-              class="btn btn-danger w-100 rounded-0"
-              >Cancel</a
-            >
+            <button type="submit" form="editRestaurantForm" class="btn btn-md btn-primary w-100 rounded-0">
+              Save changes
+            </button>
           </div>
         </div>
       </div>
     </form>
   </div>
-  <hr class="mt-5 my-4" />
-  <div class="row mt-3">
-    <div class="col text-center">
-      <h3>Other options</h3>
-      <p>Choose other options</p>
-    </div>
-  </div>
-  <!-- OPTIONS  -->
-  <div class="row px-5">
-    <div class="row my-4 border-start border-5 border-primary">
-      <div class="col-12 col-md-8 my-auto text-center text-md-start">
-        <span>Go to restaurant's preview page.</span>
-      </div>
-      <div class="col-12 col-md-4 text-center">
-        <a
-          href="/dashboard/restaurants/<%= restaurant.id %>"
-          class="btn btn-success w-50 w-md-75 my-2 my-md-0"
-          >Preview</a
-        >
-      </div>
-    </div>
-
-    <div class="row my-4 border-start border-5 border-primary">
-      <div class="col-12 col-md-8 my-auto text-center text-md-start">
-        <span
-          >Change visibility to private. Only you will be able to access this
-          restaurant's show page.</span
-        >
-      </div>
-      <div class="col-12 col-md-4 text-center">
-        <button class="btn btn-dark w-50 w-md-75 my-2 my-md-0">Private</button>
-      </div>
-    </div>
-
-    <div class="row my-4 border-start border-5 border-primary">
-      <div class="col-12 col-md-8 my-auto text-center text-md-start">
-        <span
-          >You can remove restaurant completely. Remember that all it's menus
-          you have created will be lost permanently.</span
-        >
-      </div>
-      <div class="col-12 col-md-4 text-center">
-        <button class="btn btn-danger w-50 w-md-75 my-2 my-md-0">
-          Remove restaurant
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- OPTIONS END -->
 </div>

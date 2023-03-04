@@ -6,80 +6,36 @@
     </div>
   </div>
   <div class="row my-4">
-    <form
-      id="newRestaurantForm"
-      action="/dashboard/restaurants/new"
-      method="POST"
-    >
-      <div
-        class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container"
-      >
+    <form id="newRestaurantForm" action="/dashboard/restaurants/new" method="POST">
+      <div class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container">
         <div>
           <label for="name" class="form-label">Name*</label>
-          <input
-            class="form-control"
-            id="name"
-            name="name"
-            placeholder="Name"
-            required
-          />
+          <input class="form-control" id="name" name="name" placeholder="Name" required />
         </div>
         <div>
           <label for="address" class="form-label">Address*</label>
-          <input
-            class="form-control"
-            id="address"
-            name="address"
-            placeholder="Address"
-            required
-          />
+          <input class="form-control" id="address" name="address" placeholder="Address" required />
         </div>
         <div>
           <label for="phone" class="form-label">Phone*</label>
-          <input
-            class="form-control"
-            id="phone"
-            name="phone"
-            placeholder="Phone number"
-            required
-          />
+          <input class="form-control" id="phone" name="phone" placeholder="Phone number" required />
         </div>
         <div>
           <label for="description" class="form-label">Description*</label>
-          <textarea
-            class="form-control"
-            name="description"
-            id="description"
-            placeholder="Description"
-            required
-          ></textarea>
+          <textarea class="form-control" name="description" id="description" placeholder="Description" required></textarea>
         </div>
         <div>
           <label for="website" class="form-label">Website</label>
-          <input
-            class="form-control"
-            name="website"
-            id="website"
-            placeholder="https://somewebsite.com"
-          />
+          <input class="form-control" name="website" id="website" placeholder="https://somewebsite.com" />
         </div>
         <div class="row my-4">
           <div class="col">
-            <button
-              type="submit"
-              name="submit"
-              form="newRestaurantForm"
-              class="btn btn-primary w-100 rounded-0"
-            >
-              Submit
-            </button>
+            <a href="/dashboard/restaurants" class="btn btn-danger w-100 rounded-0">Cancel</a>
           </div>
           <div class="col">
-            <a
-              href="/dashboard/restaurants"
-              class="btn btn-danger w-100 rounded-0"
-              >Cancel</a
-            >
+            <button type="submit" name="submit" form="newRestaurantForm" class="btn btn-primary w-100 rounded-0">
+              Submit
+            </button>
           </div>
         </div>
       </div>

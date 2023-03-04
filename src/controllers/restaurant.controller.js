@@ -107,6 +107,7 @@ class RestaurantController {
    * @param description
    * @param phone
    * @param website optional
+   * @param public checkbox optional
    */
   edit = async (req, res) => {
     try {
@@ -115,6 +116,7 @@ class RestaurantController {
         address: req.body.address,
         description: req.body.description,
         phone: req.body.phone,
+        public: Boolean(req.body.public),
       };
       await Restaurant.update(payload, {
         where: { id: req.params.id, userId: req.user.id },
