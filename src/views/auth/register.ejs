@@ -1,64 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<section class="vh-100 register-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 text-black register-column border">
+        <div class="px-5 ms-xl-4 logo-container text-center text-sm-start">
+          <span class="h1 fw-normal mb-0 menuworker-logo">MenuWorker</span>
+        </div>
+        <div class="px-sm-5 d-flex justify-content-center justify-content-sm-start ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-5">
+          <form action="/auth/register" method="POST">
+            <h4 class="mb-3 pb-3 login-head-text">Sign up</h4>
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/main.css" rel="stylesheet" type="text/css" />
-  </head>
-
-  <body>
-    <section class="vh-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6 text-black">
-            <div class="px-sm-5 d-flex justify-content-center justify-content-sm-start ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-5">
-              <form action="/auth/register" method="POST" style="width: 23rem">
-                <h3 class="fw-normal mb-3 pb-3 login-head-text">Sign up</h3>
-
-                <div class="mb-3">
-                  <label class="form-label" for="name">Name</label>
-                  <input name="name" type="name" id="name" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                  <label class="form-label" for="email">Email</label>
-                  <input name="email" type="email" id="email" class="form-control" />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label" for="phone">Phone</label>
-                  <input name="phone" type="phone" id="phone" class="form-control" />
-                </div>
-                <div class="mb-3">
-                  <label class="form-label" for="password">Password</label>
-                  <input name="password" type="password" id="password" class="form-control" />
-                </div>
-
-                <div class="pt-3 mb-4">
-                  <button class="btn btn-info btn-lg w-100 login-button" type="submit">
-                    Register
-                  </button>
-                </div>
-
-                <p>
-                  Aleady have an accound?
-                  <a href="/auth/login" class="link-info text-decoration-none">Login here</a>
-                </p>
-              </form>
+            <div class="mb-2">
+              <label class="form-label mb-0" for="name">Name</label>
+              <input name="name" type="name" id="name" class="form-control" />
             </div>
-          </div>
-          <div class="col-sm-6 px-0 d-none d-sm-block">
-            <img src="https://static.vecteezy.com/system/resources/previews/000/554/568/original/summer-junk-food-cheese-hamburger-vector.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left" />
-          </div>
+
+            <div class="mb-2">
+              <label class="form-label mb-0" for="email">Email</label>
+              <input name="email" type="email" id="email" class="form-control" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label mb-0" for="phone">Phone</label>
+              <input name="phone" type="phone" id="phone" class="form-control" />
+            </div>
+            <div class="mb-4">
+              <label class="form-label mb-0" for="password">Password</label>
+              <input name="password" type="password" id="password" class="form-control" />
+            </div>
+
+            <div class="pt-1 mb-4">
+              <button class="custom-button-primary w-100" type="submit">
+                Register
+              </button>
+            </div>
+
+            <p>
+              Aleady have an accound?
+              <a href="/auth/login" class="link-info text-decoration-none">Login here</a>
+            </p>
+          </form>
         </div>
       </div>
-    </section>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-  </body>
-
-</html>
+      <div class="col-sm-6 px-0 d-none d-sm-block">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/554/568/original/summer-junk-food-cheese-hamburger-vector.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left" />
+      </div>
+    </div>
+  </div>
+</section>

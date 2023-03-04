@@ -1,16 +1,14 @@
-.login-page {
+.login-page,
+.register-page {
+  form {
+    width: 23rem;
+  }
+  .login-column,
+  .register-column {
+    background-color: $light;
+  }
   .logo-container {
     margin: 3rem 0;
-  }
-
-  .login-button {
-    color: #ffffff;
-    text-transform: uppercase;
-    font-size: 1rem;
-
-    &:hover {
-      color: #ffffff;
-    }
   }
 
   .login-head-text {

@@ -19,12 +19,12 @@ class ApplicationController {
       res.redirect("/dashboard/restaurants");
       return;
     }
-    res.render("auth/login", { layout: false });
+    res.render("auth/login");
   };
 
   // GET
   register = (req, res) => {
-    res.render("auth/register", { layout: false });
+    res.render("auth/register");
   };
 
   showMenuPublic = async (req, res, next) => {
