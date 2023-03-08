@@ -1,4 +1,5 @@
 <section class="container py-4 restaurants_index">
+  <h2 class="text-center">Restaurants</h2>
   <div class="row mb-3">
     <div class="col text-center text-md-end">
       <a href="/dashboard/restaurants/new" class="custom-button-primary custom-button-primary--dark">ADD NEW RESTAURANT</a>
@@ -12,19 +13,22 @@
           <table class="table mb-0 text-center">
             <thead>
               <tr>
-                <th scope="col"></th>
+                <th scope="col">name</th>
                 <th scope="col">created at</th>
                 <th scope="col">Menus</th>
                 <th scope="col" width="10%">Edit</th>
                 <th scope="col" width="10%">Delete</th>
-                <th scope="col" width="10%">Show</th>
               </tr>
             </thead>
             <tbody>
               <% restaurants.forEach(restaurant => { %>
 
               <tr class="restaurant-item">
-                <th scope="row" class="text-start"><%= restaurant.name %></th>
+                <th scope="row" class="text-start">
+                  <a href="/dashboard/restaurants/<%= restaurant.id %>">
+                    <%= restaurant.name %>
+                  </a>
+                </th>
                 <td>
                   <span class="text-muted">
                     <%= restaurant.createdAt.toLocaleDateString("en-US") %>
@@ -41,9 +45,6 @@
                     <input type="hidden" name="_method" value="DELETE" />
                     <a href="javascript:{}" onclick="document.getElementById('delete-restaurant-<%= restaurant.id %>-form').submit();"><i class="bx bxs-folder-minus delete"></i></a>
                   </form>
-                </td>
-                <td>
-                  <a href="/dashboard/restaurants/<%= restaurant.id %>"><i class="bx bx-show-alt"></i></a>
                 </td>
               </tr>
               <% }); %>
