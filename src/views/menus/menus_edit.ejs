@@ -1,14 +1,31 @@
 <section class="container py-4 menus-edit-page">
-  <div class="row">
-    <div class="col text-center">
-      <form action="/dashboard/menus/<%= menu.id %>" method="post">
-        <div class="input-group input-group-md">
-          <span class="input-group-text" id="inputGroup-sizing-lg">Menu name</span>
-          <input type="hidden" name="_method" value="PUT" />
-          <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="<%= menu.name %>" />
-          <button type="submit" class="btn btn-primary">Change</button>
-        </div>
-      </form>
+  <h2 class="text-center">
+    Menu Editor
+  </h2>
+  <div class="row my-4">
+    <div class="col-8 px-0 offset-2 card">
+      <h5 class="fw-bold mb-3 card-header text-center">General</h5>
+      <div class="card-body">
+        <form action="/dashboard/menus/<%= menu.id %>" method="post">
+          <div class="d-flex flex-column gap-2">
+            <div class="input-group input-group-md">
+              <span class="input-group-text" id="inputGroup-sizing-lg">Menu name</span>
+              <input type="hidden" name="_method" value="PUT" />
+              <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="<%= menu.name %>" />
+            </div>
+            <div>
+              <h5 class="text-center">Settings</h5>
+              <div class="form-check form-switch ms-3">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckVisibility" name="public" value="true" <% if(menu.public) { %> checked <% } %> />
+                <label class="form-check-label px-3" for="flexSwitchCheckVisibility">public</label>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-2">
+            <button type="submit" class="custom-button-primary custom-button-primary--blue">Submit changes</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <div class="editor-options d-flex justify-content-end p-2 mt-3 gap-2">
@@ -27,9 +44,15 @@
     </button>
   </div>
 
+  <% if(menu.Categories.length === 0) { %>
+
+  <h4 class="text-center mt-5">No categories and products yet.</h4>
+
+  <% } %>
+
   <% menu.Categories.forEach((category) => { %>
 
-  <div data-categoryid="<%= category.id %>" class="category-item border mt-5 py-3 px-4 d-flex flex-column rounded-1">
+  <div data-categoryid="<%= category.id %>" class="category-item border mt-2 py-3 px-4 d-flex flex-column rounded-1">
     <div class="category-item__header d-flex flex-column flex-md-row justify-content-between">
       <h1 id="category-name" class="m-3 m-lg-0 mx-auto mx-lg-0">
         <%= category.name %>
@@ -87,7 +110,7 @@
   <!-- MODALS  -->
 
   <!-- CATEGORY MODAL -->
-  <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+  <div class="modal" id="categoryModal" tabindex="-1" data-bs-keyboard="false" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -124,7 +147,7 @@
   <!-- CATEGORY MODAL END -->
 
   <!-- PRODUCT MODAL -->
-  <div class="modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal" id="productModal" tabindex="-1" data-bs-keyboard="false" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -171,7 +194,7 @@
   <!-- PRODUCT MODAL END -->
 
   <!-- DELETE PRODUCT/CATEGORY MODAL -->
-  <div class="modal" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal" id="deleteModal" tabindex="-1" data-bs-keyboard="false" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -195,7 +218,7 @@
 
   <!-- GENERAL INFO MODAL -->
 
-  <div class="modal" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal" id="infoModal" tabindex="-1" data-bs-keyboard="false" aria-labelledby="infoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">

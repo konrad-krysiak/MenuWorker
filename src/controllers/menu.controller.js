@@ -119,15 +119,18 @@ class MenuController {
 
   /**
    * @param name
+   * @param public bool
    */
   update = async (req, res, next) => {
     try {
       const menu = await Menu.findOne({
         where: { id: req.params.id },
       });
+      console.log(req.body);
       if (menu.userId === req.user.id) {
         await menu.update({
           name: req.body.name,
+          public: Boolean(req.body.public),
         });
         req.flash("info", "Menu updated successfully.");
         res.redirect(`/dashboard/menus/${req.params.id}/edit`);

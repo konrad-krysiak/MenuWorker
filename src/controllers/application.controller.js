@@ -2,7 +2,7 @@ import QRCode from "qrcode";
 
 import db from "../models";
 
-const { Menu, Restaurant, Category, Product } = db;
+const { Menu, Restaurant, Category, Product, Sequelize } = db;
 
 class ApplicationController {
   // GET
@@ -73,15 +73,21 @@ class ApplicationController {
     try {
       const restaurants = await Restaurant.findAll({
         where: { userId: req.user.id },
-        raw: true,
+        include: {
+          model: Menu,
+        },
       });
-      const restaurantsWithURI = restaurants.map((i) => ({
-        ...i,
-        publicUrl: `${process.env.DOMAIN}/public/restaurant/${i.id}`,
-      }));
+
+      const menuUrls = {};
+      for (let restaurant of restaurants) {
+        restaurant.Menus.forEach((menu) => {
+          menuUrls[menu.id] = `${process.env.DOMAIN}/public/menu/${menu.id}`;
+        });
+      }
       res.render("qr/qr_index", {
         layout: "layouts/dashboard",
-        restaurantsWithURI,
+        restaurants,
+        menuUrls,
       });
     } catch (e) {
       console.log(e);
@@ -91,13 +97,13 @@ class ApplicationController {
 
   showQR = async (req, res, next) => {
     try {
-      const restaurantId = req.params.id;
-      const restaurant = await Restaurant.findOne({
-        where: { id: restaurantId },
+      const menuId = req.params.id;
+      const menu = await Menu.findOne({
+        where: { id: menuId },
       });
-      if (restaurant) {
+      if (menu) {
         const qrcode = await QRCode.toDataURL(
-          `https://${process.env.DOMAIN}/public/restaurant/${restaurantId}`
+          `https://${process.env.DOMAIN}/public/menu/${menuId}`
         );
         res.render("qr/qr_show", {
           layout: "layouts/dashboard",

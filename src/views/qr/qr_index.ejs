@@ -1,16 +1,45 @@
-<section class="container py-5">
+<section class="container py-4">
   <h2 class="text-center">QR Code Generator</h2>
-  <p class="text-center">Choose restaurant for QR code generation.</p>
+  <p class="text-center">Choose menu for QR code generation.</p>
 
   <div class="row mt-4">
-    <div class="col-8 offset-2">
+    <div class="col-10 offset-1">
       <div class="list-group">
-        <% restaurantsWithURI.forEach((restaurant) => { %>
+        <% restaurants.forEach((restaurant) => { %>
 
-        <a href="/dashboard/qr/<%= restaurant.id %>" class="list-group-item list-group-item-action text-break">
+        <!-- <a href="/dashboard/qr/<%= restaurant.id %>" class="list-group-item list-group-item-action text-break"> -->
+        <div class="list-group-item text-break">
           <div class="fw-bold"><%= restaurant.name %></div>
-          <div class="w-100"><%= restaurant.publicUrl %></div>
-        </a>
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th scope="col" class="col-3">name</th>
+                <th scope="col" class="col-7">public url</th>
+                <th scope="col" class="col-2">public</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% restaurant.Menus.forEach((menu) => { %>
+              <tr>
+                <td>
+                  <a href="/dashboard/qr/<%= menu.id %>">
+                    <%= menu.name %>
+                  </a>
+                </td>
+                <td>
+                  <%= menuUrls[menu.id] %>
+                </td>
+                <td>
+                  <%= menu.public %>
+                </td>
+              </tr>
+              <% }) %>
+
+
+            </tbody>
+          </table>
+        </div>
+        <!-- </a> -->
         <% }); %>
       </div>
     </div>
