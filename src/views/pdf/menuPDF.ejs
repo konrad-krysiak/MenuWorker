@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      <%=css %>
+
+    </style>
   </head>
+
   <body>
     <section class="menuTemplate container py-5">
       <h1 class="text-center"><%= locals.menu.Restaurant.name %></h1>
 
       <% locals.menu.Categories.forEach((category) => { %>
-
+      <% if (category.Products.length > 0) { %>
       <div class="template-category py-4">
         <h3 class="text-center px-5"><%= category.name %></h3>
         <div class="template-category__products d-flex flex-column gap-3">
@@ -32,8 +38,9 @@
           <% }) %>
         </div>
       </div>
-
+      <% }; %>
       <% }) %>
     </section>
   </body>
+
 </html>
