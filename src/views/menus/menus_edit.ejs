@@ -11,7 +11,7 @@
             <div class="input-group input-group-md">
               <span class="input-group-text" id="inputGroup-sizing-lg">Menu name</span>
               <input type="hidden" name="_method" value="PUT" />
-              <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="<%= menu.name %>" />
+              <input type="text" name="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" value="<%= menu.name %>" autocomplete="off" />
             </div>
             <div>
               <h5 class="text-center">Settings</h5>
@@ -129,7 +129,7 @@
             <input type="hidden" name="menuId" value="<%= menu.id %>" />
             <div class="mb-3">
               <label for="category-name" class="col-form-label">Category name:</label>
-              <input name="name" type="text" class="form-control" id="category-name" required />
+              <input name="name" type="text" class="form-control" id="category-name" required autocomplete="off" />
             </div>
           </form>
         </div>
@@ -168,7 +168,7 @@
             <input type="hidden" name="categoryId" value="" />
             <div class="mb-3">
               <label for="product-name" class="col-form-label">Product name:</label>
-              <input name="name" type="text" class="form-control" id="product-name" required />
+              <input name="name" type="text" class="form-control" id="product-name" required autocomplete="off" />
             </div>
             <div class="mb-3">
               <label for="product-price" class="col-form-label">Product price:</label>

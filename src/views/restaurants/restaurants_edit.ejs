@@ -10,15 +10,15 @@
       <div class="col col-md-6 offset-md-3 d-flex flex-column gap-3 form-container">
         <div>
           <label for="name" class="form-label">Name</label>
-          <input name="name" class="form-control" id="name" value="<%= restaurant.name %>" />
+          <input name="name" class="form-control" id="name" value="<%= restaurant.name %>" autocomplete="off" />
         </div>
         <div>
           <label for="address" class="form-label">Address</label>
-          <input name="address" class="form-control" id="address" value="<%= restaurant.address %>" />
+          <input name="address" class="form-control" id="address" value="<%= restaurant.address %>" autocomplete="off" />
         </div>
         <div>
           <label for="phone" class="form-label">Phone</label>
-          <input name="phone" class="form-control" id="phone" value="<%= restaurant.phone %>" />
+          <input name="phone" class="form-control" id="phone" value="<%= restaurant.phone %>" autocomplete="off" />
         </div>
         <div>
           <label for="description" class="form-label">Description</label>
@@ -26,7 +26,7 @@
         </div>
         <div>
           <label for="website" class="form-label">Website</label>
-          <input name="website" class="form-control" id="website" value="<%= restaurant.website %>" />
+          <input name="website" class="form-control" id="website" value="<%= restaurant.website %>" autocomplete="off" />
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="flexSwitchCheckVisibility" name="public" value="true" <% if(restaurant.public) { %> checked <% } %> />
