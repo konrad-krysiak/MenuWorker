@@ -12,26 +12,13 @@
 
   <body>
     <section class="layout-body">
-      <% if(messages.info) { %>
-      <div class="py-2">
-        <% messages.info.forEach(message => { %>
-        <div class="alert alert-primary" role="alert"><%= message %></div>
-        <% }); %>
-      </div>
-      <% } %>
-      <% if(messages.error) { %>
-      <div class="py-2">
-        <% messages.error.forEach(message => { %>
-        <div class="alert alert-danger" role="alert"><%= message %></div>
-        <% }); %>
-      </div>
-      <% } %>
+      <%- include('../partials/alerts') %>
       <%- body %>
     </section>
 
-    <script src="js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/javascript/script.js"></script>
+    <script src="/javascript/main.js"></script>
     <%- script %>
   </body>
 

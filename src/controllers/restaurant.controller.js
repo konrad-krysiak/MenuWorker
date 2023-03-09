@@ -129,7 +129,10 @@ class RestaurantController {
         e.name === "SequelizeValidationError" ||
         e.name === "SequelizeUniqueConstraintError"
       ) {
-        req.flash("error", e.errors.map((i) => i.message).join(", "));
+        req.flash(
+          "error",
+          e.errors.map((i) => i.message)
+        );
         res.redirect("/dashboard/restaurants/" + req.params.id + "/edit");
       } else {
         req.flash("error", "Something went wrong...");

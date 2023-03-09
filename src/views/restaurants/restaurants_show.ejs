@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-12 px-5 text-end">
       <!-- <button class="custom-button-primary custom-button-primary--blue">Copy link</button> -->
-      <a href="/dashboard/qr/<%= restaurant.id %>" class="custom-button-primary custom-button-primary--dark">QR Code</a>
       <a href="/dashboard/restaurants/<%= restaurant.id %>/edit" class="custom-button-primary custom-button-primary--green">Edit</a>
       <form class="d-inline" action="/dashboard/restaurants/<%= restaurant.id %>" method="POST">
         <input type="hidden" name="_method" value="DELETE">

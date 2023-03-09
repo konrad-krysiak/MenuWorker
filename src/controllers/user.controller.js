@@ -41,7 +41,10 @@ class UserController {
           e.name
         )
       ) {
-        req.flash("error", e.errors.map((i) => i.message).join(", "));
+        req.flash(
+          "error",
+          e.errors.map((i) => i.message)
+        );
         res.render("auth/register");
       } else {
         console.log("ERROR IN USER CONTROLLER: ", e);
@@ -53,16 +56,16 @@ class UserController {
 
   changePassword = async (req, res, next) => {
     try {
-      const payloard = {
+      const payload = {
         password: req.body.password,
         repeatpassword: req.body.repeatpassword,
       };
-      if (payloard.password !== payloard.repeatpassword) {
+      if (payload.password !== payload.repeatpassword) {
         req.flash("error", "Passwords does not match.");
         res.redirect("back");
         return;
       }
-      const hashedPassword = await bcrypt.hash(payloard.password, 10);
+      const hashedPassword = await bcrypt.hash(payload.password, 10);
       await User.update(
         { password: hashedPassword },
         { where: { id: req.user.id } }

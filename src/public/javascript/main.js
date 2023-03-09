@@ -1,5 +1,3 @@
-import { downloadURI } from "../../helpers/downloadURI.js";
-
 document.addEventListener("DOMContentLoaded", function () {
   const showNavbar = (toggleId, navId, bodyId, headerId) => {
     const toggle = document.getElementById(toggleId),
@@ -36,11 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Your code to run since DOM is loaded and ready
 
-  // QRCode download handler
-  document
-    .getElementById("qrcode-download-btn")
-    .addEventListener("click", function () {
-      const qrCodeImageSource = document.querySelector("#qrcodeImage").src;
-      downloadURI(qrCodeImageSource, "qrcode.png");
+  $(".alert")
+    .delay(4000)
+    .slideUp(200, function () {
+      $(this).alert("close");
     });
 });

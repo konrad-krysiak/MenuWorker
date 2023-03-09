@@ -22,4 +22,7 @@ module.exports = {
     "prettier/prettier": ["error"],
     "import/first": 1,
   },
+  globals: {
+    $: true,
+  },
 };

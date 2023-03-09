@@ -10,48 +10,7 @@
     <link href="/css/main.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <!-- TODO - USE LAYOUT -->
-  <% if(messages.info) { %>
-  <div class="py-2 alert-box">
-    <% messages.info.forEach(message => { %>
-    <div class="alert alert-primary d-flex align-items-center gap-2" role="alert">
-      <i class='bx bxs-info-circle'></i>
-      <%= message %>
-    </div>
-    <% }); %>
-  </div>
-  <% } %>
-  <% if(messages.success) { %>
-  <div class="py-2 alert-box">
-    <% messages.success.forEach(message => { %>
-    <div class="alert alert-success d-flex align-items-center gap-2" role="alert">
-      <i class='bx bxs-check-circle'></i>
-      <%= message %>
-    </div>
-    <% }); %>
-  </div>
-  <% } %>
-  <% if(messages.warning) { %>
-  <div class="py-2 alert-box">
-    <% messages.warning.forEach(message => { %>
-    <div class="alert alert-warning d-flex align-items-center gap-2" role="alert">
-      <i class='bx bxs-error'></i>
-      <%= message %>
-    </div>
-    <% }); %>
-  </div>
-  <% } %>
-  <% if(messages.error) { %>
-  <div class="py-2 alert-box">
-    <% messages.error.forEach(message => { %>
-    <div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
-      <i class='bx bxs-error'></i>
-      <%= message %>
-    </div>
-    <% }); %>
-  </div>
-  <% } %>
-
+  <%- include('partials/alerts') %>
 
   <body class="position-relative">
     <section id="landing" class="landing-page vh-100 d-flex flex-column justify-content-center">
@@ -121,6 +80,7 @@
     </section> -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/javascript/main.js"></script>
   </body>
 
 </html>

@@ -14,7 +14,7 @@ export default {
     await MailService.sendEmail(
       data.recipent,
       "Your PDF link from MenuWorker!",
-      "PDF has been generated. <br />" + data.uploadURL,
+      "PDF has been generated. </br> </br> Regards, </br> MenuWorker Team",
       attachments
     );
     winstonLogger.info(`Email to ${data.recipent} has been sent.`);
