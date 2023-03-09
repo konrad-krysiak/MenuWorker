@@ -9,12 +9,12 @@
 
         <!-- <a href="/dashboard/qr/<%= restaurant.id %>" class="list-group-item list-group-item-action text-break"> -->
         <div class="list-group-item text-break">
-          <div class="fw-bold"><%= restaurant.name %></div>
-          <table class="table text-center">
+          <div class="fw-bold fs-5"><%= restaurant.name %></div>
+          <table class="table text-center mt-2">
             <thead>
               <tr>
                 <th scope="col" class="col-3">name</th>
-                <th scope="col" class="col-7">public url</th>
+                <th scope="col" class="col-7">QR Code URL</th>
                 <th scope="col" class="col-2">public</th>
               </tr>
             </thead>
@@ -22,15 +22,21 @@
               <% restaurant.Menus.forEach((menu) => { %>
               <tr>
                 <td>
-                  <a href="/dashboard/qr/<%= menu.id %>">
+                  <a href="/dashboard/menus/<%= menu.id %>/edit">
                     <%= menu.name %>
                   </a>
                 </td>
                 <td>
-                  <%= menuUrls[menu.id] %>
+                  <a href="/dashboard/qr/<%= menu.id %>">
+                    <%= menuUrls[menu.id] %>
+                  </a>
                 </td>
                 <td>
-                  <%= menu.public %>
+                  <% if(menu.public) { %>
+                  <span class="text-success fw-bold">Yes</span>
+                  <% } else { %>
+                  <span class="text-danger fw-bold">No</span>
+                  <% } %>
                 </td>
               </tr>
               <% }) %>
