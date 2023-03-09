@@ -38,6 +38,7 @@ class MenuController {
         });
       } else {
         console.log("User does not have access to this page.");
+        throw new Error("User does not have access to this page.");
       }
     } catch (e) {
       next(e);
@@ -92,7 +93,7 @@ class MenuController {
         userId: req.user.id,
         itemCount: 0,
       });
-      req.flash("info", "Menu created successfully.");
+      req.flash("success", "Menu created successfully.");
       res.redirect("/dashboard/menus");
     } catch (e) {
       if (
@@ -132,7 +133,7 @@ class MenuController {
           name: req.body.name,
           public: Boolean(req.body.public),
         });
-        req.flash("info", "Menu updated successfully.");
+        req.flash("success", "Menu updated successfully.");
         res.redirect(`/dashboard/menus/${req.params.id}/edit`);
       } else {
         throw new Error("User does not have permission to update this menu.");

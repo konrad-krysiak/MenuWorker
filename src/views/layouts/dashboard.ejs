@@ -61,28 +61,64 @@
         </div>
       </div>
 
-      <div class="dashboard-body">
+      <div class="dashboard-body position-relative">
         <% if(messages.info) { %>
-        <div class="py-2">
+        <div class="py-2 alert-box">
           <% messages.info.forEach(message => { %>
-          <div class="alert alert-primary" role="alert"><%= message %></div>
+          <div class="alert alert-primary d-flex align-items-center gap-2" role="alert">
+            <i class='bx bxs-info-circle'></i>
+            <%= message %>
+          </div>
+          <% }); %>
+        </div>
+        <% } %>
+        <% if(messages.success) { %>
+        <div class="py-2 alert-box">
+          <% messages.success.forEach(message => { %>
+          <div class="alert alert-success d-flex align-items-center gap-2" role="alert">
+            <i class='bx bxs-check-circle'></i>
+            <%= message %>
+          </div>
+          <% }); %>
+        </div>
+        <% } %>
+        <% if(messages.warning) { %>
+        <div class="py-2 alert-box">
+          <% messages.warning.forEach(message => { %>
+          <div class="alert alert-warning d-flex align-items-center gap-2" role="alert">
+            <i class='bx bxs-error'></i>
+            <%= message %>
+          </div>
           <% }); %>
         </div>
         <% } %>
         <% if(messages.error) { %>
-        <div class="py-2">
+        <div class="py-2 alert-box">
           <% messages.error.forEach(message => { %>
-          <div class="alert alert-danger" role="alert"><%= message %></div>
+          <div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+            <i class='bx bxs-error'></i>
+            <%= message %>
+          </div>
           <% }); %>
         </div>
         <% } %>
         <%- body %>
       </div>
     </div>
+
     <!-- bootstrap v5 -->
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/javascript/script.js" type="module"></script>
+    <script>
+      $(".alert")
+        .delay(4000)
+        .slideUp(200, function() {
+          $(this)
+            .alert('close');
+        });
+
+    </script>
     <%- script %>
   </body>
 

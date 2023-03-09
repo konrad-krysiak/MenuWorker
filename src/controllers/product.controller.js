@@ -25,7 +25,7 @@ class ProductController {
           price: req.body.price,
           categoryId: req.body.categoryId,
         });
-        req.flash("info", "Product created successfully.");
+        req.flash("success", "Product created successfully.");
         res.redirect(`/dashboard/menus/${parentMenu.id}/edit`);
       } else {
         throw new Error("User does not have access to create product.");
@@ -87,7 +87,7 @@ class ProductController {
           price: req.body.price,
           description: req.body.description,
         });
-        req.flash("info", "Product updated successfully.");
+        req.flash("success", "Product updated successfully.");
         res.redirect(`/dashboard/menus/${product.Category.Menu.id}/edit`);
       } else {
         throw new Error("User does not have access to update product.");

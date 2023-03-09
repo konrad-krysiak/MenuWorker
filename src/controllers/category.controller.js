@@ -14,7 +14,7 @@ class CategoryController {
         where: { id: req.body.menuId, userId: req.user.id },
       });
       await menu.createCategory({ name: req.body.name });
-      req.flash("info", "Category created successfully");
+      req.flash("success", "Category created successfully");
       res.redirect(`/dashboard/menus/${menu.id}/edit`);
     } catch (e) {
       if (
@@ -63,7 +63,7 @@ class CategoryController {
       // Ensure user is category owner
       if (category.Menu.userId === req.user.id) {
         await category.update({ name: req.body.name });
-        req.flash("info", "Category updated successfully.");
+        req.flash("success", "Category updated successfully.");
         res.redirect(`/dashboard/menus/${category.Menu.id}/edit`);
       } else {
         throw new Error("User is not owning such category");

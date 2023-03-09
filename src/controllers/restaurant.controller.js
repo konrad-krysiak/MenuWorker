@@ -36,7 +36,8 @@ class RestaurantController {
         restaurant,
       });
     } catch (e) {
-      console.log(e);
+      req.flash("error", e.message);
+      res.redirect("/dashboard/restaurants");
     }
   };
 
@@ -80,7 +81,7 @@ class RestaurantController {
       };
       const owner = await User.findOne({ where: { id: req.user.id } });
       await owner.createRestaurant(payload);
-      req.flash("info", "Restaurant created successfully.");
+      req.flash("success", "Restaurant created successfully.");
       res.redirect("/dashboard/restaurants");
     } catch (e) {
       if (
@@ -121,7 +122,7 @@ class RestaurantController {
       await Restaurant.update(payload, {
         where: { id: req.params.id, userId: req.user.id },
       });
-      req.flash("info", "Restaurant updated successfully");
+      req.flash("success", "Restaurant updated successfully");
       res.redirect("/dashboard/restaurants");
     } catch (e) {
       if (
@@ -139,7 +140,6 @@ class RestaurantController {
 
   delete = async (req, res) => {
     try {
-      console.log("PARAMS", req.params);
       const deleted = await Restaurant.destroy({
         where: { id: req.params.id, userId: req.user.id },
       });

@@ -33,7 +33,7 @@ class UserController {
       };
       let hashedPassword = await bcrypt.hash(data.password, 10);
       await User.create({ ...data, password: hashedPassword });
-      req.flash("info", "User created successfully.");
+      req.flash("success", "User created successfully.");
       res.redirect("/");
     } catch (e) {
       if (
@@ -67,7 +67,7 @@ class UserController {
         { password: hashedPassword },
         { where: { id: req.user.id } }
       );
-      req.flash("info", "Password changed successfully.");
+      req.flash("success", "Password changed successfully.");
       res.redirect("back");
     } catch (e) {
       console.log(e);
