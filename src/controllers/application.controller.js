@@ -103,7 +103,7 @@ class ApplicationController {
       });
       if (menu) {
         const qrcode = await QRCode.toDataURL(
-          `https://${process.env.DOMAIN}/public/menu/${menuId}`
+          `${process.env.DOMAIN}/public/menu/${menuId}`
         );
         res.render("qr/qr_show", {
           layout: "layouts/dashboard",
