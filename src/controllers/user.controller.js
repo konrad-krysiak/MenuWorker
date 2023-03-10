@@ -22,7 +22,6 @@ class UserController {
     });
   };
 
-  // POST
   create = async (req, res) => {
     try {
       const data = {
