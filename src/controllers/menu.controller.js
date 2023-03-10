@@ -1,10 +1,8 @@
 import db from "../models";
-import queue from "../utils/queue";
 
 const { Restaurant, Menu, Category, Product } = db;
 
 class MenuController {
-  // GET
   indexView = async (req, res, next) => {
     try {
       const restaurantsWithMenus = await Restaurant.findAll({
@@ -20,7 +18,6 @@ class MenuController {
     }
   };
 
-  // GET
   /**
    * @param restaurantId QUERY
    */
@@ -77,8 +74,6 @@ class MenuController {
     }
   };
 
-  // name - menu name
-  // restaurantId - id of restaurant menu belongs to
   /**
    * @param name
    * @param restaurantId hidden
@@ -164,7 +159,6 @@ class MenuController {
     }
   };
 
-  // DELETE
   delete = async (req, res, next) => {
     try {
       const menuId = req.params.id;
@@ -175,50 +169,6 @@ class MenuController {
       await menu.destroy();
       req.flash("info", "Menu deleted successfully.");
       res.redirect("/dashboard/menus");
-    } catch (e) {
-      console.log(e);
-      next(e);
-    }
-  };
-
-  pdfPreview = async (req, res, next) => {
-    try {
-      const menuId = req.params.id;
-      const menu = await Menu.findOne({
-        where: { id: menuId },
-        include: [
-          { model: Restaurant },
-          { model: Category, include: { model: Product } },
-        ],
-      });
-      res.render("pdf/menuPDF", { menu });
-    } catch (e) {
-      console.log(e);
-      next(e);
-    }
-  };
-
-  generatePdf = async (req, res, next) => {
-    try {
-      const menuId = req.params.id;
-      const menu = await Menu.findOne({
-        where: { id: menuId },
-        include: [
-          { model: Restaurant },
-          { model: Category, include: { model: Product } },
-        ],
-      });
-
-      queue.add("GenerateMenuPDF", {
-        menuEjsData: menu,
-        HtmlToPdfOptions: {},
-        emailNotification: { recipent: req.user.email },
-      });
-
-      res.render("pdf/menuPDFConfirmation", {
-        layout: "layouts/dashboard",
-        recipentEmailAddress: req.user.email,
-      });
     } catch (e) {
       console.log(e);
       next(e);
